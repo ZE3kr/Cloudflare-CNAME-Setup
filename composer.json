@@ -1,0 +1,5 @@
+{
+    "require": {
+        "cloudflare/sdk": "^1.1"
+    }
+}
