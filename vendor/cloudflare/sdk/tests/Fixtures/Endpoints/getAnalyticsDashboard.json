@@ -1,0 +1,176 @@
+{
+  "success": true,
+  "errors": [
+    {}
+  ],
+  "messages": [
+    {}
+  ],
+  "result": {
+    "totals": {
+      "since": "2015-01-01T12:23:00Z",
+      "until": "2015-01-02T12:23:00Z",
+      "requests": {
+        "all": 1234085328,
+        "cached": 1234085328,
+        "uncached": 13876154,
+        "content_type": {
+          "css": 15343,
+          "html": 1234213,
+          "javascript": 318236,
+          "gif": 23178,
+          "jpeg": 1982048
+        },
+        "country": {
+          "US": 4181364,
+          "AG": 37298,
+          "GI": 293846
+        },
+        "ssl": {
+          "encrypted": 12978361,
+          "unencrypted": 781263
+        },
+        "http_status": {
+          "200": 13496983,
+          "301": 283,
+          "400": 187936,
+          "402": 1828,
+          "404": 1293
+        }
+      },
+      "bandwidth": {
+        "all": 213867451,
+        "cached": 113205063,
+        "uncached": 113205063,
+        "content_type": {
+          "css": 237421,
+          "html": 1231290,
+          "javascript": 123245,
+          "gif": 1234242,
+          "jpeg": 784278
+        },
+        "country": {
+          "US": 123145433,
+          "AG": 2342483,
+          "GI": 984753
+        },
+        "ssl": {
+          "encrypted": 37592942,
+          "unencrypted": 237654192
+        }
+      },
+      "threats": {
+        "all": 23423873,
+        "country": {
+          "US": 123,
+          "CN": 523423,
+          "AU": 91
+        },
+        "type": {
+          "user.ban.ip": 123,
+          "hot.ban.unknown": 5324,
+          "macro.chl.captchaErr": 1341,
+          "macro.chl.jschlErr": 5323
+        }
+      },
+      "pageviews": {
+        "all": 5724723,
+        "search_engines": {
+          "googlebot": 35272,
+          "pingdom": 13435,
+          "bingbot": 5372,
+          "baidubot": 1345
+        }
+      },
+      "uniques": {
+        "all": 12343
+      }
+    },
+    "timeseries": [
+      {
+        "since": "2015-01-01T12:23:00Z",
+        "until": "2015-01-02T12:23:00Z",
+        "requests": {
+          "all": 1234085328,
+          "cached": 1234085328,
+          "uncached": 13876154,
+          "content_type": {
+            "css": 15343,
+            "html": 1234213,
+            "javascript": 318236,
+            "gif": 23178,
+            "jpeg": 1982048
+          },
+          "country": {
+            "US": 4181364,
+            "AG": 37298,
+            "GI": 293846
+          },
+          "ssl": {
+            "encrypted": 12978361,
+            "unencrypted": 781263
+          },
+          "http_status": {
+            "200": 13496983,
+            "301": 283,
+            "400": 187936,
+            "402": 1828,
+            "404": 1293
+          }
+        },
+        "bandwidth": {
+          "all": 213867451,
+          "cached": 113205063,
+          "uncached": 113205063,
+          "content_type": {
+            "css": 237421,
+            "html": 1231290,
+            "javascript": 123245,
+            "gif": 1234242,
+            "jpeg": 784278
+          },
+          "country": {
+            "US": 123145433,
+            "AG": 2342483,
+            "GI": 984753
+          },
+          "ssl": {
+            "encrypted": 37592942,
+            "unencrypted": 237654192
+          }
+        },
+        "threats": {
+          "all": 23423873,
+          "country": {
+            "US": 123,
+            "CN": 523423,
+            "AU": 91
+          },
+          "type": {
+            "user.ban.ip": 123,
+            "hot.ban.unknown": 5324,
+            "macro.chl.captchaErr": 1341,
+            "macro.chl.jschlErr": 5323
+          }
+        },
+        "pageviews": {
+          "all": 5724723,
+          "search_engines": {
+            "googlebot": 35272,
+            "pingdom": 13435,
+            "bingbot": 5372,
+            "baidubot": 1345
+          }
+        },
+        "uniques": {
+          "all": 12343
+        }
+      }
+    ]
+  },
+  "query": {
+    "since": "2015-01-01T12:23:00Z",
+    "until": "2015-01-02T12:23:00Z",
+    "time_delta": 60
+  }
+}

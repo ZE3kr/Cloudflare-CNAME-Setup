@@ -1,0 +1,30 @@
+{
+  "success": true,
+  "errors": [
+    {}
+  ],
+  "messages": [
+    {}
+  ],
+  "result": [
+    {
+      "id": "023e105f4ecef8ad9ca31a8372d0c353",
+      "name": "example.com",
+      "development_mode": 7200,
+      "original_name_servers": [
+        "ns1.originaldnshost.com",
+        "ns2.originaldnshost.com"
+      ],
+      "original_registrar": "GoDaddy",
+      "original_dnshost": "NameCheap",
+      "created_on": "2014-01-01T05:20:00.12345Z",
+      "modified_on": "2014-01-01T05:20:00.12345Z"
+    }
+  ],
+  "result_info": {
+    "page": 1,
+    "per_page": 20,
+    "count": 1,
+    "total_count": 2000
+  }
+}

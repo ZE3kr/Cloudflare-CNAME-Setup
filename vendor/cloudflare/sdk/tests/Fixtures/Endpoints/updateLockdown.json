@@ -1,0 +1,22 @@
+{
+  "success": true,
+  "errors": [
+    {}
+  ],
+  "messages": [
+    {}
+  ],
+  "result": {
+    "id": "372e67954025e0ba6aaa6d586b9e0b59",
+    "description": "Restrict access to these endpoints to requests from a known IP address",
+    "urls": [
+      "api.mysite.com/some/endpoint*"
+    ],
+    "configurations": [
+      {
+        "target": "ip",
+        "value": "1.2.3.4"
+      }
+    ]
+  }
+}

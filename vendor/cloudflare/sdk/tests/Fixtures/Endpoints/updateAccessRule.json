@@ -1,0 +1,30 @@
+{
+  "success": true,
+  "errors": [
+    {}
+  ],
+  "messages": [
+    {}
+  ],
+  "result": {
+    "id": "92f17202ed8bd63d69a66b86a49a8f6b",
+    "notes": "This rule is on because of an event that occured on date X",
+    "allowed_modes": [
+      "whitelist",
+      "block",
+      "challenge"
+    ],
+    "mode": "challenge",
+    "configuration": {
+      "target": "ip",
+      "value": "1.2.3.4"
+    },
+    "scope": {
+      "id": "7c5dae5552338874e5053f2534d2767a",
+      "email": "user@example.com",
+      "type": "user"
+    },
+    "created_on": "2014-01-01T05:20:00.12345Z",
+    "modified_on": "2014-01-01T05:20:00.12345Z"
+  }
+}

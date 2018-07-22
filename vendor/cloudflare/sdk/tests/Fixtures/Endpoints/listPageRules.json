@@ -1,0 +1,39 @@
+{
+  "success": true,
+  "errors": [
+    {}
+  ],
+  "messages": [
+    {}
+  ],
+  "result": [
+    {
+      "id": "9a7806061c88ada191ed06f989cc3dac",
+      "targets": [
+        {
+          "target": "url",
+          "constraint": {
+            "operator": "matches",
+            "value": "*example.com/images/*"
+          }
+        }
+      ],
+      "actions": [
+        {
+          "id": "always_online",
+          "value": "on"
+        }
+      ],
+      "priority": 1,
+      "status": "active",
+      "modified_on": "2014-01-01T05:20:00.12345Z",
+      "created_on": "2014-01-01T05:20:00.12345Z"
+    }
+  ],
+  "result_info": {
+    "page": 1,
+    "per_page": 20,
+    "count": 1,
+    "total_count": 2000
+  }
+}

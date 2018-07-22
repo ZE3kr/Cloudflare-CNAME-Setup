@@ -1,0 +1,15 @@
+language: php
+
+php:
+    - 7.0
+    - 7.1
+
+before_install:
+    - composer self-update
+
+install:
+    - travis_retry composer install --no-interaction --prefer-source
+
+script:
+    - make lint
+    - make test

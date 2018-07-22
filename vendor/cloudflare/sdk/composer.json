@@ -1,0 +1,32 @@
+{
+  "name": "cloudflare/sdk",
+  "description": "PHP binding for v4 of the Cloudflare Client API.",
+  "type": "library",
+  "require": {
+    "guzzlehttp/guzzle": "^6.2.2",
+    "php": ">=7.0.0",
+    "psr/http-message": "~1.0"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "5.7.5",
+    "phpmd/phpmd" : "@stable",
+    "friendsofphp/php-cs-fixer": "^2.6"
+  },
+  "license": "BSD-3-Clause",
+  "authors": [
+    {
+      "name": "Junade Ali",
+      "email": "junade@cloudflare.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Cloudflare\\API\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "classmap": [
+        "tests/"
+    ]
+  }
+}

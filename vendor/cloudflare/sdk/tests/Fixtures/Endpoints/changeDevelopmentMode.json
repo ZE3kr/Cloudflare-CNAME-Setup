@@ -1,0 +1,12 @@
+{
+    "result": {
+        "id": "development_mode",
+        "value": "on",
+        "modified_on": "2017-11-06T05:16:42.864300Z",
+        "time_remaining": 10800,
+        "editable": true
+    },
+    "success": true,
+    "errors": [],
+    "messages": []
+}

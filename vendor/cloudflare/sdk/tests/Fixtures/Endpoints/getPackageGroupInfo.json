@@ -1,0 +1,22 @@
+{
+  "success": true,
+  "errors": [
+    {}
+  ],
+  "messages": [
+    {}
+  ],
+  "result": {
+    "id": "de677e5818985db1285d0e80225f06e5",
+    "name": "Project Honey Pot",
+    "description": "Group designed to protect against IP addresses that are a threat and typically used to launch DDoS attacks",
+    "rules_count": 10,
+    "modified_rules_count": 2,
+    "package_id": "a25a9a7e9c00afc1fb2e0245519d725b",
+    "mode": "on",
+    "allowed_modes": [
+      "on",
+      "off"
+    ]
+  }
+}

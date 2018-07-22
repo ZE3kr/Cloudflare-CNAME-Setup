@@ -1,0 +1,17 @@
+{
+  "success": true,
+  "errors": [
+    {}
+  ],
+  "messages": [
+    {}
+  ],
+  "result": {
+    "id": "a25a9a7e9c00afc1fb2e0245519d725b",
+    "name": "WordPress rules",
+    "description": "Common WordPress exploit protections",
+    "detection_mode": "traditional",
+    "zone_id": "023e105f4ecef8ad9ca31a8372d0c353",
+    "status": "active"
+  }
+}

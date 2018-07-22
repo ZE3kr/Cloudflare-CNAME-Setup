@@ -1,0 +1,26 @@
+{
+  "success": true,
+  "errors": [
+    {}
+  ],
+  "messages": [
+    {}
+  ],
+  "result": [
+    {
+      "id": "372e67954025e0ba6aaa6d586b9e0b59",
+      "description": "Prevent access from abusive clients identified by this UserAgent to mitigate DDoS attack",
+      "mode": "js_challenge",
+      "configuration": {
+        "target": "ua",
+        "value": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_5) AppleWebKit/603.2.4 (KHTML, like Gecko) Version/10.1.1 Safari/603.2.4"
+      }
+    }
+  ],
+  "result_info": {
+    "page": 1,
+    "per_page": 20,
+    "count": 1,
+    "total_count": 2000
+  }
+}

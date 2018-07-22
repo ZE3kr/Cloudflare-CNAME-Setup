@@ -1,0 +1,28 @@
+{
+  "success": true,
+  "errors": [
+    {}
+  ],
+  "messages": [
+    {}
+  ],
+  "result": [
+    {
+      "id": "0d89c70d-ad9f-4843-b99f-6cc0252067e9",
+      "hostname": "app.example.com",
+      "ssl": {
+        "status": "pending_validation",
+        "method": "http",
+        "type": "dv",
+        "cname_target": "dcv.digicert.com",
+        "cname": "810b7d5f01154524b961ba0cd578acc2.app.example.com"
+      }
+    }
+  ],
+  "result_info": {
+    "page": 1,
+    "per_page": 20,
+    "count": 1,
+    "total_count": 2000
+  }
+}
