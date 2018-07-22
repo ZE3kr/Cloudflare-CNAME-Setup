@@ -2,7 +2,7 @@
 if ( substr( $_SERVER['HTTP_HOST'] , 0, 5) == 'beta.' || explode(':',$_SERVER['HTTP_HOST'])[0] == "localhost" ) {
 	$is_beta = true;
 } else {
-	$is_beta = true;
+	$is_beta = false;
 }
 
 if( file_exists( "../config.php" ) ){
