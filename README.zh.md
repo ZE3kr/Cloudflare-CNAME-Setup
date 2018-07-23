@@ -8,21 +8,11 @@
 
 ## 安装
 
-如果你不想使用上述已经安装好了的面板，你可以在自己的服务器上安装。请参考下方指南。
-
-### 需求
-
-+ PHP 7.0+ (需要 cURL 和 APCu Cache 插件)
-+ 网页服务器 (Nginx, Apache, 等)
-+ Cloudflare Partner 账户
-
-### 配置
-
-只需要拷贝 `config.example.php` 到 `config.php`，然后对其编辑即可。
+如果你不想使用上述已经安装好了的面板，你可以在自己的服务器上安装。现有多种方式将其安装到服务器，[详情请参见 Wiki 中的安装方法][5]。
 
 ## 此面板的特性
 
-+ 管理你的所有 DNS 记录。此面板使用了 [Cloudflare API v4][5]，所以支持各种格式的 DNS 记录。
++ 管理你的所有 DNS 记录。此面板使用了 [Cloudflare API v4][6]，所以支持各种格式的 DNS 记录。
 + 高级统计。你可以查看**过去一整年的统计信息**，而不仅仅是一个月。
 + 同时支持 NS 接入。此面板提供了 NS 接入信息，所以你可以随时切换到 Cloudflare DNS。此外，这个面板也支持 DNSSEC。
 + 同时支持 IP 接入。你可以看到 DNS 的 Anycast IPv4 和 IPv6 信息，这样你可以安全地在根域名下使用第三方 DNS。
@@ -41,7 +31,7 @@
 
 + 更加灵活，因为你可以使用任何一个 DNS 提供商。
 + 将 Cloudflare 作为一个备份服务器，或者使用多个 CDN。
-+ 可以免费支持四级域名下的 SSL！例如像 `dev.project.example.com` 这样的域名，Cloudflare 也会自动签发 SSL 证书，这是因为 CNAME 接入签发的是 [SSL for SaaS][6]，它会自动的为每一个字域名签发证书。
++ 可以免费支持四级域名下的 SSL！例如像 `dev.project.example.com` 这样的域名，Cloudflare 也会自动签发 SSL 证书，这是因为 CNAME 接入签发的是 [SSL for SaaS][7]，它会自动的为每一个字域名签发证书。
 
 ## 使用 Cloudflare 的好处
 
@@ -62,14 +52,14 @@
 
 ## Open sourced software used in this project
 
-This project was based on a [HOSTLOC topic][7].
+This project was based on a [HOSTLOC topic][8].
 
 + Amaze UI by Amaze UI Team | Licensed under MIT
-+ Net\_DNS2 by Mike Pultz [mike@mikepultz.com][8] | Licensed under BSD-3-Clause
++ Net\_DNS2 by Mike Pultz [mike@mikepultz.com][9] | Licensed under BSD-3-Clause
 + PHPMailer by Free Software Foundation, Inc. | Lincesed under GNU Lesser General Public License v2.1
 + Cloudflare SDK by Cloudflare | Licensed under BSD-3-Clause
 + Chart.js by Nick Downie | Licensed under the MIT license
-+ Guzzle by Michael Dowling [mtdowling@gmail.com][9] | Licensed under MIT
++ Guzzle by Michael Dowling [mtdowling@gmail.com][10] | Licensed under MIT
 + PSR Http Message by Framework Interoperability Group | Licensed under MIT
 + Composer | Licensed under MIT
 
@@ -77,11 +67,12 @@ This project was based on a [HOSTLOC topic][7].
 [2]:	https://support.cloudflare.com/hc/en-us/articles/200168706-How-do-I-do-CNAME-setup-
 [3]:	https://cf.tlo.xyz
 [4]:	https://beta.cf.tlo.xyz
-[5]:	https://api.cloudflare.com/
-[6]:	https://www.cloudflare.com/ssl-for-saas-providers/
-[7]:	http://www.hostloc.com/thread-386441-1-1.html
-[8]:	mailto:mike@mikepultz.com
-[9]:	mailto:mtdowling@gmail.com
+[5]:	https://github.com/ZE3kr/Cloudflare-CNAME-Setup/wiki/%E5%AE%89%E8%A3%85
+[6]:	https://api.cloudflare.com/
+[7]:	https://www.cloudflare.com/ssl-for-saas-providers/
+[8]:	http://www.hostloc.com/thread-386441-1-1.html
+[9]:	mailto:mike@mikepultz.com
+[10]:	mailto:mtdowling@gmail.com
 
 [image-1]:	https://cdn.landcement.com/uploads/cloudflare/Screenshot1.png
 [image-2]:	https://cdn.landcement.com/uploads/cloudflare/Screenshot2.png
