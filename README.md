@@ -10,21 +10,11 @@ The [beta.cf.tlo.xyz][5] is for the beta version.
 
 ## Installation
 
-If you don’t want to use the preinstalled panel above, you can install this panel on your server. Please follow this guide.
-
-### Requirements
-
-+ PHP 7.0+ installed (with cURL and APCu Cache)
-+ Web server (Nginx, Apache, etc.)
-+ Cloudflare Partner account
-
-### Configuration
-
-Just copy `config.example.php` to `config.php` and edit it with your information.
+If you don’t want to use the preinstalled panel above, you can install this panel on your server. [For more information, please see the Wiki][6].
 
 ## Features of this panel
 
-+ Manage all your DNS records in one place. Using the [Cloudflare API v4][6], this project supports various types of DNS records.
++ Manage all your DNS records in one place. Using the [Cloudflare API v4][7], this project supports various types of DNS records.
 + Advanced Analytics. You can see the analytics report for the **previous year**, rather than a month.
 + NS setup is supported. This panel provides NS setup information so you can switch to Cloudflare DNS at any time. The DNSSEC feature is also supported.
 + IP setup is supported. This service provides the anycast IPv4 and IPv6 of the CDN. You can use this service for the root domain safely.
@@ -43,7 +33,7 @@ Just copy `config.example.php` to `config.php` and edit it with your information
 
 + You can use any DNS provider you like, which is much more flexible.
 + Use Cloudflare CDN as a backup server or use multiple CDNs.
-+ Support fourth-level subdomain SSL for free! For example, the domain like `dev.project.example.com` is ready for HTTPS. This is because, for CNAME setup, the Cloudflare issues the [SSL for SaaS][7], which issues the SSL separately for each sub-domain immediately. 
++ Support fourth-level subdomain SSL for free! For example, the domain like `dev.project.example.com` is ready for HTTPS. This is because, for CNAME setup, the Cloudflare issues the [SSL for SaaS][8], which issues the SSL separately for each sub-domain immediately. 
 
 ## Advantages when you use Cloudflare
 
@@ -64,14 +54,14 @@ Just copy `config.example.php` to `config.php` and edit it with your information
 
 ## Open sourced software used in this project
 
-This project was based on a [HOSTLOC topic][8].
+This project was based on a [HOSTLOC topic][9].
 
 + Amaze UI by Amaze UI Team | Licensed under MIT
-+ Net\_DNS2 by Mike Pultz [mike@mikepultz.com][9] | Licensed under BSD-3-Clause
++ Net\_DNS2 by Mike Pultz [mike@mikepultz.com][10] | Licensed under BSD-3-Clause
 + PHPMailer by Free Software Foundation, Inc. | Lincesed under GNU Lesser General Public License v2.1
 + Cloudflare SDK by Cloudflare | Licensed under BSD-3-Clause
 + Chart.js by Nick Downie | Licensed under the MIT license
-+ Guzzle by Michael Dowling [mtdowling@gmail.com][10] | Licensed under MIT
++ Guzzle by Michael Dowling [mtdowling@gmail.com][11] | Licensed under MIT
 + PSR Http Message by Framework Interoperability Group | Licensed under MIT
 + Composer | Licensed under MIT
 
@@ -80,11 +70,12 @@ This project was based on a [HOSTLOC topic][8].
 [3]:	https://github.com/ZE3kr/Cloudflare-CNAME-Setup/blob/master/README.zh.md
 [4]:	https://cf.tlo.xyz
 [5]:	https://beta.cf.tlo.xyz
-[6]:	https://api.cloudflare.com/
-[7]:	https://www.cloudflare.com/ssl-for-saas-providers/
-[8]:	http://www.hostloc.com/thread-386441-1-1.html
-[9]:	mailto:mike@mikepultz.com
-[10]:	mailto:mtdowling@gmail.com
+[6]:	https://github.com/ZE3kr/Cloudflare-CNAME-Setup/wiki/%E5%AE%89%E8%A3%85
+[7]:	https://api.cloudflare.com/
+[8]:	https://www.cloudflare.com/ssl-for-saas-providers/
+[9]:	http://www.hostloc.com/thread-386441-1-1.html
+[10]:	mailto:mike@mikepultz.com
+[11]:	mailto:mtdowling@gmail.com
 
 [image-1]:	https://cdn.landcement.com/uploads/cloudflare/Screenshot1.png
 [image-2]:	https://cdn.landcement.com/uploads/cloudflare/Screenshot2.png
