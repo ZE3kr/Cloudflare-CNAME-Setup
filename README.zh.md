@@ -6,7 +6,21 @@
 
 [beta.cf.tlo.xyz][4] 安装了最新的测试版。
 
-## 安装
+## 安装(Docker)
+
+### 向导 
+
+```
+docker run -d \
+           -e HOST_KEY=使用你自己的API KEY替换 \
+           -e HOST_MAIL=使用你自己的邮箱替换    \
+           -p 使用你喜欢的端口替换:80           \
+           fanvinga/docker-cfpanel
+```
+只需用你自己的相关信息替换环境变量然后运行即可！
+* 你可以在这个 [链接](https://github.com/fanvinga/dockerfiles/tree/master/cfpanel) 中查看dockerfile的具体信息.
+
+## 安装(手动)
 
 如果你不想使用上述已经安装好了的面板，你可以在自己的服务器上安装。请参考下方指南。
 
