@@ -8,7 +8,20 @@ This project allows [Cloudflare Hosting Partner][1] to provide a panel for custo
 
 The [beta.cf.tlo.xyz][5] is for the beta version.
 
-## Installation
+## Installation(Docker)
+
+### Guide 
+
+```
+docker run -d \
+           -e HOST_KEY=replace_with_your_api_key \
+           -e HOST_MAIL=replace_with_your_mail   \
+           -p the_port_you_like:80               \
+           fanvinga/docker-cfpanel
+```
+Just replace the environment variable with yours then run !
+* You can get the dockerfile by this [link](https://github.com/fanvinga/dockerfiles/tree/master/cfpanel)
+## Installation(Manual)
 
 If you don’t want to use the preinstalled panel above, you can install this panel on your server. Please follow this guide.
 
