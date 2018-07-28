@@ -1,5 +1,22 @@
 {
+    "name": "ZE3kr/Cloudflare-CNAME-Setup",
+    "type": "project",
+    "homepage": "https://github.com/ZE3kr/Cloudflare-CNAME-Setup",
+    "description": "Cloudflare Partner Panel",
+    "keywords": ["cloudflare", "cdn"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "ZE3kr",
+            "email": "ze3kr@icloud.com",
+            "homepage": "https://guozeyu.com"
+        }
+    ],
     "require": {
-        "cloudflare/sdk": "^1.1"
+        "php": ">=7.0",
+        "cloudflare/sdk": "^1.1",
+        "ext-curl": "*",
+        "ext-gettext": "*",
+        "ext-json": "*"
     }
 }

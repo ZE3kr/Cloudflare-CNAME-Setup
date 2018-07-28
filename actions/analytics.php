@@ -2,7 +2,7 @@
 /*
  * Advanced analytics. Show the analytics data for the previous year.
  */
-if(!isset($tlo_id)){ exit; }
+if (!isset($tlo_id)) {exit;}
 
 $zone_name = $_GET['domain'];
 $zones = new \Cloudflare\API\Endpoints\Zones($adapter);
@@ -23,8 +23,8 @@ $analytics = $adapter->get('zones/' . $zoneID . '/analytics/dashboard', ['since'
 $analytics = json_decode($analytics->getBody());
 
 $max_bandwidth = 0;
-foreach ($analytics->result->timeseries as $key){
-	if($key->bandwidth->all > $max_bandwidth){
+foreach ($analytics->result->timeseries as $key) {
+	if ($key->bandwidth->all > $max_bandwidth) {
 		$max_bandwidth = $key->bandwidth->all;
 	}
 }
@@ -43,16 +43,16 @@ $formatBytes_array = formatBytes_array($max_bandwidth);
 		purple: 'rgb(153, 102, 255)',
 		grey: 'rgb(201, 203, 207)'
 	};
-	
+
 	var config1 = {
 		type: 'line',
 		data: {
 			labels: [
 				<?php
-				foreach ($analytics->result->timeseries as $key){
-					echo '"'.explode('T',$key->since)[0].'", ';
-				}
-				?>
+foreach ($analytics->result->timeseries as $key) {
+	echo '"' . explode('T', $key->since)[0] . '", ';
+}
+?>
 			],
 			datasets: [{
 				label: "<?php echo _('Cached'); ?>",
@@ -61,10 +61,10 @@ $formatBytes_array = formatBytes_array($max_bandwidth);
 				borderColor: window.chartColors.red,
 				data: [
 					<?php
-					foreach ($analytics->result->timeseries as $key){
-						echo $key->requests->cached.', ';
-					}
-					?>
+foreach ($analytics->result->timeseries as $key) {
+	echo $key->requests->cached . ', ';
+}
+?>
 				],
 			}, {
 				label: "<?php echo _('All'); ?>",
@@ -73,10 +73,10 @@ $formatBytes_array = formatBytes_array($max_bandwidth);
 				borderColor: window.chartColors.purple,
 				data: [
 					<?php
-					foreach ($analytics->result->timeseries as $key){
-						echo $key->requests->all.', ';
-					}
-					?>
+foreach ($analytics->result->timeseries as $key) {
+	echo $key->requests->all . ', ';
+}
+?>
 				],
 			}]
 		},
@@ -122,10 +122,10 @@ $formatBytes_array = formatBytes_array($max_bandwidth);
 		data: {
 			labels: [
 				<?php
-				foreach ($analytics->result->timeseries as $key){
-					echo '"'.explode('T',$key->since)[0].'", ';
-				}
-				?>
+foreach ($analytics->result->timeseries as $key) {
+	echo '"' . explode('T', $key->since)[0] . '", ';
+}
+?>
 			],
 			datasets: [{
 				label: "<?php echo _('Unique Visitors'); ?>",
@@ -134,10 +134,10 @@ $formatBytes_array = formatBytes_array($max_bandwidth);
 				borderColor: window.chartColors.red,
 				data: [
 					<?php
-					foreach ($analytics->result->timeseries as $key){
-						echo $key->uniques->all.', ';
-					}
-					?>
+foreach ($analytics->result->timeseries as $key) {
+	echo $key->uniques->all . ', ';
+}
+?>
 				],
 			}, {
 				label: "<?php echo _('Page Views'); ?>",
@@ -146,10 +146,10 @@ $formatBytes_array = formatBytes_array($max_bandwidth);
 				borderColor: window.chartColors.purple,
 				data: [
 					<?php
-					foreach ($analytics->result->timeseries as $key){
-						echo $key->pageviews->all.', ';
-					}
-					?>
+foreach ($analytics->result->timeseries as $key) {
+	echo $key->pageviews->all . ', ';
+}
+?>
 				],
 			}]
 		},
@@ -195,10 +195,10 @@ $formatBytes_array = formatBytes_array($max_bandwidth);
 		data: {
 			labels: [
 				<?php
-				foreach ($analytics->result->timeseries as $key){
-					echo '"'.explode('T',$key->since)[0].'", ';
-				}
-				?>
+foreach ($analytics->result->timeseries as $key) {
+	echo '"' . explode('T', $key->since)[0] . '", ';
+}
+?>
 			],
 			datasets: [{
 				label: "<?php echo _('Cached'); ?>",
@@ -207,10 +207,10 @@ $formatBytes_array = formatBytes_array($max_bandwidth);
 				borderColor: window.chartColors.red,
 				data: [
 					<?php
-					foreach ($analytics->result->timeseries as $key){
-						echo round($key->bandwidth->cached/pow(1024,$formatBytes_array[2]), 2).', ';
-					}
-					?>
+foreach ($analytics->result->timeseries as $key) {
+	echo round($key->bandwidth->cached / pow(1024, $formatBytes_array[2]), 2) . ', ';
+}
+?>
 				],
 			}, {
 				label: "<?php echo _('All'); ?>",
@@ -219,10 +219,10 @@ $formatBytes_array = formatBytes_array($max_bandwidth);
 				borderColor: window.chartColors.purple,
 				data: [
 					<?php
-					foreach ($analytics->result->timeseries as $key){
-						echo round($key->bandwidth->all/pow(1024,$formatBytes_array[2]), 2).', ';
-					}
-					?>
+foreach ($analytics->result->timeseries as $key) {
+	echo round($key->bandwidth->all / pow(1024, $formatBytes_array[2]), 2) . ', ';
+}
+?>
 				],
 			}]
 		},
@@ -287,30 +287,30 @@ $formatBytes_array = formatBytes_array($max_bandwidth);
 	</thead>
 	<tbody>
 	<?php
-	echo '<tr>
-		<th>'._('Total (Last year)').'</th>
-		<th>'.number_format($analytics->result->totals->uniques->all).'</th>
-		<th>'.number_format($analytics->result->totals->pageviews->all).'</th>
-		<th>'.number_format($analytics->result->totals->requests->all).'</th>
-		<th>'.round($analytics->result->totals->requests->cached*100/$analytics->result->totals->requests->all,1).'%</th>
-		<th>'.formatBytes($analytics->result->totals->bandwidth->all).'</th>
-		<th>'.round($analytics->result->totals->bandwidth->cached*100/$analytics->result->totals->bandwidth->all,1).'%</th>
-		<th>'.number_format($analytics->result->totals->threats->all).'</th>
+echo '<tr>
+		<th>' . _('Total (Last year)') . '</th>
+		<th>' . number_format($analytics->result->totals->uniques->all) . '</th>
+		<th>' . number_format($analytics->result->totals->pageviews->all) . '</th>
+		<th>' . number_format($analytics->result->totals->requests->all) . '</th>
+		<th>' . round($analytics->result->totals->requests->cached * 100 / $analytics->result->totals->requests->all, 1) . '%</th>
+		<th>' . formatBytes($analytics->result->totals->bandwidth->all) . '</th>
+		<th>' . round($analytics->result->totals->bandwidth->cached * 100 / $analytics->result->totals->bandwidth->all, 1) . '%</th>
+		<th>' . number_format($analytics->result->totals->threats->all) . '</th>
 	</tr>';
-	foreach ($analytics->result->timeseries as $key){
-		if($key->requests->all != 0 && $key->bandwidth->all != 0) {
+foreach ($analytics->result->timeseries as $key) {
+	if ($key->requests->all != 0 && $key->bandwidth->all != 0) {
 		echo '<tr>
-			<th>'.explode('T',$key->since)[0].'</th>
-			<th>'.number_format($key->uniques->all).'</th>
-			<th>'.number_format($key->pageviews->all).'</th>
-			<th>'.number_format($key->requests->all).'</th>
-			<th>'.round($key->requests->cached*100/$key->requests->all,1).'%</th>
-			<th>'.formatBytes($key->bandwidth->all).'</th>
-			<th>'.round($key->bandwidth->cached*100/$key->bandwidth->all,1).'%</th>
-			<th>'.number_format($key->threats->all).'</th>
+			<th>' . explode('T', $key->since)[0] . '</th>
+			<th>' . number_format($key->uniques->all) . '</th>
+			<th>' . number_format($key->pageviews->all) . '</th>
+			<th>' . number_format($key->requests->all) . '</th>
+			<th>' . round($key->requests->cached * 100 / $key->requests->all, 1) . '%</th>
+			<th>' . formatBytes($key->bandwidth->all) . '</th>
+			<th>' . round($key->bandwidth->cached * 100 / $key->bandwidth->all, 1) . '%</th>
+			<th>' . number_format($key->threats->all) . '</th>
 		</tr>';
-		}
 	}
-	?>
+}
+?>
 	</tbody>
 </table>

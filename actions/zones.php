@@ -2,10 +2,10 @@
 /*
  * Zone setup page
  */
-if(!isset($tlo_id)){ exit; }
+if (!isset($tlo_id)) {exit;}
 
 $zone_name = $_GET['domain'];
-if(!isset($_GET['page'])){
+if (!isset($_GET['page'])) {
 	$_GET['page'] = 1;
 }
 $dns = new Cloudflare\API\Endpoints\DNS($adapter);
@@ -29,7 +29,7 @@ foreach ($dnsresult as $record) {
 /*
  * We need `_tlo-wildcard` subdomain to support anycast IP information.
  */
-if(!isset($dnscheck['_tlo-wildcard.'.$zone_name]) && $_GET['page'] == 1){
+if (!isset($dnscheck['_tlo-wildcard.' . $zone_name]) && $_GET['page'] == 1) {
 	try {
 		$dns->addRecord($zoneID, 'CNAME', '_tlo-wildcard', 'cloudflare.tlo.xyz');
 	} catch (Exception $e) {
@@ -38,22 +38,22 @@ if(!isset($dnscheck['_tlo-wildcard.'.$zone_name]) && $_GET['page'] == 1){
 }
 
 ?>
-<strong><?php echo '<a href="?action=zones&amp;domain='.$zone_name.'&amp;zoneid='.$zoneID.'">'.strtoupper($zone_name).'</a>'; ?></strong><hr>
+<strong><?php echo '<a href="?action=zones&amp;domain=' . $zone_name . '&amp;zoneid=' . $zoneID . '">' . strtoupper($zone_name) . '</a>'; ?></strong><hr>
 <div class="am-scrollable-horizontal"><?php
-if(isset($_GET['enable']) && !$dnsproxyied[$_GET['enable']]){
-	if($dns->updateRecordDetails($zoneID,$_GET['enable'],['type' => $dnstype[$_GET['enable']],'content' => $dnscontent[$_GET['enable']],'name' => $dnsname[$_GET['enable']],'proxied' => true])->success == true){
-		echo '<p style="color:green;">'._('Success').'! </p>';
+if (isset($_GET['enable']) && !$dnsproxyied[$_GET['enable']]) {
+	if ($dns->updateRecordDetails($zoneID, $_GET['enable'], ['type' => $dnstype[$_GET['enable']], 'content' => $dnscontent[$_GET['enable']], 'name' => $dnsname[$_GET['enable']], 'proxied' => true])->success == true) {
+		echo '<p style="color:green;">' . _('Success') . '! </p>';
 	} else {
-		echo '<p style="color:red;">'._('Failed').'! </p><p><a href="?action=zones&amp;domain='.$zone_name.'&amp;zoneid='.$zoneID.'">'._('Go to console').'</a></p>';
+		echo '<p style="color:red;">' . _('Failed') . '! </p><p><a href="?action=zones&amp;domain=' . $zone_name . '&amp;zoneid=' . $zoneID . '">' . _('Go to console') . '</a></p>';
 		exit();
 	}
 } else {
 	$_GET['enable'] = 1;
-	if(isset($_GET['disable']) && $dnsproxyied[$_GET['disable']]){
-		if($dns->updateRecordDetails($zoneID,$_GET['disable'],['type' => $dnstype[$_GET['disable']],'content' => $dnscontent[$_GET['disable']],'name' => $dnsname[$_GET['disable']],'proxied' => false])->success == true){
-			echo '<p style="color:green;">'._('Success!').'</p>';
+	if (isset($_GET['disable']) && $dnsproxyied[$_GET['disable']]) {
+		if ($dns->updateRecordDetails($zoneID, $_GET['disable'], ['type' => $dnstype[$_GET['disable']], 'content' => $dnscontent[$_GET['disable']], 'name' => $dnsname[$_GET['disable']], 'proxied' => false])->success == true) {
+			echo '<p style="color:green;">' . _('Success!') . '</p>';
 		} else {
-			echo '<p style="color:red;">'._('Failed').'! </p><p><a href="?action=zones&amp;domain='.$zone_name.'&amp;zoneid='.$zoneID.'">'._('Go to console').'</a></p>';
+			echo '<p style="color:red;">' . _('Failed') . '! </p><p><a href="?action=zones&amp;domain=' . $zone_name . '&amp;zoneid=' . $zoneID . '">' . _('Go to console') . '</a></p>';
 			exit();
 		}
 	} else {
@@ -81,62 +81,62 @@ if(isset($_GET['enable']) && !$dnsproxyied[$_GET['enable']]){
 	</thead>
 	<tbody>
 		<?php
-		$no_record_yet = true;
-		foreach ($dnsresult as $record) {
-			if($record->name != '_tlo-wildcard.'.$zone_name){
-				if($record->proxiable){
-					if($record->proxied){
-						$proxiable = '<a href="?action=zones&domain='.$zone_name.'&disable='.$record->id.'&page='.$_GET['page'].'&amp;zoneid='.$zoneID.'"><img src="https://cdn.landcement.com/uploads/2017/11/cloud_on.png" height="19"></a>';
-					} else {
-						$proxiable = '<a href="?action=zones&domain='.$zone_name.'&enable='.$record->id.'&page='.$_GET['page'].'&amp;zoneid='.$zoneID.'"><img src="https://cdn.landcement.com/uploads/2017/11/cloud_off.png" height="30"></a>';
-					}
-				} else {
-					$proxiable = _('Not support CDN');
-				}
-				if(isset($_GET['enable']) && $record->id == $_GET['enable']){
-					$proxiable = '<a href="?action=zones&domain='.$zone_name.'&disable='.$record->id.'&page='.$_GET['page'].'&amp;zoneid='.$zoneID.'"><img src="https://cdn.landcement.com/uploads/2017/11/cloud_on.png" height="19"></a>';
-				} elseif(isset($_GET['disable']) && $record->id == $_GET['disable']) {
-					$proxiable = '<a href="?action=zones&domain='.$zone_name.'&enable='.$record->id.'&page='.$_GET['page'].'&amp;zoneid='.$zoneID.'"><img src="https://cdn.landcement.com/uploads/2017/11/cloud_off.png" height="30"></a>';
-				}
-				if($record->type == 'MX'){
-					$priority = '<code>'.$record->priority.'</code> ';
-				} else {
-					$priority = '';
-				}
-				if(isset($ttl_translate[$record->ttl])){
-					$ttl = $ttl_translate[$record->ttl];
-				} else {
-					$ttl = $record->ttl.' s';
-				}
-				$no_record_yet = false;
-				echo '<tr>
-				<td><code>'.$record->name.'</code></td>
-				<td><code>'.$record->type.'</code></td>
-				<td>'.$priority.'<code>'.$record->content.'</code></td>
-				<td>'.$ttl.'</td>
-				<td>'.$proxiable.' | <a href="?action=edit_record&domain='.$zone_name.'&recordid='.$record->id.'&zoneid='.$zoneID.'">'._('Edit').'</a> | <a href="?action=delete_record&domain='.$zone_name.'&delete='.$record->id.'&zoneid='.$zoneID.'" onclick="return confirm(\''._('Are you sure to delete').' '.$record->name.'?\')">'._('Delete').'</a></td></tr>';
+$no_record_yet = true;
+foreach ($dnsresult as $record) {
+	if ($record->name != '_tlo-wildcard.' . $zone_name) {
+		if ($record->proxiable) {
+			if ($record->proxied) {
+				$proxiable = '<a href="?action=zones&domain=' . $zone_name . '&disable=' . $record->id . '&page=' . $_GET['page'] . '&amp;zoneid=' . $zoneID . '"><img src="https://cdn.landcement.com/uploads/2017/11/cloud_on.png" height="19"></a>';
+			} else {
+				$proxiable = '<a href="?action=zones&domain=' . $zone_name . '&enable=' . $record->id . '&page=' . $_GET['page'] . '&amp;zoneid=' . $zoneID . '"><img src="https://cdn.landcement.com/uploads/2017/11/cloud_off.png" height="30"></a>';
 			}
+		} else {
+			$proxiable = _('Not support CDN');
 		}
-		?>
+		if (isset($_GET['enable']) && $record->id == $_GET['enable']) {
+			$proxiable = '<a href="?action=zones&domain=' . $zone_name . '&disable=' . $record->id . '&page=' . $_GET['page'] . '&amp;zoneid=' . $zoneID . '"><img src="https://cdn.landcement.com/uploads/2017/11/cloud_on.png" height="19"></a>';
+		} elseif (isset($_GET['disable']) && $record->id == $_GET['disable']) {
+			$proxiable = '<a href="?action=zones&domain=' . $zone_name . '&enable=' . $record->id . '&page=' . $_GET['page'] . '&amp;zoneid=' . $zoneID . '"><img src="https://cdn.landcement.com/uploads/2017/11/cloud_off.png" height="30"></a>';
+		}
+		if ($record->type == 'MX') {
+			$priority = '<code>' . $record->priority . '</code> ';
+		} else {
+			$priority = '';
+		}
+		if (isset($ttl_translate[$record->ttl])) {
+			$ttl = $ttl_translate[$record->ttl];
+		} else {
+			$ttl = $record->ttl . ' s';
+		}
+		$no_record_yet = false;
+		echo '<tr>
+				<td><code>' . $record->name . '</code></td>
+				<td><code>' . $record->type . '</code></td>
+				<td>' . $priority . '<code>' . $record->content . '</code></td>
+				<td>' . $ttl . '</td>
+				<td>' . $proxiable . ' | <a href="?action=edit_record&domain=' . $zone_name . '&recordid=' . $record->id . '&zoneid=' . $zoneID . '">' . _('Edit') . '</a> | <a href="?action=delete_record&domain=' . $zone_name . '&delete=' . $record->id . '&zoneid=' . $zoneID . '" onclick="return confirm(\'' . _('Are you sure to delete') . ' ' . $record->name . '?\')">' . _('Delete') . '</a></td></tr>';
+	}
+}
+?>
 	</tbody>
 </table><?php
 
-if($no_record_yet){
-	echo '<h2 style="text-align: center;color:red;">'._('There is no record in this zone yet. Please add some!').'</h2>';
+if ($no_record_yet) {
+	echo '<h2 style="text-align: center;color:red;">' . _('There is no record in this zone yet. Please add some!') . '</h2>';
 }
 
-if(isset($dnsresult_data->result_info->total_pages)){
+if (isset($dnsresult_data->result_info->total_pages)) {
 	$previous_page = '';
 	$next_page = '';
-	if($dnsresult_data->result_info->page < $dnsresult_data->result_info->total_pages){
+	if ($dnsresult_data->result_info->page < $dnsresult_data->result_info->total_pages) {
 		$page_link = $dnsresult_data->result_info->page + 1;
-		$next_page = ' | <a href="?action=zones&domain='.$zone_name.'&page='.$page_link.'&amp;zoneid='.$zoneID.'">'._('Next').'</a>';
+		$next_page = ' | <a href="?action=zones&domain=' . $zone_name . '&page=' . $page_link . '&amp;zoneid=' . $zoneID . '">' . _('Next') . '</a>';
 	}
-	if($dnsresult_data->result_info->page > 1){
+	if ($dnsresult_data->result_info->page > 1) {
 		$page_link = $dnsresult_data->result_info->page - 1;
-		$previous_page = '<a href="?action=zones&domain='.$zone_name.'&page='.$page_link.'&amp;zoneid='.$zoneID.'">'._('Previous').'</a> | ';
+		$previous_page = '<a href="?action=zones&domain=' . $zone_name . '&page=' . $page_link . '&amp;zoneid=' . $zoneID . '">' . _('Previous') . '</a> | ';
 	}
-	echo '<p>'.$previous_page._('Page').' '.$dnsresult_data->result_info->page.'/'.$dnsresult_data->result_info->total_pages.$next_page.'</p>';
+	echo '<p>' . $previous_page . _('Page') . ' ' . $dnsresult_data->result_info->page . '/' . $dnsresult_data->result_info->total_pages . $next_page . '</p>';
 }
 ?>
 <p><?php echo _('You can use CNAME, IP or NS to set it up.'); ?></p>
@@ -150,41 +150,41 @@ if(isset($dnsresult_data->result_info->total_pages)){
 	</thead>
 	<tbody>
 		<?php
-		$resolver = new Net_DNS2_Resolver( array('nameservers' => array('162.159.2.9','162.159.9.55')) );
-		$avoid_cname_duplicated = [];
-		foreach ($dnsresult as $record) {
-			if($record->name != '_tlo-wildcard.'.$zone_name && !isset($avoid_cname_duplicated[$record->name])){
-				echo '<tr>
-				<td><code>'.$record->name.'</code></td>
-				<td><code>'.$record->name.'.cdn.cloudflare.net</code></td>
+$resolver = new Net_DNS2_Resolver(array('nameservers' => array('162.159.2.9', '162.159.9.55')));
+$avoid_cname_duplicated = [];
+foreach ($dnsresult as $record) {
+	if ($record->name != '_tlo-wildcard.' . $zone_name && !isset($avoid_cname_duplicated[$record->name])) {
+		echo '<tr>
+				<td><code>' . $record->name . '</code></td>
+				<td><code>' . $record->name . '.cdn.cloudflare.net</code></td>
 				</tr>';
-				$avoid_cname_duplicated[$record->name] = true;
-			}
-		}
-		?>
+		$avoid_cname_duplicated[$record->name] = true;
+	}
+}
+?>
 	</tbody>
 </table><?php
 
-if($no_record_yet){
-	echo '<h2 style="text-align: center;color:red;">'._('There is no record in this zone yet. Please add some!').'</h2>';
+if ($no_record_yet) {
+	echo '<h2 style="text-align: center;color:red;">' . _('There is no record in this zone yet. Please add some!') . '</h2>';
 }
 
-if(isset($dnsresult_data->result_info->total_pages)){
+if (isset($dnsresult_data->result_info->total_pages)) {
 	$previous_page = '';
 	$next_page = '';
-	if($dnsresult_data->result_info->page < $dnsresult_data->result_info->total_pages){
+	if ($dnsresult_data->result_info->page < $dnsresult_data->result_info->total_pages) {
 		$page_link = $dnsresult_data->result_info->page + 1;
-		$next_page = ' | <a href="?action=zones&domain='.$zone_name.'&page='.$page_link.'">'._('Next').'</a>';
+		$next_page = ' | <a href="?action=zones&domain=' . $zone_name . '&page=' . $page_link . '">' . _('Next') . '</a>';
 	}
-	if($dnsresult_data->result_info->page > 1){
+	if ($dnsresult_data->result_info->page > 1) {
 		$page_link = $dnsresult_data->result_info->page - 1;
-		$previous_page = '<a href="?action=zones&domain='.$zone_name.'&page='.$page_link.'">'._('Previous').'</a> | ';
+		$previous_page = '<a href="?action=zones&domain=' . $zone_name . '&page=' . $page_link . '">' . _('Previous') . '</a> | ';
 	}
-	echo '<p>'.$previous_page._('Page').' '.$dnsresult_data->result_info->page.'/'.$dnsresult_data->result_info->total_pages.$next_page.'</p>';
+	echo '<p>' . $previous_page . _('Page') . ' ' . $dnsresult_data->result_info->page . '/' . $dnsresult_data->result_info->total_pages . $next_page . '</p>';
 }
 try {
 	$resp_a = $resolver->query('_tlo-wildcard.' . $zone_name, 'A');
-	$resp_aaaa = $resolver->query('_tlo-wildcard.'.$zone_name, 'AAAA');
+	$resp_aaaa = $resolver->query('_tlo-wildcard.' . $zone_name, 'AAAA');
 	$resp = $resolver->query($zone_name, 'NS');
 } catch (Net_DNS2_Exception $e) {
 	echo $e->getMessage();
