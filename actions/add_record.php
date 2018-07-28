@@ -3,18 +3,18 @@
  * Add record for specific domain.
  */
 
-if(!isset($tlo_id)){ exit; }
+if (!isset($tlo_id)) {exit;}
 
 if (isset($_POST['submit'])) {
 	$dns = new \Cloudflare\API\Endpoints\DNS($adapter);
-	if($_POST['proxied'] == 'false'){
+	if ($_POST['proxied'] == 'false') {
 		$_POST['proxied'] = false;
 	}
 	try {
-		if ( $dns->addRecord($_GET['zoneid'],$_POST['type'],$_POST['name'],$_POST['content'],$_POST['ttl'],$_POST['proxied'],$_POST['priority']) ) {
-			exit( '<p>'._('Success').', <a href="?action=add_record&amp;zoneid='.$_GET['zoneid'].'&domain='.$_GET['domain'].'">'._('Add New Record').'</a>, '._('Or').'<a href="/?action=zones&amp;domain='.$_GET['domain'].'&amp;zoneid='.$_GET['zoneid'].'">'._('Go to console').'</a></p>' );
+		if ($dns->addRecord($_GET['zoneid'], $_POST['type'], $_POST['name'], $_POST['content'], $_POST['ttl'], $_POST['proxied'], $_POST['priority'])) {
+			exit('<p>' . _('Success') . ', <a href="?action=add_record&amp;zoneid=' . $_GET['zoneid'] . '&domain=' . $_GET['domain'] . '">' . _('Add New Record') . '</a>, ' . _('Or') . '<a href="/?action=zones&amp;domain=' . $_GET['domain'] . '&amp;zoneid=' . $_GET['zoneid'] . '">' . _('Go to console') . '</a></p>');
 		} else {
-			exit( '<p>'._('Failed').', <a href="?action=add_record&zoneid='.$_GET['zoneid'].'&domain='.$_GET['domain'].'">'._('Add New Record').'</a>, '._('Or').'<a href="/?action=zones&amp;domain='.$_GET['domain'].'&amp;zoneid='.$_GET['zoneid'].'">'._('Go to console').'</a></p>' );
+			exit('<p>' . _('Failed') . ', <a href="?action=add_record&zoneid=' . $_GET['zoneid'] . '&domain=' . $_GET['domain'] . '">' . _('Add New Record') . '</a>, ' . _('Or') . '<a href="/?action=zones&amp;domain=' . $_GET['domain'] . '&amp;zoneid=' . $_GET['zoneid'] . '">' . _('Go to console') . '</a></p>');
 		}
 	} catch (Exception $e) {
 		echo $e;
@@ -50,10 +50,10 @@ if (isset($_POST['submit'])) {
 			<label for="ttl">TTL</label>
 			<select name="ttl" id="ttl">
 				<?php
-				foreach ($ttl_translate as $_ttl => $_ttl_name){
-					echo '<option value="'.$_ttl.'">'.$_ttl_name.'</option>';
-				}
-				?>
+foreach ($ttl_translate as $_ttl => $_ttl_name) {
+	echo '<option value="' . $_ttl . '">' . $_ttl_name . '</option>';
+}
+?>
 			</select>
 		</div>
 		<div class="am-form-group">

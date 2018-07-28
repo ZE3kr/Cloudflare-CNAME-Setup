@@ -5,12 +5,11 @@ class CloudFlare {
 	 * @param $data
 	 * @return mixed
 	 */
-	public function postData(array $data)
-	{
+	public function postData(array $data) {
 		$data['host_key'] = HOST_KEY;
 		$ch = curl_init();
 		curl_setopt($ch, CURLOPT_URL, 'https://api.cloudflare.com/host-gw.html');
-		curl_setopt($ch, CURLOPT_VERBOSE, 1); 
+		curl_setopt($ch, CURLOPT_VERBOSE, 1);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 		curl_setopt($ch, CURLOPT_POST, 1);
 		curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
@@ -19,9 +18,8 @@ class CloudFlare {
 		curl_setopt($ch, CURLOPT_AUTOREFERER, TRUE);
 		$res = curl_exec($ch);
 		curl_close($ch);
-		return json_decode($res,true);
+		return json_decode($res, true);
 	}
-
 
 	/**
 	 * "user_create" - Create a Cloudflare account mapped to your user
@@ -31,8 +29,7 @@ class CloudFlare {
 	 * @param string $cloudflare_pass
 	 * @return mixed
 	 */
-	public function userCreate(string $cloudflare_email, string $cloudflare_pass)
-	{
+	public function userCreate(string $cloudflare_email, string $cloudflare_pass) {
 		$data['act'] = 'user_create';
 		$data['cloudflare_email'] = $cloudflare_email;
 		$data['cloudflare_pass'] = $cloudflare_pass;
@@ -47,14 +44,12 @@ class CloudFlare {
 	 *
 	 * @return mixed
 	 */
-	public function userLookup()
-	{
+	public function userLookup() {
 		$data['act'] = 'user_lookup';
 		$data['cloudflare_email'] = $_COOKIE['cloudflare_email'];
 		$res = $this->postData($data);
 		return $res;
 	}
-
 
 	/**
 	 * "zone_lookup" - lookup a specific user's zone
@@ -63,19 +58,17 @@ class CloudFlare {
 	 * @param string $zone_name
 	 * @return mixed
 	 */
-	public function zoneLookup(string $zone_name)
-	{
+	public function zoneLookup(string $zone_name) {
 		$data['act'] = 'zone_lookup';
 		$data['user_key'] = $_COOKIE['user_key'];
 		$data['zone_name'] = $zone_name;
 		$res = $this->postData($data);
-		if ( $res['response']['zone_exists'] == true ) {
+		if ($res['response']['zone_exists'] == true) {
 			return $res;
 		} else {
 			die(_('Error, please confirm your domain.'));
 		}
 	}
-
 
 	/**
 	 * "zone_set" - Setup a User's zone for CNAME hosting
@@ -87,8 +80,7 @@ class CloudFlare {
 	 * @param string $subdomains
 	 * @return mixed
 	 */
-	public function zoneSet(string $zone_name, string $resolve_to, string $subdomains)
-	{
+	public function zoneSet(string $zone_name, string $resolve_to, string $subdomains) {
 		$data['act'] = 'zone_set';
 		$data['user_key'] = $_COOKIE['user_key'];
 		$data['zone_name'] = $zone_name;
@@ -106,8 +98,7 @@ class CloudFlare {
 	 * @param string $zone_name
 	 * @return mixed
 	 */
-	public function zoneSet_full(string $zone_name)
-	{
+	public function zoneSet_full(string $zone_name) {
 		$data['act'] = 'full_zone_set';
 		$data['user_key'] = $_COOKIE['user_key'];
 		$data['zone_name'] = $zone_name;
@@ -122,13 +113,13 @@ class CloudFlare {
 	 * @param $zone_name
 	 * @return mixed
 	 */
-	public function zoneDelete($zone_name)
-	{
+	public function zoneDelete($zone_name) {
 		$data['act'] = 'zone_delete';
 		$data['user_key'] = $_COOKIE['user_key'];
 		$data['zone_name'] = $zone_name;
 		$res = $this->postData($data);
 		return $res;
+
 	}
 }
 
@@ -140,35 +131,32 @@ class CloudFlare {
  * @param $zone_name
  * @return string
  */
-function update_bind($zoneID, $subdomains, $zone_name){
-	file_put_contents('/var/www/tmp/'.$zoneID.'txt', $subdomains);
+function update_bind($zoneID, $subdomains, $zone_name) {
+	file_put_contents('/var/www/tmp/' . $zoneID . 'txt', $subdomains);
 	$ch = curl_init();
-	curl_setopt($ch,CURLOPT_URL,'https://api.cloudflare.com/client/v4/zones/'.$zoneID.'/dns_records/import');
+	curl_setopt($ch, CURLOPT_URL, 'https://api.cloudflare.com/client/v4/zones/' . $zoneID . '/dns_records/import');
 	curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 	curl_setopt($ch, CURLOPT_POST, 1);
 	curl_setopt($ch, CURLOPT_HTTPHEADER, array(
 		'Content-Type: multipart/form-data',
-		'X-Auth-Email: '.$_COOKIE['cloudflare_email'],
-		'X-Auth-Key: '.$_COOKIE['user_api_key']
+		'X-Auth-Email: ' . $_COOKIE['cloudflare_email'],
+		'X-Auth-Key: ' . $_COOKIE['user_api_key'],
 	));
 	$postdata = [
-		'file' => new \CurlFile('/var/www/tmp/'.$zoneID.'txt', 'text/plain', 'bind_config.txt')
+		'file' => new \CurlFile('/var/www/tmp/' . $zoneID . 'txt', 'text/plain', 'bind_config.txt'),
 	];
 	curl_setopt($ch, CURLOPT_POSTFIELDS, $postdata);
 	$data = curl_exec($ch);
 	$dataarray = json_decode($data);
-	if(curl_error($ch))
-	{
+	if (curl_error($ch)) {
 		echo 'error:' . curl_error($ch);
 	}
 	curl_close($ch);
-	unlink('/var/www/tmp/'.$zoneID.'txt');
-	if ( $dataarray->success == true )
-	{
-		return _('Updated successful.').'<a href="/?action=zones&domain='.$zone_name.'">'._('Back to domain').'</a>';
-	}else
-	{
-		return $data.'<br><a href="/?action=zones&domain='.$zone_name.'">'._('Back to domain').'</a>';
+	unlink('/var/www/tmp/' . $zoneID . 'txt');
+	if ($dataarray->success == true) {
+		return _('Updated successful.') . '<a href="/?action=zones&domain=' . $zone_name . '">' . _('Back to domain') . '</a>';
+	} else {
+		return $data . '<br><a href="/?action=zones&domain=' . $zone_name . '">' . _('Back to domain') . '</a>';
 	}
 }
 
@@ -179,8 +167,7 @@ function update_bind($zoneID, $subdomains, $zone_name){
  * @param int $precision
  * @return string
  */
-function formatBytes($bytes, $precision = 2)
-{
+function formatBytes($bytes, $precision = 2) {
 	$units = array('B', 'KB', 'MB', 'GB', 'TB');
 
 	$bytes = max($bytes, 0);
@@ -204,8 +191,7 @@ function formatBytes($bytes, $precision = 2)
  * @param int $precision
  * @return array
  */
-function formatBytes_array($bytes, $precision = 2)
-{
+function formatBytes_array($bytes, $precision = 2) {
 	$units = array('B', 'KB', 'MB', 'GB', 'TB');
 
 	$bytes = max($bytes, 0);
@@ -216,5 +202,5 @@ function formatBytes_array($bytes, $precision = 2)
 	$bytes /= pow(1024, $pow);
 	// $bytes /= (1 << (10 * $pow));
 
-	return [round($bytes, $precision),$units[$pow],$pow];
+	return [round($bytes, $precision), $units[$pow], $pow];
 }

@@ -3,17 +3,16 @@
  * Using Partner API to add domain for CNAME or NS setup.
  */
 
-if(!isset($tlo_id)){ exit; }
+if (!isset($tlo_id)) {exit;}
 
 $msg = '';
-if(isset($_POST['submit']))
-{
+if (isset($_POST['submit'])) {
 	$zone_name = $_POST['domain'];
-	if(isset($_POST['type']) && $_POST['type'] == 'ns') {
+	if (isset($_POST['type']) && $_POST['type'] == 'ns') {
 		/* NS setup */
 		$res = $cloudflare->zoneSet_full($zone_name);
-		if ( $res['result'] == 'success' ) {
-			$msg = _('Success').', <a target="_blank" href="https://www.cloudflare.com/a/overview/'.$zone_name.'">'._('Go to console').'</a>. ';
+		if ($res['result'] == 'success') {
+			$msg = _('Success') . ', <a target="_blank" href="https://www.cloudflare.com/a/overview/' . $zone_name . '">' . _('Go to console') . '</a>. ';
 			exit($msg);
 		} else {
 			if (isset($res['msg'])) {
@@ -25,36 +24,37 @@ if(isset($_POST['submit']))
 		}
 	}
 	/*
-	 * We need `_tlo-wildcard` subdomain to support anycast IP information.
-	 */
-	$res = $cloudflare->zoneSet($zone_name,'example.com','_tlo-wildcard');
-	if ( $res['result'] == 'success' ) {
+		 * We need `_tlo-wildcard` subdomain to support anycast IP information.
+	*/
+	$res = $cloudflare->zoneSet($zone_name, 'example.com', '_tlo-wildcard');
+	if ($res['result'] == 'success') {
 		$zones = new \Cloudflare\API\Endpoints\Zones($adapter);
 		try {
 			$zoneID = $zones->getZoneID($zone_name);
-		} catch (Exception $e){
-			echo 'Caught exception: ',  $e->getMessage(), "\n";
+		} catch (Exception $e) {
+			echo 'Caught exception: ', $e->getMessage(), "\n";
 		}
 
 		$dns = new \Cloudflare\API\Endpoints\DNS($adapter);
 		$dnsresult = $dns->listRecords($zoneID)->result;
 		/*
-		 * Delete @ and `www` record to make this zone fresh.
-		 */
+			 * Delete @ and `www` record to make this zone fresh.
+		*/
 		foreach ($dnsresult as $record) {
-			if($record->name == $zone_name){
-				$dns->deleteRecord($zoneID, $record->id);
-			} elseif($record->name == 'www.'.$zone_name) {
+			if ($record->name == $zone_name) {
+				$dns->deleteRecord($zoneID, $record->id);} elseif ($record->name == 'www.' . $zone_name) {
 				$dns->deleteRecord($zoneID, $record->id);
 			}
 		}
-		$msg = _('Success').', <a href="?action=zones&amp;domain='.$zone_name.'&amp;zoneid='.$zoneID.'">'._('Go to console').'</a>. ';
+		$msg = _('Success') . ', <a href="?action=zones&amp;domain=' . $zone_name . '&amp;zoneid=' . $zoneID . '">' . _('Go to console') . '</a>. ';
 		exit($msg);
 	} else {
 		$msg = $res['msg'];
 	}
+
 }
 echo $msg;
+
 ?>
 <form method="POST" action="" class="am-form am-form-horizontal">
 	<div class="am-form-group">
