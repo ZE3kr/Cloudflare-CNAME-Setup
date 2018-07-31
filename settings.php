@@ -5,7 +5,7 @@ if (substr($_SERVER['HTTP_HOST'], 0, 5) == 'beta.' || explode(':', $_SERVER['HTT
 	$is_beta = false;
 }
 
-if (file_exists("../config.php")) {
+if (@file_exists("../config.php")) {
 	require_once "../config.php";
 } else {
 	require_once "config.php";
