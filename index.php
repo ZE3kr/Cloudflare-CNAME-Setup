@@ -145,7 +145,7 @@ if ($is_beta) {
 </div>
 <hr>
 <div class="am-container">
-	<p><?php if ($is_beta) {echo _('Last Update: ') . date('Y-m-d H:i:s e', filemtime(__FILE__));}?></p>
+	<?php if ($is_beta) {echo '<p>'._('Last Update: ') . date('Y-m-d H:i:s e', filemtime(__FILE__)).'</p>';}?>
 	<p><a href="https://github.com/ZE3kr/Cloudflare-CNAME-Setup" target="_blank"><?php echo _('This open source project is powered by ZE3kr.'); ?></a></p>
 </div>
 </body>
