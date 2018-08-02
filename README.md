@@ -70,7 +70,7 @@ This project was based on a [HOSTLOC topic][9].
 [3]:	https://github.com/ZE3kr/Cloudflare-CNAME-Setup/blob/master/README.zh.md
 [4]:	https://cf.tlo.xyz
 [5]:	https://beta.cf.tlo.xyz
-[6]:	https://github.com/ZE3kr/Cloudflare-CNAME-Setup/wiki/%E5%AE%89%E8%A3%85
+[6]:	https://github.com/ZE3kr/Cloudflare-CNAME-Setup/wiki/Installation
 [7]:	https://api.cloudflare.com/
 [8]:	https://www.cloudflare.com/ssl-for-saas-providers/
 [9]:	http://www.hostloc.com/thread-386441-1-1.html
