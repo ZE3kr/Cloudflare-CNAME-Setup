@@ -1,6 +1,5 @@
 <?php
 if (!isset($tlo_id)) {exit;} // This file should be included in index.php and cannot be accessed directly.
-require_once 'cloudflare.class.php';
 if (isset($_POST['submit'])) {
 	$cloudflare_email = $_POST['cloudflare_email'];
 	$cloudflare_pass = $_POST['cloudflare_pass'];
@@ -20,8 +19,10 @@ if (isset($_POST['submit'])) {
 		$msg = $res['msg'];
 	}
 }
+
+h2push('css/main.css', 'style');
 ?><!DOCTYPE html>
-<html class="no-js">
+<html class="no-js" lang="<?php echo $iso_language; ?>">
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -31,14 +32,14 @@ if (isset($_POST['submit'])) {
 	<title><?php echo _('Login'); ?> | <?php echo $page_title; ?></title>
 	<meta name="renderer" content="webkit">
 	<meta http-equiv="Cache-Control" content="no-siteapp"/>
-	<link rel="stylesheet" href="css/main.css">
+	<link rel="stylesheet" href="./css/main.css">
 </head>
 <body>
 	<div class="am-container">
 		<div class="am-cf am-padding am-padding-bottom-0 data-am-sticky">
 			<div class="am-fl am-cf">
 				<strong class="am-text-primary am-text-lg"><a href="/"><?php echo $page_title; ?></a></strong> /
-				<small>Login</small>
+				<small><?php echo _('Login'); ?></small>
 			</div>
 		</div>
 	</div><hr>
@@ -71,7 +72,7 @@ if (isset($_POST['submit'])) {
 		<?php if (isset($msg)) {echo $msg;}?>
 		<hr>
 		<div class="am-container">
-			<?php if ($is_beta) {echo '<p>'._('Last Update: ') . date('Y-m-d H:i:s e', filemtime(__FILE__)).'</p>';}?>
+			<?php if ($is_beta) {echo '<p>' . _('Last Update: ') . date('Y-m-d H:i:s e', filemtime(__FILE__)) . '</p>';}?>
 			<p><a href="https://github.com/ZE3kr/Cloudflare-CNAME-Setup" target="_blank"><?php echo _('This open source project is powered by ZE3kr.'); ?></a></p>
 		</div>
 	</div>
