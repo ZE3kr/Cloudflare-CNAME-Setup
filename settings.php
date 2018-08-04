@@ -44,9 +44,11 @@ $domain = 'messages';
 if (isset($language_supported[$short_lan])) {
 	require_once 'languages/' . $language_supported[$short_lan] . '/main.php';
 	$locale = $language_supported[$short_lan];
+	$iso_language = $short_lan;
 } else {
 	require_once 'languages/en/main.php';
 	$locale = 'en';
+	$iso_language = 'en';
 }
 putenv('LANG=' . $locale);
 setlocale(LC_MESSAGES, $locale);
@@ -55,6 +57,7 @@ bind_textdomain_codeset($domain, "UTF-8");
 textdomain($domain);
 
 header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
+header("Content-Type: text/html; charset=UTF-8");
 
 if ($is_beta) {
 	ini_set('display_errors', 1);

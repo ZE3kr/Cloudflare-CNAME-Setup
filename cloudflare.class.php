@@ -204,3 +204,16 @@ function formatBytes_array($bytes, $precision = 2) {
 
 	return [round($bytes, $precision), $units[$pow], $pow];
 }
+
+/**
+ * Add resources hint header for HTTP/2 Push.
+ *
+ * @param string $uri the relative URI for the file to push
+ * @param string $as the file type (script, style, image, etc)
+ */
+function h2push(string $uri, string $as) {
+	global $tlo_path;
+	if (isset($tlo_path)) {
+		header("Link: <{$tlo_path}{$uri}>; rel=preload; as={$as}", false);
+	}
+}

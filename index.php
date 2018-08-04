@@ -9,7 +9,8 @@
  */
 $starttime = microtime(true);
 
-include "settings.php";
+require_once "settings.php";
+require_once 'cloudflare.class.php';
 
 $tlo_id = false;
 
@@ -19,8 +20,10 @@ $key = new \Cloudflare\API\Auth\APIKey($_COOKIE['cloudflare_email'], $_COOKIE['u
 $adapter = new Cloudflare\API\Adapter\Guzzle($key);
 $tlo_id = md5($_COOKIE['cloudflare_email'] . $_COOKIE['user_api_key']);
 
+h2push('css/main.css', 'style');
+h2push('css/tlo.css', 'style');
 ?><!DOCTYPE html>
-<html class="no-js">
+<html class="no-js" lang="<?php echo $iso_language; ?>">
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -43,7 +46,6 @@ $tlo_id = md5($_COOKIE['cloudflare_email'] . $_COOKIE['user_api_key']);
 			</div>
 		</div></div><hr>
 		<div class="am-container" style=" max-width: 960px"><?php
-require_once 'cloudflare.class.php';
 $cloudflare = new CloudFlare;
 if (isset($_GET['action'])) {
 	$action = $_GET['action'];
@@ -145,7 +147,7 @@ if ($is_beta) {
 </div>
 <hr>
 <div class="am-container">
-	<?php if ($is_beta) {echo '<p>'._('Last Update: ') . date('Y-m-d H:i:s e', filemtime(__FILE__)).'</p>';}?>
+	<?php if ($is_beta) {echo '<p>' . _('Last Update: ') . date('Y-m-d H:i:s e', filemtime(__FILE__)) . '</p>';}?>
 	<p><a href="https://github.com/ZE3kr/Cloudflare-CNAME-Setup" target="_blank"><?php echo _('This open source project is powered by ZE3kr.'); ?></a></p>
 </div>
 </body>
