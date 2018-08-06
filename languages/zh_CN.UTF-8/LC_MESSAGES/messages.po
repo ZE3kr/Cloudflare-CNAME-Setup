@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2018-08-06 21:56+0800\n"
-"PO-Revision-Date: 2018-08-06 22:03+0800\n"
+"POT-Creation-Date: 2018-08-06 22:07+0800\n"
+"PO-Revision-Date: 2018-08-06 22:08+0800\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: zh_CN\n"
@@ -34,7 +34,7 @@ msgstr "前往管理中心"
 msgid "Cannot add a existing domain."
 msgstr "无法添加已经存在的域名."
 
-#: web/actions/add.php:88 web/actions/list_zones.php:12
+#: web/actions/add.php:88 web/actions/list_zones.php:18
 msgid "Domain"
 msgstr "域名"
 
@@ -97,7 +97,7 @@ msgstr "关闭"
 msgid "Priority (Only for MX record)"
 msgstr "权重 (仅限 MX 记录)"
 
-#: web/actions/analytics.php:14 web/actions/list_zones.php:28
+#: web/actions/analytics.php:14 web/actions/list_zones.php:34
 msgid "Advanced Analytics"
 msgstr "高级统计"
 
@@ -160,51 +160,51 @@ msgstr "总计 (最近一年)"
 msgid "Edit DNS Record"
 msgstr "编辑 DNS 记录"
 
-#: web/actions/list_zones.php:6 web/languages/translates.php:30
+#: web/actions/list_zones.php:12 web/languages/translates.php:30
 msgid "Add Domain"
 msgstr "添加域名"
 
-#: web/actions/list_zones.php:7
+#: web/actions/list_zones.php:13
 msgid "Home"
 msgstr "主页"
 
-#: web/actions/list_zones.php:13
+#: web/actions/list_zones.php:19
 msgid "Status"
 msgstr "状态"
 
-#: web/actions/list_zones.php:14 web/actions/zone.php:90
+#: web/actions/list_zones.php:20 web/actions/zone.php:90
 msgid "Operation"
 msgstr "操作"
 
-#: web/actions/list_zones.php:29 web/actions/zone.php:131
+#: web/actions/list_zones.php:35 web/actions/zone.php:131
 msgid "Manage"
 msgstr "管理"
 
-#: web/actions/list_zones.php:30 web/actions/list_zones.php:74
+#: web/actions/list_zones.php:36 web/actions/list_zones.php:80
 msgid "Manage DNS"
 msgstr "管理 DNS"
 
-#: web/actions/list_zones.php:31 web/languages/translates.php:25
+#: web/actions/list_zones.php:37 web/languages/translates.php:25
 msgid "Security"
 msgstr "安全"
 
-#: web/actions/list_zones.php:74
+#: web/actions/list_zones.php:80
 msgid ""
 "This domain only supports NS setup. And you should manage DNS records on "
 "Cloudflare.com."
 msgstr "这个域名只支持 NS 接入. 你应该在 Cloudflare.com 上管理 DNS 记录."
 
-#: web/actions/list_zones.php:100 web/actions/zone.php:165
+#: web/actions/list_zones.php:106 web/actions/zone.php:165
 #: web/actions/zone.php:212
 msgid "Next"
 msgstr "下一页"
 
-#: web/actions/list_zones.php:104 web/actions/zone.php:169
+#: web/actions/list_zones.php:110 web/actions/zone.php:169
 #: web/actions/zone.php:216
 msgid "Previous"
 msgstr "上一页"
 
-#: web/actions/list_zones.php:106 web/actions/zone.php:171
+#: web/actions/list_zones.php:112 web/actions/zone.php:171
 #: web/actions/zone.php:218
 msgid "Page"
 msgstr "页码"
@@ -212,6 +212,10 @@ msgstr "页码"
 #: web/actions/login.php:10
 msgid "Cloudflare CNAME/IP/NS Setup"
 msgstr "Cloudflare CNAME/IP/NS 接入"
+
+#: web/actions/login.php:12
+msgid "Please sign in"
+msgstr "请先登录"
 
 #: web/actions/login.php:13 web/actions/login.php:14
 msgid "Your email address on cloudflare.com"
@@ -225,9 +229,13 @@ msgstr "你在 cloudflare.com 上的密码"
 msgid "Remember me"
 msgstr "下次自动登录"
 
+#: web/actions/login.php:22
+msgid "Sign in"
+msgstr "登录"
+
 #: web/actions/login.php:23
 msgid "Use your existing account or create a new account here."
-msgstr "在这里登陆你已有的账号或者注册新账号."
+msgstr "在这里登录你已有的账号或者注册新账号."
 
 #: web/actions/login.php:24
 msgid "We will not store any of your Cloudflare data"
