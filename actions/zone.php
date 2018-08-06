@@ -126,7 +126,8 @@ foreach ($dnsresult as $record) {
 				<div class="d-block d-md-none float-right">' . $proxiable . '</div>
 				<div class="d-block d-md-none">' . $record->type . ' ' . _('record') . '</div>
 				<code>' . $record->name . '</code>
-				<div class="btn-group dropleft float-right mt-3 d-block d-md-none">
+				<div class="d-block d-md-none">' . _('points to') . ' ' . '<code>' . $record->content . '</code></div>
+				<div class="btn-group dropleft float-right d-block d-md-none" style="margin-top:-1em;">
 					<button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 					' . _('Manage') . '
 					</button>
@@ -135,7 +136,6 @@ foreach ($dnsresult as $record) {
 						<a class="dropdown-item" href="?action=delete_record&domain=' . $zone_name . '&delete=' . $record->id . '&zoneid=' . $zoneID . '" onclick="return confirm(\'' . _('Are you sure to delete') . ' ' . $record->name . '?\')">' . _('Delete') . '</a>
 					</div>
 				</div>
-				<div class="d-block d-md-none">' . _('points to') . ' ' . '<code>' . $record->content . '</code></div>
 				<div class="d-block d-md-none">' . _('TTL') . ' ' . $ttl . '</div>
 			</td>
 			<td class="d-none d-md-table-cell">' . $priority . '<code>' . $record->content . '</code></td>
