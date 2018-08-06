@@ -9,7 +9,11 @@ if (isset($_POST['submit'])) {
 	$zone_name = $_POST['domain'];
 	if (isset($_POST['type']) && $_POST['type'] == 'ns') {
 		/* NS setup */
-		$res = $cloudflare->zoneSet_full($zone_name);
+		try {
+			$res = $cloudflare->zoneSet_full($zone_name);
+		} catch (Exception $e) {
+			exit('<div class="alert alert-danger" role="alert">' . $e->getMessage() . '</div>');
+		}
 		if ($res['result'] == 'success') {
 			$msg = _('Success') . ', <a target="_blank" href="https://www.cloudflare.com/a/overview/' . $zone_name . '">' . _('Go to console') . '</a>. ';
 			exit('<div class="alert alert-success" role="alert">' . $msg . '</div>');
@@ -17,33 +21,56 @@ if (isset($_POST['submit'])) {
 			$msg = $res['msg'];
 		} else {
 			print_r($res);
-			exit;
 		}
 	}
 	/*
 		 * We need `_tlo-wildcard` subdomain to support anycast IP information.
 	*/
-	$res = $cloudflare->zoneSet($zone_name, 'example.com', '_tlo-wildcard');
+	$zones = new \Cloudflare\API\Endpoints\Zones($adapter);
+	try {
+		$zoneID = $zones->getZoneID($zone_name);
+	} catch (Exception $e) {
+		if ($e->getMessage() == 'Could not find zones with specified name.') {
+			$add_domain = true;
+		}
+	}
+
+	if (isset($add_domain) && $add_domain) {
+		try {
+			$res = $cloudflare->zoneSet($zone_name, 'example.com', '_tlo-wildcard');
+		} catch (Exception $e) {
+			exit('<div class="alert alert-danger" role="alert">' . $e->getMessage() . '</div>');
+		}
+	} else {
+		exit('<div class="alert alert-danger" role="alert">' . _('Cannot add a existing domain.') . '</div>');
+	}
+
 	if ($res['result'] == 'success') {
 		$zones = new \Cloudflare\API\Endpoints\Zones($adapter);
 		try {
 			$zoneID = $zones->getZoneID($zone_name);
 		} catch (Exception $e) {
-			echo 'Caught exception: ', $e->getMessage(), "\n";
+			exit('<div class="alert alert-danger" role="alert">' . $e->getMessage() . '</div>');
 		}
 
-		$dns = new \Cloudflare\API\Endpoints\DNS($adapter);
-		$dnsresult = $dns->listRecords($zoneID)->result;
-		/*
-			 * Delete @ and `www` record to make this zone fresh.
-		*/
-		foreach ($dnsresult as $record) {
-			if ($record->name == $zone_name) {
-				$dns->deleteRecord($zoneID, $record->id);} elseif ($record->name == 'www.' . $zone_name) {
-				$dns->deleteRecord($zoneID, $record->id);
+		try {
+			$dns = new \Cloudflare\API\Endpoints\DNS($adapter);
+			$dnsresult = $dns->listRecords($zoneID)->result;
+			/*
+				 * Delete @ and `www` record to make this zone fresh.
+			*/
+			foreach ($dnsresult as $record) {
+				if ($record->name == $zone_name) {
+					$dns->deleteRecord($zoneID, $record->id);
+				} elseif ($record->name == 'www.' . $zone_name) {
+					$dns->deleteRecord($zoneID, $record->id);
+				}
 			}
+		} catch (Exception $e) {
+			exit('<div class="alert alert-danger" role="alert">' . $e->getMessage() . '</div>');
 		}
-		$msg = _('Success') . ', <a href="?action=zones&amp;domain=' . $zone_name . '&amp;zoneid=' . $zoneID . '">' . _('Go to console') . '</a>. ';
+
+		$msg = _('Success') . ', <a href="?action=zone&amp;domain=' . $zone_name . '&amp;zoneid=' . $zoneID . '">' . _('Go to console') . '</a>. ';
 		exit('<div class="alert alert-success" role="alert">' . $msg . '</div>');
 	} elseif (isset($res['msg'])) {
 		$msg = $res['msg'];

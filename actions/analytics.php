@@ -12,14 +12,14 @@ $date_now = new DateTime();
 
 ?>
 <strong><?php echo strtoupper($zone_name); ?></strong> / <small><?php echo _('Advanced Analytics'); ?></small><hr>
-<p id="tlorefresh"><?php echo _('Loading failed. Please refresh the page to retry.'); ?></p>
+<p id="tlorefresh" class="alert alert-primary" role="alert"><?php echo _('Loading failed. Please refresh the page to retry.'); ?></p>
 <script src="js/Chart.bundle.js"></script>
 <div style="height:325px"><canvas id="requests"></canvas></div>
 <div style="height:325px"><canvas id="pageview"></canvas></div>
 <div style="height:325px"><canvas id="bandwidth"></canvas></div>
 <?php
 $analytics_time = -525600;
-$analytics = $adapter->get('zones/' . $zoneID . '/analytics/dashboard', ['since' => $analytics_time]);
+@$analytics = $adapter->get('zones/' . $zoneID . '/analytics/dashboard', ['since' => $analytics_time]);
 $analytics = json_decode($analytics->getBody());
 
 $max_bandwidth = 0;

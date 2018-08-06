@@ -13,7 +13,11 @@ $zones = new Cloudflare\API\Endpoints\Zones($adapter);
 
 $zoneID = $_GET['zoneid'];
 
-$dnsresult_data = $dns->listRecords($zoneID, false, false, false, intval($_GET['page']));
+try {
+	$dnsresult_data = $dns->listRecords($zoneID, false, false, false, intval($_GET['page']));
+} catch (Exception $e) {
+	exit('<div class="alert alert-danger" role="alert">' . $e->getMessage() . '</div>');
+}
 
 $dnsresult = $dnsresult_data->result;
 
@@ -38,23 +42,23 @@ if (!isset($dnscheck['_tlo-wildcard.' . $zone_name]) && $_GET['page'] == 1) {
 }
 
 ?>
-<strong><?php echo '<h1 class="h5"><a href="?action=zone&amp;domain=' . $zone_name . '&amp;zoneid=' . $zoneID . '">' . strtoupper($zone_name) . '</a></h1>'; ?></strong><hr>
-<div class="am-scrollable-horizontal"><?php
+<strong><?php echo '<h1 class="h5"><a href="?action=zone&amp;domain=' . $zone_name . '&amp;zoneid=' . $zoneID . '">' . strtoupper($zone_name) . '</a></h1>'; ?></strong>
+<hr><?php
 /* Toggle the CDN */
 if (isset($_GET['enable']) && !$dnsproxyied[$_GET['enable']]) {
 	if ($dns->updateRecordDetails($zoneID, $_GET['enable'], ['type' => $dnstype[$_GET['enable']], 'content' => $dnscontent[$_GET['enable']], 'name' => $dnsname[$_GET['enable']], 'proxied' => true])->success == true) {
-		echo '<p style="color:green;">' . _('Success') . '! </p>';
+		echo '<p class="alert alert-success" role="alert">' . _('Success') . '! </p>';
 	} else {
-		echo '<p style="color:red;">' . _('Failed') . '! </p><p><a href="?action=zone&amp;domain=' . $zone_name . '&amp;zoneid=' . $zoneID . '">' . _('Go to console') . '</a></p>';
+		echo '<p class="alert alert-danger" role="alert">' . _('Failed') . '! </p><p><a href="?action=zone&amp;domain=' . $zone_name . '&amp;zoneid=' . $zoneID . '">' . _('Go to console') . '</a></p>';
 		exit();
 	}
 } else {
 	$_GET['enable'] = 1;
 	if (isset($_GET['disable']) && $dnsproxyied[$_GET['disable']]) {
 		if ($dns->updateRecordDetails($zoneID, $_GET['disable'], ['type' => $dnstype[$_GET['disable']], 'content' => $dnscontent[$_GET['disable']], 'name' => $dnsname[$_GET['disable']], 'proxied' => false])->success == true) {
-			echo '<p style="color:green;">' . _('Success!') . '</p>';
+			echo '<p class="alert alert-success" role="alert">' . _('Success!') . '</p>';
 		} else {
-			echo '<p style="color:red;">' . _('Failed') . '! </p><p><a href="?action=zone&amp;domain=' . $zone_name . '&amp;zoneid=' . $zoneID . '">' . _('Go to console') . '</a></p>';
+			echo '<p class="alert alert-danger" role="alert">' . _('Failed') . '! </p><p><a href="?action=zone&amp;domain=' . $zone_name . '&amp;zoneid=' . $zoneID . '">' . _('Go to console') . '</a></p>';
 			exit();
 		}
 	} else {
@@ -62,14 +66,20 @@ if (isset($_GET['enable']) && !$dnsproxyied[$_GET['enable']]) {
 	}
 }
 ?>
-	<ul>
-		<li><a href="#dns"><?php echo _('DNS Management'); ?></a></li>
-		<li><a href="#cname"><?php echo _('CNAME Setup'); ?></a></li>
-		<li><a href="#ip"><?php echo _('IP Setup'); ?></a></li>
-		<li><a href="#ns"><?php echo _('NS Setup'); ?></a></li>
-		<li><a href="https://dash.cloudflare.com/" target="_blank"><?php echo _('More Settings'); ?></a></li>
-	</ul>
-	<h3 class="mt-5" id="dns"><?php echo _('DNS Management'); ?><a class="btn btn-primary float-sm-right d-block mt-3 mt-sm-0" href='?action=add_record&amp;zoneid=<?php echo $zoneID; ?>&amp;domain=<?php echo $zone_name; ?>'><?php echo _('Add New Record'); ?></a></h3>
+<div class="btn-group dropright">
+	<button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		<?php echo _('Contents'); ?>
+	</button>
+	<div class="dropdown-menu">
+		<a class="dropdown-item" href="#dns"><?php echo _('DNS Management'); ?></a>
+		<a class="dropdown-item" href="#cname"><?php echo _('CNAME Setup'); ?></a>
+		<a class="dropdown-item" href="#ip"><?php echo _('IP Setup'); ?></a>
+		<a class="dropdown-item" href="#ns"><?php echo _('NS Setup'); ?></a>
+		<div class="dropdown-divider"></div>
+		<a class="dropdown-item" href="https://dash.cloudflare.com/" target="_blank"><?php echo _('More Settings'); ?></a>
+	</div>
+</div>
+<h3 class="mt-5 mb-3" id="dns"><?php echo _('DNS Management'); ?><a class="btn btn-primary float-sm-right d-block mt-3 mt-sm-0" href='?action=add_record&amp;zoneid=<?php echo $zoneID; ?>&amp;domain=<?php echo $zone_name; ?>'><?php echo _('Add New Record'); ?></a></h3>
 <table class="table table-striped">
 	<thead>
 		<tr>
@@ -116,18 +126,25 @@ foreach ($dnsresult as $record) {
 				<div class="d-block d-md-none float-right">' . $proxiable . '</div>
 				<div class="d-block d-md-none">' . $record->type . ' ' . _('record') . '</div>
 				<code>' . $record->name . '</code>
-				<div class="d-block d-md-none">' . _('points to') . ' ' . '<code>' . $record->content . '</code></div>
-				<div class="d-block d-md-none float-right">
-					<a href="?action=edit_record&domain=' . $zone_name . '&recordid=' . $record->id . '&zoneid=' . $zoneID . '">' . _('Edit') . '</a> |
-					<a href="?action=delete_record&domain=' . $zone_name . '&delete=' . $record->id . '&zoneid=' . $zoneID . '" onclick="return confirm(\'' . _('Are you sure to delete') . ' ' . $record->name . '?\')">' . _('Delete') . '</a>
+				<div class="btn-group dropleft float-right mt-3 d-block d-md-none">
+					<button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					' . _('Manage') . '
+					</button>
+					<div class="dropdown-menu">
+						<a class="dropdown-item" href="?action=edit_record&domain=' . $zone_name . '&recordid=' . $record->id . '&zoneid=' . $zoneID . '">' . _('Edit') . '</a>
+						<a class="dropdown-item" href="?action=delete_record&domain=' . $zone_name . '&delete=' . $record->id . '&zoneid=' . $zoneID . '" onclick="return confirm(\'' . _('Are you sure to delete') . ' ' . $record->name . '?\')">' . _('Delete') . '</a>
+					</div>
 				</div>
-				<div class="d-block d-md-none">' . _('ttl') . ' ' . $ttl . '</div>
+				<div class="d-block d-md-none">' . _('points to') . ' ' . '<code>' . $record->content . '</code></div>
+				<div class="d-block d-md-none">' . _('TTL') . ' ' . $ttl . '</div>
 			</td>
 			<td class="d-none d-md-table-cell">' . $priority . '<code>' . $record->content . '</code></td>
 			<td class="d-none d-md-table-cell">' . $ttl . '</td>
-			<td class="d-none d-md-table-cell">' . $proxiable . ' |
-				<a href="?action=edit_record&domain=' . $zone_name . '&recordid=' . $record->id . '&zoneid=' . $zoneID . '">' . _('Edit') . '</a> |
-				<a href="?action=delete_record&domain=' . $zone_name . '&delete=' . $record->id . '&zoneid=' . $zoneID . '" onclick="return confirm(\'' . _('Are you sure to delete') . ' ' . $record->name . '?\')">' . _('Delete') . '</a>
+			<td class="d-none d-md-table-cell" style="width: 190px;">' . $proxiable . ' |
+				<div class="btn-group" role="group">
+					<a class="btn btn-dark btn-sm" href="?action=edit_record&domain=' . $zone_name . '&recordid=' . $record->id . '&zoneid=' . $zoneID . '">' . _('Edit') . '</a>
+					<a class="btn btn-danger btn-sm" href="?action=delete_record&domain=' . $zone_name . '&delete=' . $record->id . '&zoneid=' . $zoneID . '" onclick="return confirm(\'' . _('Are you sure to delete') . ' ' . $record->name . '?\')">' . _('Delete') . '</a>
+				</div>
 			</td>
 		</tr>';
 	}
@@ -156,7 +173,7 @@ if (isset($dnsresult_data->result_info->total_pages)) {
 ?>
 <p><?php echo _('You can use CNAME, IP or NS to set it up.'); ?></p>
 
-<h3 class="mt-5" id="cname"><?php echo _('CNAME Setup'); ?></h3>
+<h3 class="mt-5 mb-3" id="cname"><?php echo _('CNAME Setup'); ?></h3>
 <table class="table table-striped">
 	<thead>
 		<tr>
@@ -208,7 +225,7 @@ try {
 	echo $e->getMessage();
 }
 ?>
-<h3 class="mt-5" id="ip"><?php echo _('IP Setup'); ?></h3>
+<h3 class="mt-5 mb-3" id="ip"><?php echo _('IP Setup'); ?></h3>
 <h4>Anycast IPv4</h4>
 <ul>
 	<li><code><?php echo $resp_a->answer[0]->address; ?></code></li>
@@ -219,7 +236,7 @@ try {
 	<li><code><?php echo $resp_aaaa->answer[0]->address; ?></code></li>
 	<li><code><?php echo $resp_aaaa->answer[1]->address; ?></code></li>
 </ul>
-<h3 class="mt-5" id="ns"><?php echo _('NS Setup'); ?></h3>
+<h3 class="mt-5 mb-3" id="ns"><?php echo _('NS Setup'); ?></h3>
 <table class="table table-striped">
 	<thead>
 		<tr>
@@ -242,6 +259,6 @@ try {
 		</tr>
 	</tbody>
 </table>
-<h3 class="mt-5"><a href="https://dash.cloudflare.com/" target="_blank"><?php echo _('More Settings'); ?></a></h3>
-<p><?php echo _('This site only provides configurations that the official does not have. For more settings, such as Page Rules, Crypto, Firewall, Cache, etc., please use the same account to login Cloudflare.com to setup. '); ?><a href='https://www.cloudflare.com/a/overview/<?php echo $zone_name; ?>' target="_blank"><?php echo _('More Settings'); ?></a></p>
-</div>
+<hr>
+<h3 class="mt-5 mb-3"><a href="https://dash.cloudflare.com/" target="_blank"><?php echo _('More Settings'); ?></a></h3>
+<p><?php echo _('This site only provides configurations that the official does not have. For more settings, such as Page Rules, Crypto, Firewall, Cache, etc., please use the same account to login Cloudflare.com to setup. '); ?><a href="https://dash.cloudflare.com/" target="_blank"><?php echo _('More Settings'); ?></a></p>
