@@ -4,7 +4,9 @@
  */
 
 if (!isset($tlo_id)) {exit;}
-
+?>
+<strong><?php echo '<h1 class="h5"><a href="?action=zone&amp;domain=' . $_GET['domain'] . '&amp;zoneid=' . $_GET['zoneid'] . '">&lt;- ' . _('Back') . '</a></h1>'; ?></strong><hr>
+<?php
 $dns = new \Cloudflare\API\Endpoints\DNS($adapter);
 $dns_details = $dns->getRecordDetails($_GET['zoneid'], $_GET['recordid']);
 if (isset($_POST['submit'])) {
@@ -21,17 +23,17 @@ if (isset($_POST['submit'])) {
 	}
 	try {
 		if ($dns->updateRecordDetails($_GET['zoneid'], $_GET['recordid'], ['type' => $dns_details->type, 'name' => $_POST['name'], 'content' => $_POST['content'], 'ttl' => $_POST['ttl'], 'priority' => $_POST['priority'], 'proxied' => $_POST['proxied']])) {
-			exit('<p>' . _('Success') . ', <a href="?action=zones&domain=' . $_GET['domain'] . '&amp;zoneid=' . $_GET['zoneid'] . '">' . _('Go to console') . '</a></p>');
+			exit('<p class="alert alert-success" role="alert">' . _('Success') . '</p>');
 		} else {
-			exit('<p>' . _('Failed') . ', <a href="?action=zones&domain=' . $_GET['domain'] . '&amp;zoneid=' . $_GET['zoneid'] . '">' . _('Go to console') . '</a></p>');
+			echo '<p class="alert alert-danger" role="alert">' . _('Failed') . '</p>';
 		}
 	} catch (Exception $e) {
-		echo $e;
+		echo '<p class="alert alert-danger" role="alert">' . _('Failed') . '</p>';
+		echo '<div class="alert alert-warning" role="alert">' . $e->getMessage() . '</div>';
 	}
 }
 if (isset($msg)) {echo $msg;}
 ?>
-<strong><?php echo '<h1 class="h5"><a href="?action=zone&amp;domain=' . $_GET['domain'] . '&amp;zoneid=' . $_GET['zoneid'] . '">' . strtoupper($_GET['domain']) . '</a></h1>'; ?></strong><hr>
 <form method="POST" action="">
 	<fieldset>
 		<legend><?php echo _('Edit DNS Record'); ?></legend>

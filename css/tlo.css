@@ -35,7 +35,6 @@
 
 body {
 	align-items: center;
-	background-color: #f5f5f5;
 }
 
 .login-h1 {
@@ -49,10 +48,28 @@ main {
 	margin: auto;
 }
 
+@media (min-width: 1200px) {
+	main {
+		max-width: 1000px;
+	}
+}
+
 .add-domain-form .form-control {
 	max-width: 300px;
 }
 
 h3.mt-5 {
 	color: purple;
+}
+
+td.btn-group {
+	padding: 0.5rem;
+}
+
+td .btn-group{
+	margin: -0.3rem 0;
+}
+
+main div.list-group {
+	max-width: 400px;
 }

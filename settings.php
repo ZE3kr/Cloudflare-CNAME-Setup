@@ -42,11 +42,9 @@ $short_lan = substr($lan, 0, 2);
 $dir = __DIR__ . '/languages';
 $domain = 'messages';
 if (isset($language_supported[$short_lan])) {
-	require_once 'languages/' . $language_supported[$short_lan] . '/main.php';
 	$locale = $language_supported[$short_lan];
 	$iso_language = $short_lan;
 } else {
-	require_once 'languages/en/main.php';
 	$locale = 'en';
 	$iso_language = 'en';
 }
@@ -55,7 +53,7 @@ setlocale(LC_MESSAGES, $locale);
 bindtextdomain($domain, $dir);
 bind_textdomain_codeset($domain, "UTF-8");
 textdomain($domain);
-
+require_once 'languages/translates.php';
 header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
 header("Content-Type: text/html; charset=UTF-8");
 

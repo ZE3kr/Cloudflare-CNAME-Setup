@@ -25,10 +25,16 @@ if (!isset($_COOKIE['user_key']) || !isset($_COOKIE['cloudflare_email']) || !iss
 		if ($times > 5) {
 			$msg = '<p>' . _('You have been blocked since you have too many fail logins. You can try it in next hour.') . '</p>';
 		} elseif ($res['result'] == 'success') {
-			setcookie('cloudflare_email', $res['response']['cloudflare_email']);
-			setcookie('user_key', $res['response']['user_key']);
-			setcookie('user_api_key', $res['response']['user_api_key']);
-			header('location: ?' . $_SERVER['QUERY_STRING']);
+			if (isset($_POST['remember'])) {
+				$cookie_time = time() + 31536000; // Expired in 365 days.
+			} else {
+				$cookie_time = 0;
+			}
+			setcookie('cloudflare_email', $res['response']['cloudflare_email'], $cookie_time);
+			setcookie('user_key', $res['response']['user_key'], $cookie_time);
+			setcookie('user_api_key', $res['response']['user_api_key'], $cookie_time);
+
+			header('location: ./' . $_SERVER['QUERY_STRING']);
 		} else {
 			$times = $times + 1;
 			apcu_store('login_' . date("Y-m-d H") . $cloudflare_email, $times, 7200);
@@ -59,7 +65,7 @@ h2push('js/bootstrap.bundle.min.js', 'script');
 	<link rel="stylesheet" href="css/bootstrap.min.css">
 	<link rel="stylesheet" href="css/tlo.css">
 </head>
-<body>
+<body class="bg-light">
 	<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
 		<a class="navbar-brand" href="./"><?php echo $page_title; ?></a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -71,15 +77,15 @@ h2push('js/bootstrap.bundle.min.js', 'script');
 				<li class="nav-item active nav-link">
 					<?php if (isset($_GET['action']) && isset($action_name[$_GET['action']])) {echo $action_name[$_GET['action']];} else {echo _('Console');}?> <span class="sr-only">(current)</span>
 				</li>
-				<?php if (!isset($_GET['action']) || $_GET['action'] != 'login') {?>
-				<li class="nav-item">
+				<?php if (!isset($_GET['action']) || $_GET['action'] != 'login' && $_GET['action'] != 'logout') {?>
+				<li class="nav-item float-md-right">
 					<a class="nav-link" href="?action=logout"><?php echo _('Logout'); ?></a>
 				</li>
 				<?php }?>
 			</ul>
 		</div>
 	</nav>
-	<main>
+	<main class="bg-white">
 <?php
 $cloudflare = new CloudFlare;
 if (isset($_GET['action'])) {
@@ -141,5 +147,10 @@ if (isset($is_beta) && $is_beta) {
 	</main>
 	<script src="js/jquery-3.3.1.slim.min.js"></script>
 	<script src="js/bootstrap.bundle.min.js"></script>
+	<script>
+	$(function () {
+		$('[data-toggle="tooltip"]').tooltip()
+	})
+	</script>
 </body>
 </html>
