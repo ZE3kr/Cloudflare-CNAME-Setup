@@ -20,3 +20,15 @@ $status_translate = [
 	'deleted' => '<span style="color:red;">Deleted</span>',
 	'deactivated' => '<span style="color:red;">Deactivated</span>',
 ];
+$action_name = [
+	'logout' => 'Logout',
+	'security' => 'Security',
+	'add_record' => 'Add Record',
+	'edit_record' => 'Edit Record',
+	'delete_record' => 'Delete Record',
+	'analytics' => 'Analytics',
+	'add' => 'Add Domain',
+	'zone' => 'Manage Zone',
+	'dnssec' => 'DNSSEC',
+	'login' => 'Login',
+];
