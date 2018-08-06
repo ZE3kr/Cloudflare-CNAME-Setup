@@ -15,9 +15,10 @@ $zones = new Cloudflare\API\Endpoints\Zones($adapter);
 $zoneID = $_GET['zoneid'];
 
 ?>
-<strong><?php echo '<a href="?action=security&amp;domain=' . $zone_name . '&amp;zoneid=' . $zoneID . '">' . strtoupper($zone_name) . '</a>'; ?></strong><hr>
+<strong><?php echo '<h1 class="h5"><a href="?action=security&amp;domain=' . $zone_name . '&amp;zoneid=' . $zoneID . '">' . strtoupper($zone_name) . '</a></h1>'; ?></strong>
+<hr>
 <div class="am-scrollable-horizontal">
-	<h1 id="ssl"><?php echo _('SSL Verify'); ?></h1><?php
+	<h3 id="ssl" class="mt-5 mb-3"><?php echo _('SSL Verify'); ?></h3><?php
 try {
 	$sslverify = $adapter->get('zones/' . $zoneID . '/ssl/verification?retry=true');
 	$sslverify = json_decode($sslverify->getBody(), true)['result'];
@@ -27,7 +28,7 @@ try {
 
 foreach ($sslverify as $sslv) {
 	if ($sslv['validation_method'] == 'http' && isset($sslv['verification_info']['http_url']) && $sslv['verification_info']['http_url'] != '') {?>
-			<h2><?php printf(_('HTTP File Verify for %s'), $sslv['hostname']);?></h2>
+			<h4><?php printf(_('HTTP File Verify for %s'), $sslv['hostname']);?></h4>
 			<p>URL: <code><?php echo $sslv['verification_info']['http_url']; ?></code></p>
 			<p>Body: <code><?php echo $sslv['verification_info']['http_body']; ?></code></p><?php
 if ($sslv['certificate_status'] != 'active') {
@@ -39,7 +40,7 @@ if ($sslv['certificate_status'] != 'active') {
 		}
 	}
 	} elseif ($sslv['validation_method'] == 'cname' || isset($sslv['verification_info']['record_name'])) {?>
-			<h2><?php echo _('CNAME Verify'); ?></h2>
+			<h4><?php echo _('CNAME Verify'); ?></h4>
 			<table class="am-table am-table-striped am-table-hover am-table-striped am-text-nowrap">
 			<thead>
 			<tr>
@@ -65,11 +66,11 @@ if ($sslv['certificate_status'] != 'active') {
 			}
 		}
 	} elseif ($sslv['validation_method'] == 'http') {
-		if (isset($sslv['hostname'])) {echo '<h2>' . $sslv['hostname'] . '</h2>';}
+		if (isset($sslv['hostname'])) {echo '<h4>' . $sslv['hostname'] . '</h4>';}
 		;
 		echo _('<p style="color:green;">No error for SSL.</p><p>Just point the record(s) to Cloudflare and the SSL certificate will be issued and renewed automatically.</p>');
 	} else {
-		echo '<h2>Unknown Verification</h2><pre>';
+		echo '<h4>Unknown Verification</h4><pre>';
 		print_r($sslv['verification_info']);
 		echo '</pre>';
 		if ($sslv['certificate_status'] != 'active') {
@@ -83,12 +84,16 @@ if ($sslv['certificate_status'] != 'active') {
 	}
 }
 ?>
-	<h1><?php echo _('DNSSEC <small>(Only for NS setup)</small>'); ?></h1><?php
+	<h3 class="mt-5 mb-3"><?php echo _('DNSSEC <small>(Only for NS setup)</small>'); ?></h3><?php
 
 echo '<p>' . _('This feature is designed for users who use Cloudflare DNS setup. If you are using third-party DNS services, do not turn it on nor add DS record, otherwise your domain may become inaccessible.') . '</p>';
 
-$dnssec = $adapter->get('zones/' . $zoneID . '/dnssec');
-$dnssec = json_decode($dnssec->getBody());
+try {
+	$dnssec = $adapter->get('zones/' . $zoneID . '/dnssec');
+	$dnssec = json_decode($dnssec->getBody());
+} catch (Exception $e) {
+	exit('<div class="alert alert-danger" role="alert">' . $e->getMessage() . '</div>');
+}
 
 if ($dnssec->result->status == 'active') {
 	echo '<p style="color:green;">' . _('Activated') . '</p><p>DS：<code>' . $dnssec->result->ds . '</code></p><p>Public Key：<code>' . $dnssec->result->public_key . '</code></p>';
