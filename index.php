@@ -130,21 +130,15 @@ default:
 	break;
 }
 ?>
-<hr>
-<div class="am-container">
-<p><a href="https://support.cloudflare.com/hc" target="_blank"><?php echo _('Cloudflare Support'); ?></a></p>
+	<hr>
+	<p><a href="https://support.cloudflare.com/hc" target="_blank"><?php echo _('Cloudflare Support'); ?></a></p>
+	<p><a href="https://github.com/ZE3kr/Cloudflare-CNAME-Setup" target="_blank"><?php echo _('View on GitHub'); ?></a></p>
 <?php
 if (isset($is_beta) && $is_beta) {
 	$time = round(microtime(true) - $starttime, 3);
-	echo '<small><p>Beta Version / Load time: ' . $time . 's </p></small>';
+	echo '<small><p>Beta Version / Load time: ' . $time . 's </p>';
 }
 ?>
-</div>
-<hr>
-<div class="am-container">
-	<?php if ($is_beta) {echo '<p>' . _('Last Update: ') . date('Y-m-d H:i:s e', filemtime(__FILE__)) . '</p>';}?>
-	<p><a href="https://github.com/ZE3kr/Cloudflare-CNAME-Setup" target="_blank"><?php echo _('View on GitHub'); ?></a></p>
-</div>
 	</main>
 	<script src="js/jquery-3.3.1.slim.min.js"></script>
 	<script src="js/bootstrap.bundle.min.js"></script>
