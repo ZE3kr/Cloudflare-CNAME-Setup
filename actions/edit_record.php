@@ -31,26 +31,27 @@ if (isset($_POST['submit'])) {
 }
 if (isset($msg)) {echo $msg;}
 ?>
-<form method="POST" action="" class="am-form">
+<strong><?php echo '<h1 class="h5"><a href="?action=zone&amp;domain=' . $_GET['domain'] . '&amp;zoneid=' . $_GET['zoneid'] . '">' . strtoupper($_GET['domain']) . '</a></h1>'; ?></strong><hr>
+<form method="POST" action="">
 	<fieldset>
 		<legend><?php echo _('Edit DNS Record'); ?></legend>
-		<div class="am-form-group">
+		<div class="form-group">
 			<label for="name"><?php echo _('Record Name (e.g. “@”, “www”, etc.)'); ?></label>
-			<input type="text" name="name" id="name" value="<?php echo $dns_details->name; ?>">
+			<input type="text" name="name" id="name" value="<?php echo $dns_details->name; ?>" class="form-control">
 		</div>
-		<div class="am-form-group">
+		<div class="form-group">
 			<label for="type"><?php echo _('Record Type'); ?></label>
-			<select name="type" id="type" disabled="disabled">
+			<select name="type" id="type" disabled="disabled" class="form-control">
 				<option value="<?php echo $dns_details->type; ?>"><?php echo $dns_details->type; ?></option>
 			</select>
 		</div>
-		<div class="am-form-group">
+		<div class="form-group">
 			<label for="doc-ta-1"><?php echo _('Record Content'); ?></label>
-			<textarea name="content" rows="5" id="doc-ta-1"><?php echo $dns_details->content; ?></textarea>
+			<textarea name="content" rows="5" id="doc-ta-1" class="form-control"><?php echo $dns_details->content; ?></textarea>
 		</div>
-		<div class="am-form-group">
+		<div class="form-group">
 			<label for="ttl">TTL</label>
-			<select name="ttl" id="ttl">
+			<select name="ttl" id="ttl" class="form-control">
 				<?php
 foreach ($ttl_translate as $_ttl => $_ttl_name) {
 	echo '<option value="' . $_ttl . '">' . $_ttl_name . '</option>';
@@ -59,21 +60,21 @@ foreach ($ttl_translate as $_ttl => $_ttl_name) {
 			</select>
 		</div>
 		<?php if ($dns_details->proxiable) {?>
-		<div class="am-form-group">
+		<div class="form-group">
 			<label for="proxied">CDN</label>
-			<select name="proxied" id="proxied">
+			<select name="proxied" id="proxied" class="form-control">
 				<option value="true" <?php if ($dns_details->proxied) {echo 'selected="selected"';}?>><?php echo _('On'); ?></option>
 				<option value="false" <?php if (!$dns_details->proxied) {echo 'selected="selected"';}?>><?php echo _('Off'); ?></option>
 			</select>
 		</div>
 		<?php }?>
 		<?php if ($dns_details->type == 'MX') {?>
-		<div class="am-form-group">
+		<div class="form-group">
 			<label for="priority"><?php echo _('Priority (Only for MX record)'); ?></label>
-			<input type="number" name="priority" id="priority" step="1" min="1" value="<?php echo $dns_details->priority; ?>">
+			<input type="number" name="priority" id="priority" step="1" min="1" value="<?php echo $dns_details->priority; ?>" class="form-control">
 		</div>
 		<?php }?>
 
-		<p><button type="submit" name="submit" class="am-btn am-btn-default"><?php echo _('Submit'); ?></button></p>
+		<button type="submit" name="submit" class="btn btn-primary"><?php echo _('Submit'); ?></button>
 	</fieldset>
 </form>

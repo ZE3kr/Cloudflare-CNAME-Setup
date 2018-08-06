@@ -14,38 +14,73 @@ require_once 'cloudflare.class.php';
 
 $tlo_id = false;
 
-if (!isset($_COOKIE['user_key']) || !isset($_COOKIE['cloudflare_email']) || !isset($_COOKIE['user_api_key'])) {require_once "login.php";exit();}
+if (!isset($_COOKIE['user_key']) || !isset($_COOKIE['cloudflare_email']) || !isset($_COOKIE['user_api_key'])) {
+	$_GET['action'] = 'login';
+	if (isset($_POST['cloudflare_email']) && isset($_POST['cloudflare_pass'])) {
+		$cloudflare_email = $_POST['cloudflare_email'];
+		$cloudflare_pass = $_POST['cloudflare_pass'];
+		$cloudflare = new CloudFlare;
+		$res = $cloudflare->userCreate($cloudflare_email, $cloudflare_pass);
+		$times = apcu_fetch('login_' . date("Y-m-d H") . $cloudflare_email);
+		if ($times > 5) {
+			$msg = '<p>' . _('You have been blocked since you have too many fail logins. You can try it in next hour.') . '</p>';
+		} elseif ($res['result'] == 'success') {
+			setcookie('cloudflare_email', $res['response']['cloudflare_email']);
+			setcookie('user_key', $res['response']['user_key']);
+			setcookie('user_api_key', $res['response']['user_api_key']);
+			header('location: ?' . $_SERVER['QUERY_STRING']);
+		} else {
+			$times = $times + 1;
+			apcu_store('login_' . date("Y-m-d H") . $cloudflare_email, $times, 7200);
+			$msg = $res['msg'];
+		}
+	}
+} else {
+	$key = new \Cloudflare\API\Auth\APIKey($_COOKIE['cloudflare_email'], $_COOKIE['user_api_key']);
+	$adapter = new Cloudflare\API\Adapter\Guzzle($key);
+	$tlo_id = md5($_COOKIE['cloudflare_email'] . $_COOKIE['user_api_key']);
+}
 
-$key = new \Cloudflare\API\Auth\APIKey($_COOKIE['cloudflare_email'], $_COOKIE['user_api_key']);
-$adapter = new Cloudflare\API\Adapter\Guzzle($key);
-$tlo_id = md5($_COOKIE['cloudflare_email'] . $_COOKIE['user_api_key']);
-
-h2push('css/main.css', 'style');
+h2push('css/bootstrap.min.css', 'style');
 h2push('css/tlo.css', 'style');
+h2push('js/jquery-3.3.1.slim.min.js', 'script');
+h2push('js/bootstrap.bundle.min.js', 'script');
 ?><!DOCTYPE html>
 <html class="no-js" lang="<?php echo $iso_language; ?>">
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<meta name="description" content="TlOxygen Cloudflare Partners">
 	<meta name="keywords" content="TlOxygen, Cloudflare">
-	<meta name="viewport" content="width=800">
-	<title><?php if (isset($_GET['action']) && $_GET['action'] == 'analytics') {echo 'Analytics: ' . $_GET['domain'];} elseif (isset($_GET['domain'])) {echo 'DNS: ' . $_GET['domain'];} else {echo 'Console';}?> | <?php echo _('Cloudflare CNAME/IP Advanced Setup'); ?> &#8211; <?php echo $page_title; ?></title>
+	<title><?php if (isset($_GET['action']) && isset($action_name[$_GET['action']])) {echo $action_name[$_GET['action']];} else {echo _('Console');}?> | <?php echo _('Cloudflare CNAME/IP Advanced Setup'); ?> &#8211; <?php echo $page_title; ?></title>
 	<meta name="renderer" content="webkit">
 	<meta http-equiv="Cache-Control" content="no-siteapp"/>
-	<link rel="stylesheet" href="css/main.css">
+	<link rel="stylesheet" href="css/bootstrap.min.css">
 	<link rel="stylesheet" href="css/tlo.css">
 </head>
 <body>
-	<div class="am-container">
-		<div class="am-cf am-padding am-padding-bottom-0 data-am-sticky">
-			<div class="am-fl am-cf">
-				<strong class="am-text-primary am-text-lg"><a href="?"><?php echo $page_title; ?></a></strong> /
-				<small><?php echo _('Console'); ?></small> /
-				<small><a href="?action=logout"><?php echo _('Logout'); ?></a></small>
-			</div>
-		</div></div><hr>
-		<div class="am-container" style=" max-width: 960px"><?php
+	<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+		<a class="navbar-brand" href="./"><?php echo $page_title; ?></a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item active nav-link">
+					<?php if (isset($_GET['action']) && isset($action_name[$_GET['action']])) {echo $action_name[$_GET['action']];} else {echo _('Console');}?> <span class="sr-only">(current)</span>
+				</li>
+				<?php if (!isset($_GET['action']) || $_GET['action'] != 'login') {?>
+				<li class="nav-item">
+					<a class="nav-link" href="?action=logout"><?php echo _('Logout'); ?></a>
+				</li>
+				<?php }?>
+			</ul>
+		</div>
+	</nav>
+	<main>
+<?php
 $cloudflare = new CloudFlare;
 if (isset($_GET['action'])) {
 	$action = $_GET['action'];
@@ -75,71 +110,24 @@ case 'analytics':
 case 'add':
 	require_once 'actions/add.php';
 	break;
-case 'zones':
-	require_once 'actions/zones.php';
+case 'zone':
+	require_once 'actions/zone.php';
 	break;
-case 'ssl':
-	require_once 'actions/ssl.php';
+case 'security':
+	require_once 'actions/security.php';
+	break;
+case 'login':
+	require_once 'actions/login.php';
 	break;
 default:
-	if (!isset($_GET['page'])) {
-		$_GET['page'] = 1;
-	}
-	?>
-<a href="?action=add" class="am-btn am-btn-success am-round"><?php echo _('Add Domain'); ?></a>
-<table class="am-table am-table-striped am-table-hover">
-	<thead>
-		<tr>
-			<th><?php echo _('Domain'); ?></th>
-			<th><?php echo _('Status'); ?></th>
-			<th><?php echo _('Mode'); ?></th>
-			<th><?php echo _('Operation'); ?></th>
-		</tr>
-	</thead>
-	<tbody>
-	<?php
-$zones = new \Cloudflare\API\Endpoints\Zones($adapter);
-	$zones_data = $zones->listZones(false, false, intval($_GET['page']));
-	foreach ($zones_data->result as $zone) {
-		if (property_exists($zone, 'name_servers')) {
-			$manage_data = '<a href="https://dash.cloudflare.com/" target="_blank">';
-			$manage_ssl = '';
-			$cname_method = '<span style="color:orange;">' . _('Official Setup') . '</span>';
-		} else {
-			$manage_data = '<a href="?action=zones&amp;domain=' . $zone->name . '&amp;zoneid=' . $zone->id . '">';
-			$manage_ssl = ' | <a href="?action=ssl&amp;domain=' . $zone->name . '&amp;zoneid=' . $zone->id . '">' . _('Security') . '</a>';
-			$cname_method = '<span style="color:green;">' . _('Universal Setup') . '</span>';
-		}
-		echo '<tr>
-		<td>' . $manage_data . $zone->name . '</a></td>
-		<td>' . $status_translate[$zone->status] . '</td>
-		<td>' . $cname_method . '</td>
-		<td>' . $manage_data . _('Manage') . '</a>' . ' | <a href="?action=analytics&amp;domain=' . $zone->name . '&amp;zoneid=' . $zone->id . '">' . _('Advanced Analytics') . '</a>' . $manage_ssl . '</td>';
-	}
-	?>
-	</tbody>
-</table><?php
-if (isset($zones_data->result_info->total_pages)) {
-		$previous_page = '';
-		$next_page = '';
-		if ($zones_data->result_info->page < $zones_data->result_info->total_pages) {
-			$page_link = $zones_data->result_info->page + 1;
-			$next_page = ' | <a href="?page=' . $page_link . '">' . _('Next') . '</a>';
-		}
-		if ($zones_data->result_info->page > 1) {
-			$page_link = $zones_data->result_info->page - 1;
-			$previous_page = '<a href="?page=' . $page_link . '">' . _('Previous') . '</a> | ';
-		}
-		echo '<p>' . $previous_page . _('Page') . ' ' . $zones_data->result_info->page . '/' . $zones_data->result_info->total_pages . $next_page . '</p>';
-	}
+	require_once 'actions/list_zones.php';
 	break;
 }
 ?>
-</div>
 <hr>
 <div class="am-container">
 <p><?php echo _('<a href="https://support.cloudflare.com/hc" target="_blank">Any questions or problems about Cloudflare, please contact official support</a></p><p>Any question or problem about this service, please <a href="https://github.com/ZE3kr/Cloudflare-CNAME-Setup/issues/new" target="_blank">create a issue on GitHub</a>'); ?></p><?php
-if ($is_beta) {
+if (isset($is_beta) && $is_beta) {
 	$time = round(microtime(true) - $starttime, 3);
 	echo '<small><p>Beta Version / Load time: ' . $time . 's </p></small>';
 }
@@ -150,5 +138,8 @@ if ($is_beta) {
 	<?php if ($is_beta) {echo '<p>' . _('Last Update: ') . date('Y-m-d H:i:s e', filemtime(__FILE__)) . '</p>';}?>
 	<p><a href="https://github.com/ZE3kr/Cloudflare-CNAME-Setup" target="_blank"><?php echo _('This open source project is powered by ZE3kr.'); ?></a></p>
 </div>
+	</main>
+	<script src="js/jquery-3.3.1.slim.min.js"></script>
+	<script src="js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

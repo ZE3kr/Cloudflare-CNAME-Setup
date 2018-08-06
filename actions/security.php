@@ -15,7 +15,7 @@ $zones = new Cloudflare\API\Endpoints\Zones($adapter);
 $zoneID = $_GET['zoneid'];
 
 ?>
-<strong><?php echo '<a href="?action=zones&amp;domain=' . $zone_name . '&amp;zoneid=' . $zoneID . '">' . strtoupper($zone_name) . '</a>'; ?></strong><hr>
+<strong><?php echo '<a href="?action=security&amp;domain=' . $zone_name . '&amp;zoneid=' . $zoneID . '">' . strtoupper($zone_name) . '</a>'; ?></strong><hr>
 <div class="am-scrollable-horizontal">
 	<h1 id="ssl"><?php echo _('SSL Verify'); ?></h1><?php
 try {
