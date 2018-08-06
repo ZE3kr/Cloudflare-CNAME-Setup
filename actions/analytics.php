@@ -272,23 +272,23 @@ foreach ($analytics->result->timeseries as $key) {
 		window.myLine = new Chart(ctx, config2);
 	};
 </script>
-<table class="am-table am-table-striped am-table-hover">
+<table class="table table-striped">
 	<thead>
 		<tr>
-			<th><?php echo _('Date'); ?></th>
-			<th><?php echo _('Unique Visitors'); ?></th>
-			<th><?php echo _('Page Views'); ?></th>
-			<th><?php echo _('Requests'); ?></th>
-			<th><?php echo _('Requests Hit Ratio'); ?></th>
-			<th><?php echo _('Bandwidth'); ?></th>
-			<th><?php echo _('Saved Bandwidth'); ?></th>
-			<th><?php echo _('Threats'); ?></th>
+			<th scope="col"><?php echo _('Date'); ?></th>
+			<th scope="col"><?php echo _('Unique Visitors'); ?></th>
+			<th scope="col"><?php echo _('Page Views'); ?></th>
+			<th scope="col"><?php echo _('Requests'); ?></th>
+			<th scope="col"><?php echo _('Requests Hit Ratio'); ?></th>
+			<th scope="col"><?php echo _('Bandwidth'); ?></th>
+			<th scope="col"><?php echo _('Saved Bandwidth'); ?></th>
+			<th scope="col"><?php echo _('Threats'); ?></th>
 		</tr>
 	</thead>
 	<tbody>
 	<?php
 echo '<tr>
-		<th>' . _('Total (Last year)') . '</th>
+		<th scope="col">' . _('Total (Last year)') . '</th>
 		<th>' . number_format($analytics->result->totals->uniques->all) . '</th>
 		<th>' . number_format($analytics->result->totals->pageviews->all) . '</th>
 		<th>' . number_format($analytics->result->totals->requests->all) . '</th>
@@ -300,7 +300,7 @@ echo '<tr>
 foreach ($analytics->result->timeseries as $key) {
 	if ($key->requests->all != 0 && $key->bandwidth->all != 0) {
 		echo '<tr>
-			<th>' . explode('T', $key->since)[0] . '</th>
+			<th scope="col">' . explode('T', $key->since)[0] . '</th>
 			<th>' . number_format($key->uniques->all) . '</th>
 			<th>' . number_format($key->pageviews->all) . '</th>
 			<th>' . number_format($key->requests->all) . '</th>
