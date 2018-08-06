@@ -5,7 +5,6 @@
 
 if (!isset($tlo_id)) {exit;}
 
-$msg = '';
 if (isset($_POST['submit'])) {
 	$zone_name = $_POST['domain'];
 	if (isset($_POST['type']) && $_POST['type'] == 'ns') {
@@ -13,14 +12,12 @@ if (isset($_POST['submit'])) {
 		$res = $cloudflare->zoneSet_full($zone_name);
 		if ($res['result'] == 'success') {
 			$msg = _('Success') . ', <a target="_blank" href="https://www.cloudflare.com/a/overview/' . $zone_name . '">' . _('Go to console') . '</a>. ';
-			exit($msg);
+			exit('<div class="alert alert-success" role="alert">' . $msg . '</div>');
+		} elseif (isset($res['msg'])) {
+			$msg = $res['msg'];
 		} else {
-			if (isset($res['msg'])) {
-				exit($res['msg']);
-			} else {
-				print_r($res);
-				exit;
-			}
+			print_r($res);
+			exit;
 		}
 	}
 	/*
@@ -47,25 +44,21 @@ if (isset($_POST['submit'])) {
 			}
 		}
 		$msg = _('Success') . ', <a href="?action=zones&amp;domain=' . $zone_name . '&amp;zoneid=' . $zoneID . '">' . _('Go to console') . '</a>. ';
-		exit($msg);
-	} else {
+		exit('<div class="alert alert-success" role="alert">' . $msg . '</div>');
+	} elseif (isset($res['msg'])) {
 		$msg = $res['msg'];
+	} else {
+		print_r($res);
+		exit;
 	}
-
 }
-echo $msg;
+if (isset($msg) && $msg != '') {
+	echo '<div class="alert alert-danger" role="alert">' . $msg . '</div>';
+}
 
 ?>
-<form method="POST" action="" class="am-form am-form-horizontal">
-	<div class="am-form-group">
-		<label for="doc-ipt-3" class="am-u-sm-2 am-form-label"><?php echo _('Domain'); ?></label>
-		<div class="am-u-sm-10">
-			<input type="text" id="doc-ipt-3" name="domain" placeholder="<?php echo _('Please enter your domain'); ?>">
-		</div>
-	</div>
-	<div class="am-form-group">
-		<div class="am-u-sm-10 am-u-sm-offset-2">
-			<button type="submit" name="submit" class="am-btn am-btn-default"><?php echo _('Submit'); ?></button>
-		</div>
-	</div>
+<form method="POST" action="" class="add-domain-form">
+	<label for="domain" class="sr-only"><?php echo _('Domain'); ?></label>
+	<input type="text" id="domain" class="form-control" name="domain" placeholder="<?php echo _('Please enter your domain'); ?>">
+	<button type="submit" name="submit" class="btn btn-primary mt-3"><?php echo _('Submit'); ?></button>
 </form>

@@ -20,3 +20,15 @@ $status_translate = [
 	'deleted' => '<span style="color:red;">已删除</span>',
 	'deactivated' => '<span style="color:red;">未激活</span>',
 ];
+$action_name = [
+	'logout' => '退出登录',
+	'security' => '安全',
+	'add_record' => '添加记录',
+	'edit_record' => '编辑记录',
+	'delete_record' => '删除记录',
+	'analytics' => '统计',
+	'add' => '添加域名',
+	'zone' => '管理域名',
+	'dnssec' => 'DNSSEC',
+	'login' => '登录',
+];

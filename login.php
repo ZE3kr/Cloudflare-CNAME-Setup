@@ -1,24 +1,5 @@
 <?php
 if (!isset($tlo_id)) {exit;} // This file should be included in index.php and cannot be accessed directly.
-if (isset($_POST['submit'])) {
-	$cloudflare_email = $_POST['cloudflare_email'];
-	$cloudflare_pass = $_POST['cloudflare_pass'];
-	$cloudflare = new CloudFlare;
-	$res = $cloudflare->userCreate($cloudflare_email, $cloudflare_pass);
-	$times = apcu_fetch('login_' . date("Y-m-d H") . $cloudflare_email);
-	if ($times > 5) {
-		$msg = '<p>' . _('You have been blocked since you have too many fail logins. You can try it in next hour.') . '</p>';
-	} elseif ($res['result'] == 'success') {
-		setcookie('cloudflare_email', $res['response']['cloudflare_email']);
-		setcookie('user_key', $res['response']['user_key']);
-		setcookie('user_api_key', $res['response']['user_api_key']);
-		header('location: ?' . $_SERVER['QUERY_STRING']);
-	} else {
-		$times = $times + 1;
-		apcu_store('login_' . date("Y-m-d H") . $cloudflare_email, $times, 7200);
-		$msg = $res['msg'];
-	}
-}
 
 h2push('css/main.css', 'style');
 ?><!DOCTYPE html>
