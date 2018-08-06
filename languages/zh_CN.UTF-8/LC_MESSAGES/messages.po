@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2018-08-06 22:07+0800\n"
-"PO-Revision-Date: 2018-08-06 22:08+0800\n"
+"POT-Creation-Date: 2018-08-06 22:14+0800\n"
+"PO-Revision-Date: 2018-08-06 22:14+0800\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: zh_CN\n"
@@ -424,25 +424,16 @@ msgid "Logout"
 msgstr "退出登录"
 
 #: web/index.php:135
-msgid ""
-"<a href=\"https://support.cloudflare.com/hc\" target=\"_blank\">Any "
-"questions or problems about Cloudflare, please contact official support</a></"
-"p><p>Any question or problem about this service, please <a href=\"https://"
-"github.com/ZE3kr/Cloudflare-CNAME-Setup/issues/new\" target=\"_blank"
-"\">create a issue on GitHub</a>"
-msgstr ""
-"<a href=\"https://support.cloudflare.com/hc\" target=\"_blank\">Cloudflare 相"
-"关问题请联系平台客服</a></p><p>与本服务有关的任何疑问和问题，<a href="
-"\"https://github.com/ZE3kr/Cloudflare-CNAME-Setup/issues/new\" target="
-"\"_blank\">请在 GitHub 提交 Issue</a>"
+msgid "Cloudflare Support"
+msgstr "Cloudflare 支持"
 
-#: web/index.php:144
+#: web/index.php:145
 msgid "Last Update: "
 msgstr "最后更新: "
 
-#: web/index.php:145
-msgid "This open source project is powered by ZE3kr."
-msgstr "这个开源软件由 ZE3kr 强力驱动."
+#: web/index.php:146
+msgid "View on GitHub"
+msgstr "在 GitHub 上查看"
 
 #: web/languages/translates.php:3
 msgid "Automatic"
@@ -539,3 +530,18 @@ msgstr "没有在 config.php 中设置 HOST_KEY 或 HOST_MAIL ."
 #: web/settings.php:17
 msgid "Please set up your own HOST_KEY and HOST_MAIL in config.php ."
 msgstr "请在 config.php 中设置你自己的 HOST_KEY 和 HOST_MAIL."
+
+#~ msgid ""
+#~ "<a href=\"https://support.cloudflare.com/hc\" target=\"_blank\">Any "
+#~ "questions or problems about Cloudflare, please contact official support</"
+#~ "a></p><p>Any question or problem about this service, please <a href="
+#~ "\"https://github.com/ZE3kr/Cloudflare-CNAME-Setup/issues/new\" target="
+#~ "\"_blank\">create a issue on GitHub</a>"
+#~ msgstr ""
+#~ "<a href=\"https://support.cloudflare.com/hc\" target=\"_blank"
+#~ "\">Cloudflare 相关问题请联系平台客服</a></p><p>与本服务有关的任何疑问和问"
+#~ "题，<a href=\"https://github.com/ZE3kr/Cloudflare-CNAME-Setup/issues/new"
+#~ "\" target=\"_blank\">请在 GitHub 提交 Issue</a>"
+
+#~ msgid "This open source project is powered by ZE3kr."
+#~ msgstr "这个开源软件由 ZE3kr 强力驱动."
