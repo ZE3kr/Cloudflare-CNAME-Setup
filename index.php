@@ -48,7 +48,7 @@ if (!isset($_COOKIE['user_key']) || !isset($_COOKIE['cloudflare_email']) || !iss
 }
 
 h2push('css/bootstrap.min.css', 'style');
-h2push('css/tlo.css', 'style');
+h2push('css/tlo_v2.css', 'style');
 h2push('js/jquery-3.3.1.slim.min.js', 'script');
 h2push('js/bootstrap.bundle.min.js', 'script');
 ?><!DOCTYPE html>
@@ -63,7 +63,7 @@ h2push('js/bootstrap.bundle.min.js', 'script');
 	<meta name="renderer" content="webkit">
 	<meta http-equiv="Cache-Control" content="no-siteapp"/>
 	<link rel="stylesheet" href="css/bootstrap.min.css">
-	<link rel="stylesheet" href="css/tlo.css">
+	<link rel="stylesheet" href="css/tlo_v2.css">
 </head>
 <body class="bg-light">
 	<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
