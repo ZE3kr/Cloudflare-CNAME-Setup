@@ -42,15 +42,23 @@ body {
 	font-size: 25px;
 }
 
-main {
-	padding: 3rem 1.5rem;
+main, footer.footer {
+	padding: 1.25rem;
 	max-width: 800px;
 	margin: auto;
 }
 
-@media (min-width: 1200px) {
-	main {
+@media (min-width: 576px) {
+	main, footer.footer {
 		max-width: 1000px;
+		padding: 2rem;
+	}
+}
+
+@media (min-width: 1200px) {
+	main, footer.footer {
+		max-width: 1000px;
+		padding: 3rem;
 	}
 }
 
@@ -59,7 +67,7 @@ main {
 }
 
 h3.mt-5 {
-	color: purple;
+	color: #800080;
 }
 
 td.btn-group {

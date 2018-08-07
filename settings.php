@@ -1,8 +1,13 @@
 <?php
-if (substr($_SERVER['HTTP_HOST'], 0, 5) == 'beta.' || explode(':', $_SERVER['HTTP_HOST'])[0] == "localhost") {
+if (substr($_SERVER['HTTP_HOST'], 0, 5) == 'beta.') {
 	$is_beta = true;
+	$is_debug = false;
+} elseif (explode(':', $_SERVER['HTTP_HOST'])[0] == "localhost") {
+	$is_beta = true;
+	$is_debug = true;
 } else {
 	$is_beta = false;
+	$is_debug = false;
 }
 
 if (@file_exists("../config.php")) {
@@ -57,7 +62,7 @@ require_once 'languages/translates.php';
 header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
 header("Content-Type: text/html; charset=UTF-8");
 
-if ($is_beta) {
+if ($is_debug) {
 	ini_set('display_errors', 1);
 	ini_set('display_startup_errors', 1);
 	error_reporting(E_ALL);

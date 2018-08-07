@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2018-08-06 22:14+0800\n"
-"PO-Revision-Date: 2018-08-06 22:14+0800\n"
+"POT-Creation-Date: 2018-08-07 08:56+0800\n"
+"PO-Revision-Date: 2018-08-07 08:56+0800\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: zh_CN\n"
@@ -18,15 +18,15 @@ msgstr ""
 #: web/actions/delete_record.php:11 web/actions/dnssec.php:16
 #: web/actions/edit_record.php:26 web/actions/logout.php:12
 #: web/actions/security.php:37 web/actions/security.php:63
-#: web/actions/security.php:79 web/actions/zone.php:50
+#: web/actions/security.php:79 web/actions/zone.php:52
 msgid "Success"
 msgstr "成功"
 
 #: web/actions/add.php:18 web/actions/add.php:73 web/actions/add_record.php:15
 #: web/actions/add_record.php:17 web/actions/delete_record.php:11
 #: web/actions/delete_record.php:13 web/actions/dnssec.php:16
-#: web/actions/dnssec.php:18 web/actions/logout.php:12 web/actions/zone.php:52
-#: web/actions/zone.php:61
+#: web/actions/dnssec.php:18 web/actions/logout.php:12 web/actions/zone.php:54
+#: web/actions/zone.php:63
 msgid "Go to console"
 msgstr "前往管理中心"
 
@@ -48,7 +48,7 @@ msgid "Submit"
 msgstr "提交"
 
 #: web/actions/add_record.php:15 web/actions/add_record.php:17
-#: web/actions/zone.php:82
+#: web/actions/zone.php:84
 msgid "Add New Record"
 msgstr "添加新记录"
 
@@ -60,7 +60,7 @@ msgstr "或者"
 #: web/actions/dnssec.php:18 web/actions/edit_record.php:28
 #: web/actions/edit_record.php:31 web/actions/security.php:39
 #: web/actions/security.php:65 web/actions/security.php:81
-#: web/actions/zone.php:52 web/actions/zone.php:61
+#: web/actions/zone.php:54 web/actions/zone.php:63
 msgid "Failed"
 msgstr "失败"
 
@@ -77,7 +77,7 @@ msgid "Record Name (e.g. “@”, “www”, etc.)"
 msgstr "记录名 (例 “@”, “www”, etc.)"
 
 #: web/actions/add_record.php:33 web/actions/edit_record.php:45
-#: web/actions/zone.php:86
+#: web/actions/zone.php:88
 msgid "Record Type"
 msgstr "记录类型"
 
@@ -172,11 +172,11 @@ msgstr "主页"
 msgid "Status"
 msgstr "状态"
 
-#: web/actions/list_zones.php:20 web/actions/zone.php:90
+#: web/actions/list_zones.php:20 web/actions/zone.php:92
 msgid "Operation"
 msgstr "操作"
 
-#: web/actions/list_zones.php:35 web/actions/zone.php:131
+#: web/actions/list_zones.php:35 web/actions/zone.php:134
 msgid "Manage"
 msgstr "管理"
 
@@ -194,18 +194,18 @@ msgid ""
 "Cloudflare.com."
 msgstr "这个域名只支持 NS 接入. 你应该在 Cloudflare.com 上管理 DNS 记录."
 
-#: web/actions/list_zones.php:106 web/actions/zone.php:165
-#: web/actions/zone.php:212
+#: web/actions/list_zones.php:106 web/actions/zone.php:167
+#: web/actions/zone.php:214
 msgid "Next"
 msgstr "下一页"
 
-#: web/actions/list_zones.php:110 web/actions/zone.php:169
-#: web/actions/zone.php:216
+#: web/actions/list_zones.php:110 web/actions/zone.php:171
+#: web/actions/zone.php:218
 msgid "Previous"
 msgstr "上一页"
 
-#: web/actions/list_zones.php:112 web/actions/zone.php:171
-#: web/actions/zone.php:218
+#: web/actions/list_zones.php:112 web/actions/zone.php:173
+#: web/actions/zone.php:220
 msgid "Page"
 msgstr "页码"
 
@@ -311,80 +311,80 @@ msgstr "未激活"
 msgid "Activate"
 msgstr "开启"
 
-#: web/actions/zone.php:59
+#: web/actions/zone.php:61
 msgid "Success!"
 msgstr "成功！"
 
-#: web/actions/zone.php:71
+#: web/actions/zone.php:73
 msgid "Contents"
 msgstr "目录"
 
-#: web/actions/zone.php:74 web/actions/zone.php:82
+#: web/actions/zone.php:76 web/actions/zone.php:84
 msgid "DNS Management"
 msgstr "DNS 管理"
 
-#: web/actions/zone.php:75 web/actions/zone.php:176
+#: web/actions/zone.php:77 web/actions/zone.php:178
 msgid "CNAME Setup"
 msgstr "CNAME 接入"
 
-#: web/actions/zone.php:76 web/actions/zone.php:228
+#: web/actions/zone.php:78 web/actions/zone.php:230
 msgid "IP Setup"
 msgstr "IP 接入"
 
-#: web/actions/zone.php:77 web/actions/zone.php:239
+#: web/actions/zone.php:79 web/actions/zone.php:241
 msgid "NS Setup"
 msgstr "NS 接入"
 
-#: web/actions/zone.php:79 web/actions/zone.php:263 web/actions/zone.php:264
+#: web/actions/zone.php:81 web/actions/zone.php:265 web/actions/zone.php:266
 msgid "More Settings"
 msgstr "更多设置"
 
-#: web/actions/zone.php:87 web/actions/zone.php:180 web/actions/zone.php:243
+#: web/actions/zone.php:89 web/actions/zone.php:182 web/actions/zone.php:245
 msgid "Host Name"
 msgstr "主机名"
 
-#: web/actions/zone.php:88
+#: web/actions/zone.php:90
 msgid "Content"
 msgstr "内容"
 
-#: web/actions/zone.php:89 web/actions/zone.php:139
+#: web/actions/zone.php:91 web/actions/zone.php:141
 msgid "TTL"
 msgstr "TTL"
 
-#: web/actions/zone.php:105
+#: web/actions/zone.php:107
 msgid "Not support CDN"
 msgstr "不支持 CDN"
 
-#: web/actions/zone.php:127
+#: web/actions/zone.php:129
 msgid "record"
 msgstr "记录"
 
-#: web/actions/zone.php:134 web/actions/zone.php:145
-msgid "Edit"
-msgstr "编辑"
-
-#: web/actions/zone.php:135 web/actions/zone.php:146
-msgid "Are you sure to delete"
-msgstr "你确认要删除"
-
-#: web/actions/zone.php:135 web/actions/zone.php:146
-msgid "Delete"
-msgstr "删除"
-
-#: web/actions/zone.php:138 web/actions/zone.php:192 web/actions/zone.php:250
-#: web/actions/zone.php:256
+#: web/actions/zone.php:131 web/actions/zone.php:194 web/actions/zone.php:252
+#: web/actions/zone.php:258
 msgid "points to"
 msgstr "指向"
 
-#: web/actions/zone.php:157 web/actions/zone.php:204
+#: web/actions/zone.php:137 web/actions/zone.php:147
+msgid "Edit"
+msgstr "编辑"
+
+#: web/actions/zone.php:138 web/actions/zone.php:148
+msgid "Are you sure to delete"
+msgstr "你确认要删除"
+
+#: web/actions/zone.php:138 web/actions/zone.php:148
+msgid "Delete"
+msgstr "删除"
+
+#: web/actions/zone.php:159 web/actions/zone.php:206
 msgid "There is no record in this zone yet. Please add some!"
 msgstr "该域名还没有任何记录, 请添加!"
 
-#: web/actions/zone.php:174
+#: web/actions/zone.php:176
 msgid "You can use CNAME, IP or NS to set it up."
 msgstr "你可以使用 CNAME, IP 和 NS 任意一种方式接入。"
 
-#: web/actions/zone.php:264
+#: web/actions/zone.php:266
 msgid ""
 "This site only provides configurations that the official does not have. For "
 "more settings, such as Page Rules, Crypto, Firewall, Cache, etc., please use "
@@ -411,27 +411,23 @@ msgid ""
 "next hour."
 msgstr "由于你多次登录失败，已经被屏蔽，请在下一个小时再试。"
 
-#: web/index.php:62 web/index.php:78
+#: web/index.php:83 web/index.php:103
 msgid "Console"
 msgstr "面板"
 
-#: web/index.php:62
+#: web/index.php:86
 msgid "Cloudflare CNAME/IP Advanced Setup"
 msgstr "Cloudflare CNAME/IP 高级接入"
 
-#: web/index.php:82 web/languages/translates.php:24
+#: web/index.php:107 web/languages/translates.php:24
 msgid "Logout"
 msgstr "退出登录"
 
-#: web/index.php:135
+#: web/index.php:160
 msgid "Cloudflare Support"
 msgstr "Cloudflare 支持"
 
-#: web/index.php:145
-msgid "Last Update: "
-msgstr "最后更新: "
-
-#: web/index.php:146
+#: web/index.php:161
 msgid "View on GitHub"
 msgstr "在 GitHub 上查看"
 
@@ -523,25 +519,10 @@ msgstr "DNSSEC"
 msgid "Login"
 msgstr "登录"
 
-#: web/settings.php:15
+#: web/settings.php:20
 msgid "No HOST_KEY or HOST_MAIL defined in config.php ."
 msgstr "没有在 config.php 中设置 HOST_KEY 或 HOST_MAIL ."
 
-#: web/settings.php:17
+#: web/settings.php:22
 msgid "Please set up your own HOST_KEY and HOST_MAIL in config.php ."
 msgstr "请在 config.php 中设置你自己的 HOST_KEY 和 HOST_MAIL."
-
-#~ msgid ""
-#~ "<a href=\"https://support.cloudflare.com/hc\" target=\"_blank\">Any "
-#~ "questions or problems about Cloudflare, please contact official support</"
-#~ "a></p><p>Any question or problem about this service, please <a href="
-#~ "\"https://github.com/ZE3kr/Cloudflare-CNAME-Setup/issues/new\" target="
-#~ "\"_blank\">create a issue on GitHub</a>"
-#~ msgstr ""
-#~ "<a href=\"https://support.cloudflare.com/hc\" target=\"_blank"
-#~ "\">Cloudflare 相关问题请联系平台客服</a></p><p>与本服务有关的任何疑问和问"
-#~ "题，<a href=\"https://github.com/ZE3kr/Cloudflare-CNAME-Setup/issues/new"
-#~ "\" target=\"_blank\">请在 GitHub 提交 Issue</a>"
-
-#~ msgid "This open source project is powered by ZE3kr."
-#~ msgstr "这个开源软件由 ZE3kr 强力驱动."
