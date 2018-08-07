@@ -70,7 +70,7 @@ foreach ($ttl_translate as $_ttl => $_ttl_name) {
 			</select>
 		</div>
 		<?php }?>
-		<?php if ($dns_details->type == 'MX') {?>
+		<?php if ($dns_details->type == 'MX' || $dns_details->type == 'SRV') {?>
 		<div class="form-group">
 			<label for="priority"><?php echo _('Priority (Only for MX record)'); ?></label>
 			<input type="number" name="priority" id="priority" step="1" min="1" value="<?php echo $dns_details->priority; ?>" class="form-control">

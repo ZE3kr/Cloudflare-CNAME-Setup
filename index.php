@@ -64,7 +64,13 @@ if (isset($_GET['action']) && $_GET['action'] == 'zone' && !isset($_COOKIE['tlo_
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<?php
+if (isset($_GET['action']) && $_GET['action'] == 'analytics') {
+	echo '<meta name="viewport" content="width=800, initial-scale=1, shrink-to-fit=no">';
+} else {
+	echo '<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">';
+}
+?>
 	<meta name="description" content="TlOxygen Cloudflare Partners">
 	<meta name="keywords" content="TlOxygen, Cloudflare">
 	<title><?php
