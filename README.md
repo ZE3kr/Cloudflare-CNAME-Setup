@@ -48,8 +48,8 @@ If you don’t want to use the preinstalled panel above, you can install this pa
 
 ## Screenshot
 
-![Screenshot1][image-1]
-![Screenshot2][image-2]
+<img src="https://cdn.landcement.com/uploads/cloudflare/en1.png" />
+<img src="https://cdn.landcement.com/uploads/cloudflare/en2.png" width="433" />
 
 ## Open sourced software used in this project
 
@@ -77,6 +77,3 @@ This project was based on a [HOSTLOC topic][9].
 [9]:	http://www.hostloc.com/thread-386441-1-1.html
 [10]:	mailto:mtdowling@gmail.com
 [11]:	mailto:mike@mikepultz.com
-
-[image-1]:	https://cdn.landcement.com/uploads/cloudflare/en1.png
-[image-2]:	https://cdn.landcement.com/uploads/cloudflare/en2.png
