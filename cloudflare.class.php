@@ -212,8 +212,8 @@ function formatBytes_array($bytes, $precision = 2) {
  * @param string $as the file type (script, style, image, etc)
  */
 function h2push(string $uri, string $as) {
-	global $tlo_path, $is_beta;
-	if (isset($tlo_path) && !$is_beta) {
+	global $tlo_path, $is_debug;
+	if (isset($tlo_path) && !$is_debug) {
 		header("Link: <{$tlo_path}{$uri}>; rel=preload; as={$as}", false);
 	}
 }
