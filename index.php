@@ -109,7 +109,7 @@ echo _('Cloudflare CNAME/IP Advanced Setup') . ' &#8211; ' . $page_title;
 					<?php if (isset($_GET['action']) && isset($action_name[$_GET['action']])) {echo $action_name[$_GET['action']];} else {echo _('Console');}?> <span class="sr-only">(current)</span>
 				</li>
 				<?php if (!isset($_GET['action']) || $_GET['action'] != 'login' && $_GET['action'] != 'logout') {?>
-				<li class="nav-item float-md-right">
+				<li class="nav-item">
 					<a class="nav-link" href="?action=logout"><?php echo _('Logout'); ?></a>
 				</li>
 				<?php }?>
