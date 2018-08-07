@@ -104,7 +104,7 @@ foreach ($dnsresult as $record) {
 				$proxiable = '<a href="?action=zone&domain=' . $zone_name . '&enable=' . $record->id . '&page=' . $_GET['page'] . '&amp;zoneid=' . $zoneID . '"><img src="images/cloud_off.png" height="30"></a>';
 			}
 		} else {
-			$proxiable = _('Not support CDN');
+			$proxiable = '<img src="images/cloud_off.png" height="30">';
 		}
 		if (isset($_GET['enable']) && $record->id == $_GET['enable']) {
 			$proxiable = '<a href="?action=zone&domain=' . $zone_name . '&disable=' . $record->id . '&page=' . $_GET['page'] . '&amp;zoneid=' . $zoneID . '"><img src="images/cloud_on.png" height="19"></a>';
@@ -142,7 +142,7 @@ foreach ($dnsresult as $record) {
 			</td>
 			<td class="d-none d-md-table-cell">' . $priority . '<code>' . $record->content . '</code></td>
 			<td class="d-none d-md-table-cell">' . $ttl . '</td>
-			<td class="d-none d-md-table-cell" style="width: 190px;">' . $proxiable . ' |
+			<td class="d-none d-md-table-cell" style="width: 200px;">' . $proxiable . ' |
 				<div class="btn-group" role="group">
 					<a class="btn btn-dark btn-sm" href="?action=edit_record&domain=' . $zone_name . '&recordid=' . $record->id . '&zoneid=' . $zoneID . '">' . _('Edit') . '</a>
 					<a class="btn btn-danger btn-sm" href="?action=delete_record&domain=' . $zone_name . '&delete=' . $record->id . '&zoneid=' . $zoneID . '" onclick="return confirm(\'' . _('Are you sure to delete') . ' ' . $record->name . '?\')">' . _('Delete') . '</a>

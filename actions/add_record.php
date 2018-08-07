@@ -6,18 +6,34 @@
 if (!isset($tlo_id)) {exit;}
 
 if (isset($_POST['submit'])) {
-	$dns = new \Cloudflare\API\Endpoints\DNS($adapter);
 	if ($_POST['proxied'] == 'false') {
+		$_POST['proxied'] = false;
+	} else {
+		$_POST['proxied'] = true;
+	}
+	if ($_POST['type'] != 'A' && $_POST['type'] != 'AAAA' && $_POST['type'] != 'CNAME') {
 		$_POST['proxied'] = false;
 	}
 	try {
-		if ($dns->addRecord($_GET['zoneid'], $_POST['type'], $_POST['name'], $_POST['content'], $_POST['ttl'], $_POST['proxied'], $_POST['priority'])) {
+		$options = [
+			'type' => $_POST['type'],
+			'name' => $_POST['name'],
+			'content' => $_POST['content'],
+			'proxied' => $_POST['proxied'],
+			'ttl' => $_POST['ttl'],
+			'priority' => intval($_POST['priority']),
+
+		];
+		$dns = $adapter->post('zones/' . $_GET['zoneid'] . '/dns_records', [], $options);
+		$dns = json_decode($dns->getBody());
+		if (isset($dns->result->id)) {
 			exit('<p class="alert alert-success" role="alert">' . _('Success') . ', <a href="?action=add_record&amp;zoneid=' . $_GET['zoneid'] . '&domain=' . $_GET['domain'] . '">' . _('Add New Record') . '</a>, ' . _('Or') . '<a href="?action=zone&amp;domain=' . $_GET['domain'] . '&amp;zoneid=' . $_GET['zoneid'] . '">' . _('Go to console') . '</a></p>');
 		} else {
 			exit('<p class="alert alert-danger" role="alert">' . _('Failed') . ', <a href="?action=add_record&amp;zoneid=' . $_GET['zoneid'] . '&domain=' . $_GET['domain'] . '">' . _('Add New Record') . '</a>, ' . _('Or') . '<a href="?action=zone&amp;domain=' . $_GET['domain'] . '&amp;zoneid=' . $_GET['zoneid'] . '">' . _('Go to console') . '</a></p>');
 		}
 	} catch (Exception $e) {
-		echo $e;
+		echo '<p class="alert alert-danger" role="alert">' . _('Failed') . '</p>';
+		echo '<div class="alert alert-warning" role="alert">' . $e->getMessage() . '</div>';
 	}
 }
 ?>
@@ -35,12 +51,11 @@ if (isset($_POST['submit'])) {
 				<option value="A">A</option>
 				<option value="AAAA">AAAA</option>
 				<option value="CNAME">CNAME</option>
-				<option value="TXT">TXT</option>
-				<option value="SRV">SRV</option>
-				<option value="LOC">LOC</option>
 				<option value="MX">MX</option>
-				<option value="NS">NS</option>
 				<option value="SPF">SPF</option>
+				<option value="TXT">TXT</option>
+				<option value="NS">NS</option>
+				<option value="PTR">PTR</option>
 			</select>
 		</div>
 		<div class="form-group">
@@ -66,7 +81,7 @@ foreach ($ttl_translate as $_ttl => $_ttl_name) {
 		</div>
 		<div class="form-group">
 			<label for="priority"><?php echo _('Priority (Only for MX record)'); ?></label>
-			<input type="number" name="priority" id="priority" step="1" min="1" value="10" class="form-control">
+			<input type="number" name="priority" id="priority" step="1" min="1" value="1" class="form-control">
 		</div>
 		<p><button type="submit" name="submit" class="btn btn-primary"><?php echo _('Submit'); ?></button></p>
 	</fieldset>
