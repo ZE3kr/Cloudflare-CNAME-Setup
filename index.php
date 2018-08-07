@@ -66,7 +66,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'zone' && !isset($_COOKIE['tlo_
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<?php
 if (isset($_GET['action']) && $_GET['action'] == 'analytics') {
-	echo '<meta name="viewport" content="width=800, initial-scale=1, shrink-to-fit=no">';
+	echo '<meta name="viewport" content="width=800">';
 } else {
 	echo '<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">';
 }
