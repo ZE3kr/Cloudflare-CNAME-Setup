@@ -46,10 +46,8 @@
 
 ## 屏幕截图
 
-![Screenshot1][image-1]
-![Screenshot2][image-2]
-![Screenshot3][image-3]
-![Screenshot4][image-4]
+<img src="https://cdn.landcement.com/uploads/cloudflare/zh1.png" />
+<img src="https://cdn.landcement.com/uploads/cloudflare/zh2.png" width="433" />
 
 ## Open sourced software used in this project
 
@@ -76,6 +74,3 @@ This project was based on a [HOSTLOC topic][8].
 [8]:	http://www.hostloc.com/thread-386441-1-1.html
 [9]:	mailto:mtdowling@gmail.com
 [10]:	mailto:mike@mikepultz.com
-
-[image-1]:	https://cdn.landcement.com/uploads/cloudflare/zh1.png
-[image-2]:	https://cdn.landcement.com/uploads/cloudflare/zh2.png
