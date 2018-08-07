@@ -46,24 +46,49 @@ if (!isset($_COOKIE['user_key']) || !isset($_COOKIE['cloudflare_email']) || !iss
 	$adapter = new Cloudflare\API\Adapter\Guzzle($key);
 	$tlo_id = md5($_COOKIE['cloudflare_email'] . $_COOKIE['user_api_key']);
 }
+if (!isset($_COOKIE['tlo_cached_main'])) {
+	h2push('css/bootstrap.min.css', 'style');
+	h2push('css/tlo_1.1.0.css', 'style');
+	h2push('js/jquery-3.3.1.slim.min.js', 'script');
+	h2push('js/bootstrap.bundle.min.js', 'script');
+	setcookie('tlo_cached_main', 1);
+}
 
-h2push('css/bootstrap.min.css', 'style');
-h2push('css/tlo_v2.css', 'style');
-h2push('js/jquery-3.3.1.slim.min.js', 'script');
-h2push('js/bootstrap.bundle.min.js', 'script');
+if (isset($_GET['action']) && $_GET['action'] == 'zone' && !isset($_COOKIE['tlo_cached_cloud'])) {
+	h2push('images/cloud_on.png', 'script');
+	h2push('images/cloud_off.png', 'script');
+	setcookie('tlo_cached_cloud', 1);
+}
 ?><!DOCTYPE html>
-<html class="no-js" lang="<?php echo $iso_language; ?>">
+<html <?php if (isset($iso_language)) {echo 'lang="' . $iso_language . '"';}?>>
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<meta name="description" content="TlOxygen Cloudflare Partners">
 	<meta name="keywords" content="TlOxygen, Cloudflare">
-	<title><?php if (isset($_GET['action']) && isset($action_name[$_GET['action']])) {echo $action_name[$_GET['action']];} else {echo _('Console');}?> | <?php echo _('Cloudflare CNAME/IP Advanced Setup'); ?> &#8211; <?php echo $page_title; ?></title>
+	<title><?php
+if (isset($_GET['action'])) {
+	if ($_GET['action'] != 'login') {
+		if (isset($action_name[$_GET['action']])) {
+			echo $action_name[$_GET['action']] . ' | ';
+			if (isset($_GET['domain'])) {
+				echo $_GET['domain'] . ' | ';
+			}
+		}
+	} else {
+		echo $action_name[$_GET['action']] . ' | ';
+	}
+} else {
+	echo _('Console') . ' | ';
+}
+
+echo _('Cloudflare CNAME/IP Advanced Setup') . ' &#8211; ' . $page_title;
+?></title>
 	<meta name="renderer" content="webkit">
 	<meta http-equiv="Cache-Control" content="no-siteapp"/>
 	<link rel="stylesheet" href="css/bootstrap.min.css">
-	<link rel="stylesheet" href="css/tlo_v2.css">
+	<link rel="stylesheet" href="css/tlo_1.1.0.css">
 </head>
 <body class="bg-light">
 	<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
@@ -130,16 +155,17 @@ default:
 	break;
 }
 ?>
-	<hr>
-	<p><a href="https://support.cloudflare.com/hc" target="_blank"><?php echo _('Cloudflare Support'); ?></a></p>
-	<p><a href="https://github.com/ZE3kr/Cloudflare-CNAME-Setup" target="_blank"><?php echo _('View on GitHub'); ?></a></p>
-<?php
-if (isset($is_beta) && $is_beta) {
+	</main>
+	<footer class="footer">
+			<p><a href="https://support.cloudflare.com/hc" target="_blank"><?php echo _('Cloudflare Support'); ?></a></p>
+			<p><a href="https://github.com/ZE3kr/Cloudflare-CNAME-Setup" target="_blank"><?php echo _('View on GitHub'); ?></a></p><?php
+if ((isset($is_beta) && $is_beta) || (isset($is_debug) && $is_debug)) {
 	$time = round(microtime(true) - $starttime, 3);
 	echo '<small><p>Beta Version / Load time: ' . $time . 's </p>';
 }
 ?>
-	</main>
+	</footer>
+
 	<script src="js/jquery-3.3.1.slim.min.js"></script>
 	<script src="js/bootstrap.bundle.min.js"></script>
 	<script>

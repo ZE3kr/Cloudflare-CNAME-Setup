@@ -24,7 +24,7 @@ if (isset($_POST['submit'])) {
 <strong><?php echo '<h1 class="h5"><a href="?action=zone&amp;domain=' . $_GET['domain'] . '&amp;zoneid=' . $_GET['zoneid'] . '">&lt;- ' . _('Back') . '</a></h1>'; ?></strong><hr>
 <form method="POST" action="">
 	<fieldset>
-		<legend><?php echo _('Add DNS Record'); ?> <small></legend>
+		<legend><?php echo _('Add DNS Record'); ?></legend>
 		<div class="form-group">
 			<label for="name"><?php echo _('Record Name (e.g. “@”, “www”, etc.)'); ?></label>
 			<input type="text" name="name" id="name" class="form-control">

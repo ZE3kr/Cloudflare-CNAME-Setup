@@ -37,7 +37,9 @@ if (!isset($dnscheck['_tlo-wildcard.' . $zone_name]) && $_GET['page'] == 1) {
 	try {
 		$dns->addRecord($zoneID, 'CNAME', '_tlo-wildcard', 'cloudflare.tlo.xyz');
 	} catch (Exception $e) {
-		echo '';
+		if (isset($is_debug) && $is_debug) {
+			echo '<div class="alert alert-danger" role="alert">' . $e->getMessage() . '</div>';
+		}
 	}
 }
 
@@ -154,7 +156,7 @@ foreach ($dnsresult as $record) {
 </table><?php
 
 if ($no_record_yet) {
-	echo '<h4 style="text-align: center;color:red;">' . _('There is no record in this zone yet. Please add some!') . '</h4>';
+	echo '<div class="alert alert-warning" role="alert">' . _('There is no record in this zone yet. Please add some!') . '</div>';
 }
 
 if (isset($dnsresult_data->result_info->total_pages)) {
@@ -201,7 +203,7 @@ foreach ($dnsresult as $record) {
 </table><?php
 
 if ($no_record_yet) {
-	echo '<h4 style="text-align: center;color:red;">' . _('There is no record in this zone yet. Please add some!') . '</h4>';
+	echo '<div class="alert alert-warning" role="alert">' . _('There is no record in this zone yet. Please add some!') . '</div>';
 }
 
 if (isset($dnsresult_data->result_info->total_pages)) {
