@@ -18,6 +18,7 @@ If you don’t want to use the preinstalled panel above, you can install this pa
 + Advanced Analytics. You can see the analytics report for the **previous year**, rather than a month.
 + NS setup is supported. This panel provides NS setup information so you can switch to Cloudflare DNS at any time. The DNSSEC feature is also supported.
 + IP setup is supported. This service provides the anycast IPv4 and IPv6 of the CDN. You can use this service for the root domain safely.
++ Support mobile devices.
 + Supports multi-languages.
 
 ## How to switch to this panel from NS setup
@@ -49,21 +50,21 @@ If you don’t want to use the preinstalled panel above, you can install this pa
 
 ![Screenshot1][image-1]
 ![Screenshot2][image-2]
-![Screenshot3][image-3]
-![Screenshot4][image-4]
 
 ## Open sourced software used in this project
 
 This project was based on a [HOSTLOC topic][9].
 
-+ Amaze UI by Amaze UI Team | Licensed under MIT
-+ Net\_DNS2 by Mike Pultz [mike@mikepultz.com][10] | Licensed under BSD-3-Clause
-+ PHPMailer by Free Software Foundation, Inc. | Lincesed under GNU Lesser General Public License v2.1
-+ Cloudflare SDK by Cloudflare | Licensed under BSD-3-Clause
-+ Chart.js by Nick Downie | Licensed under the MIT license
-+ Guzzle by Michael Dowling [mtdowling@gmail.com][11] | Licensed under MIT
-+ PSR Http Message by Framework Interoperability Group | Licensed under MIT
-+ Composer | Licensed under MIT
++ jQuery | MIT License
++ popper.js | MIT License
++ Bootstrap | MIT License
++ Chart.js by Nick Downie | MIT License
++ Guzzle by Michael Dowling [mtdowling@gmail.com][10] | MIT License
++ PSR Http Message by Framework Interoperability Group | MIT License
++ Composer | MIT License
++ Net\_DNS2 by Mike Pultz [mike@mikepultz.com][11] | BSD-3-Clause License
++ PHPMailer by Free Software Foundation, Inc. | GNU Lesser General Public License v2.1
++ Cloudflare SDK by Cloudflare | BSD-3-Clause
 
 [1]:	https://www.cloudflare.com/partners/hosting-provider/
 [2]:	https://support.cloudflare.com/hc/en-us/articles/200168706-How-do-I-do-CNAME-setup-
@@ -74,10 +75,8 @@ This project was based on a [HOSTLOC topic][9].
 [7]:	https://api.cloudflare.com/
 [8]:	https://www.cloudflare.com/ssl-for-saas-providers/
 [9]:	http://www.hostloc.com/thread-386441-1-1.html
-[10]:	mailto:mike@mikepultz.com
-[11]:	mailto:mtdowling@gmail.com
+[10]:	mailto:mtdowling@gmail.com
+[11]:	mailto:mike@mikepultz.com
 
-[image-1]:	https://cdn.landcement.com/uploads/cloudflare/Screenshot1.png
-[image-2]:	https://cdn.landcement.com/uploads/cloudflare/Screenshot2.png
-[image-3]:	https://cdn.landcement.com/uploads/cloudflare/Screenshot3.png
-[image-4]:	https://cdn.landcement.com/uploads/cloudflare/Screenshot4.png
+[image-1]:	https://cdn.landcement.com/uploads/cloudflare/en1.png
+[image-2]:	https://cdn.landcement.com/uploads/cloudflare/en2.png

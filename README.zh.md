@@ -16,6 +16,7 @@
 + 高级统计。你可以查看**过去一整年的统计信息**，而不仅仅是一个月。
 + 同时支持 NS 接入。此面板提供了 NS 接入信息，所以你可以随时切换到 Cloudflare DNS。此外，这个面板也支持 DNSSEC。
 + 同时支持 IP 接入。你可以看到 DNS 的 Anycast IPv4 和 IPv6 信息，这样你可以安全地在根域名下使用第三方 DNS。
++ 适配移动设备。
 + 支持多种语言。
 
 ## 如何从 NS 接入转成从这个面板接入？
@@ -54,14 +55,16 @@
 
 This project was based on a [HOSTLOC topic][8].
 
-+ Amaze UI by Amaze UI Team | Licensed under MIT
-+ Net\_DNS2 by Mike Pultz [mike@mikepultz.com][9] | Licensed under BSD-3-Clause
-+ PHPMailer by Free Software Foundation, Inc. | Lincesed under GNU Lesser General Public License v2.1
-+ Cloudflare SDK by Cloudflare | Licensed under BSD-3-Clause
-+ Chart.js by Nick Downie | Licensed under the MIT license
-+ Guzzle by Michael Dowling [mtdowling@gmail.com][10] | Licensed under MIT
-+ PSR Http Message by Framework Interoperability Group | Licensed under MIT
-+ Composer | Licensed under MIT
++ jQuery | MIT License
++ popper.js | MIT License
++ Bootstrap | MIT License
++ Chart.js by Nick Downie | MIT License
++ Guzzle by Michael Dowling [mtdowling@gmail.com][9] | MIT License
++ PSR Http Message by Framework Interoperability Group | MIT License
++ Composer | MIT License
++ Net\_DNS2 by Mike Pultz [mike@mikepultz.com][10] | BSD-3-Clause License
++ PHPMailer by Free Software Foundation, Inc. | GNU Lesser General Public License v2.1
++ Cloudflare SDK by Cloudflare | BSD-3-Clause
 
 [1]:	https://www.cloudflare.com/partners/hosting-provider/
 [2]:	https://support.cloudflare.com/hc/en-us/articles/200168706-How-do-I-do-CNAME-setup-
@@ -71,10 +74,8 @@ This project was based on a [HOSTLOC topic][8].
 [6]:	https://api.cloudflare.com/
 [7]:	https://www.cloudflare.com/ssl-for-saas-providers/
 [8]:	http://www.hostloc.com/thread-386441-1-1.html
-[9]:	mailto:mike@mikepultz.com
-[10]:	mailto:mtdowling@gmail.com
+[9]:	mailto:mtdowling@gmail.com
+[10]:	mailto:mike@mikepultz.com
 
-[image-1]:	https://cdn.landcement.com/uploads/cloudflare/Screenshot1.png
-[image-2]:	https://cdn.landcement.com/uploads/cloudflare/Screenshot2.png
-[image-3]:	https://cdn.landcement.com/uploads/cloudflare/Screenshot3.png
-[image-4]:	https://cdn.landcement.com/uploads/cloudflare/Screenshot4.png
+[image-1]:	https://cdn.landcement.com/uploads/cloudflare/zh1.png
+[image-2]:	https://cdn.landcement.com/uploads/cloudflare/zh2.png
