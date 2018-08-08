@@ -13,8 +13,7 @@ RUN apk --no-cache --virtual runtimes add nginx           \
                                           php7-gettext    \
                                           php7-curl       \
                                           php7-apcu    && \
-    rm /etc/nginx/sites-enabled/default                                   && \
-    cp /app/docker/nginx.conf   /etc/nginx/sites-enabled/cloudflare.conf  && \
+    cp /app/docker/nginx.conf   /etc/nginx/conf.d/cloudflare.conf  && \
     cp /app/docker/php-fpm.conf /etc/php7/php-fpm.conf 
 
 WORKDIR /app
