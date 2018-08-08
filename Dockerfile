@@ -13,7 +13,8 @@ RUN apk --no-cache --virtual runtimes add nginx           \
                                           php7-gettext    \
                                           php7-curl       \
                                           php7-apcu    && \
-    cp /app/docker/nginx.conf   /etc/nginx/nginx.conf  && \
+    rm /etc/nginx/sites-enabled/default                                   && \
+    cp /app/docker/nginx.conf   /etc/nginx/sites-enabled/cloudflare.conf  && \
     cp /app/docker/php-fpm.conf /etc/php7/php-fpm.conf 
 
 WORKDIR /app
@@ -23,4 +24,5 @@ CMD cp /app/config.example.php /app/config.php && nginx                       &&
     sed -i "s|e9e4498f0584b7098692512db0c62b48|${HOST_KEY}|g" /app/config.php && \
     sed -i "s|ze3kr@example.com|${HOST_MAIL}|g"               /app/config.php && \
     sed -i "s|// \$page_title = \"TlOxygen\"|\$page_title = \"${TITLE}\"|g" /app/config.php && \
+    sed -i "s|// \$tlo_path = \"/\"|\$tlo_path = \"/\"|g" /app/config.php && \
     php-fpm7 --nodaemonize --fpm-config /etc/php7/php-fpm.conf -c /etc/php7/php.ini
