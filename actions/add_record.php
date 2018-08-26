@@ -19,9 +19,9 @@ if (isset($_POST['submit'])) {
 		'name' => $_POST['name'],
 		'content' => $_POST['content'],
 		'proxied' => $_POST['proxied'],
-		'ttl' => $_POST['ttl'],
+		'ttl' => intval($_POST['ttl']),
 	];
-	if($_POST['type'] == 'MX'){
+	if ($_POST['type'] == 'MX') {
 		$options['priority'] = intval($_POST['priority']);
 	}
 	try {
