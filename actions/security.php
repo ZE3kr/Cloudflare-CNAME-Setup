@@ -27,19 +27,23 @@ try {
 }
 
 foreach ($sslverify as $sslv) {
-	if ($sslv['validation_method'] == 'http' && isset($sslv['verification_info']['http_url']) && $sslv['verification_info']['http_url'] != '') {?>
+/*
+ * We need `_tlo-wildcard` subdomain to support anycast IP information.
+ */
+	if (substr($sslv['hostname'], 0, 14) == '_tlo-wildcard.') {
+		if ($sslv['validation_method'] == 'http' && isset($sslv['verification_info']['http_url']) && $sslv['verification_info']['http_url'] != '') {?>
 			<h4><?php printf(_('HTTP File Verify for %s'), $sslv['hostname']);?></h4>
 			<p>URL: <code><?php echo $sslv['verification_info']['http_url']; ?></code></p>
 			<p>Body: <code><?php echo $sslv['verification_info']['http_body']; ?></code></p><?php
 if ($sslv['certificate_status'] != 'active') {
-		echo '<p>' . _('SSL Status') . ': ' . $sslv['certificate_status'] . '</p>';
-		if ($sslv['verification_status']) {
-			echo '<p>' . _('Verify') . ': <span style="color:green;">' . _('Success') . '</span></p>';
-		} else {
-			echo '<p>' . _('Verify') . ': <span style="color:red;">' . _('Failed') . '</span></p>';
+			echo '<p>' . _('SSL Status') . ': ' . $sslv['certificate_status'] . '</p>';
+			if ($sslv['verification_status']) {
+				echo '<p>' . _('Verify') . ': <span style="color:green;">' . _('Success') . '</span></p>';
+			} else {
+				echo '<p>' . _('Verify') . ': <span style="color:red;">' . _('Failed') . '</span></p>';
+			}
 		}
-	}
-	} elseif ($sslv['validation_method'] == 'cname' || isset($sslv['verification_info']['record_name'])) {?>
+		} elseif ($sslv['validation_method'] == 'cname' || isset($sslv['verification_info']['record_name'])) {?>
 			<h4><?php echo _('CNAME Verify'); ?></h4>
 			<table class="am-table am-table-striped am-table-hover am-table-striped am-text-nowrap">
 			<thead>
@@ -54,31 +58,32 @@ if ($sslv['certificate_status'] != 'active') {
 				<td><code>' . $sslv['verification_info']['record_name'] . '</code></td>
 				<td><code>' . $sslv['verification_info']['record_target'] . '</code></td>
 				</tr>';
-		?>
+			?>
 			</tbody>
 			</table><?php
 if ($sslv['certificate_status'] != 'active') {
-			echo '<p>' . _('SSL Status') . ': ' . $sslv['certificate_status'] . '</p>';
-			if ($sslv['verification_status']) {
-				echo '<p>' . _('Verify') . ': <span style="color:green;">' . _('Success') . '</span></p>';
-			} else {
-				echo '<p>' . _('Verify') . ': <span style="color:red;">' . _('Failed') . '</span></p>';
+				echo '<p>' . _('SSL Status') . ': ' . $sslv['certificate_status'] . '</p>';
+				if ($sslv['verification_status']) {
+					echo '<p>' . _('Verify') . ': <span style="color:green;">' . _('Success') . '</span></p>';
+				} else {
+					echo '<p>' . _('Verify') . ': <span style="color:red;">' . _('Failed') . '</span></p>';
+				}
 			}
-		}
-	} elseif ($sslv['validation_method'] == 'http') {
-		if (isset($sslv['hostname'])) {echo '<h4>' . $sslv['hostname'] . '</h4>';}
-		;
-		echo _('<p style="color:green;">No error for SSL.</p><p>Just point the record(s) to Cloudflare and the SSL certificate will be issued and renewed automatically.</p>');
-	} else {
-		echo '<h4>Unknown Verification</h4><pre>';
-		print_r($sslv['verification_info']);
-		echo '</pre>';
-		if ($sslv['certificate_status'] != 'active') {
-			echo '<p>' . _('SSL Status') . ': ' . $sslv['certificate_status'] . '</p>';
-			if ($sslv['verification_status']) {
-				echo '<p>' . _('Verify') . ': <span style="color:green;">' . _('Success') . '</span></p>';
-			} else {
-				echo '<p>' . _('Verify') . ': <span style="color:red;">' . _('Failed') . '</span></p>';
+		} elseif ($sslv['validation_method'] == 'http') {
+			if (isset($sslv['hostname'])) {echo '<h4>' . $sslv['hostname'] . '</h4>';}
+			;
+			echo _('<p style="color:green;">No error for SSL.</p><p>Just point the record(s) to Cloudflare and the SSL certificate will be issued and renewed automatically.</p>');
+		} else {
+			echo '<h4>Unknown Verification</h4><pre>';
+			print_r($sslv['verification_info']);
+			echo '</pre>';
+			if ($sslv['certificate_status'] != 'active') {
+				echo '<p>' . _('SSL Status') . ': ' . $sslv['certificate_status'] . '</p>';
+				if ($sslv['verification_status']) {
+					echo '<p>' . _('Verify') . ': <span style="color:green;">' . _('Success') . '</span></p>';
+				} else {
+					echo '<p>' . _('Verify') . ': <span style="color:red;">' . _('Failed') . '</span></p>';
+				}
 			}
 		}
 	}
