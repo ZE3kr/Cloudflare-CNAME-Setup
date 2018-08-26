@@ -29,7 +29,9 @@ if (isset($_POST['submit'])) {
 		$options['priority'] = intval($_POST['priority']);
 	}
 	try {
-		if ($dns->updateRecordDetails($_GET['zoneid'], $_GET['recordid'], $options)) {
+		$dns = $adapter->put('zones/' . $_GET['zoneid'] . '/dns_records/' . $_GET['recordid'], [], $options);
+		$dns = json_decode($dns->getBody());
+		if (isset($dns->result->id)) {
 			exit('<p class="alert alert-success" role="alert">' . _('Success') . '</p>');
 		} else {
 			echo '<p class="alert alert-danger" role="alert">' . _('Failed') . '</p>';
