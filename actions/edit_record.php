@@ -10,19 +10,26 @@ if (!isset($tlo_id)) {exit;}
 $dns = new \Cloudflare\API\Endpoints\DNS($adapter);
 $dns_details = $dns->getRecordDetails($_GET['zoneid'], $_GET['recordid']);
 if (isset($_POST['submit'])) {
-	if (isset($_POST['proxied']) && $_POST['proxied'] == 'true') {
-		$_POST['proxied'] = true;
+	if ($_POST['proxied'] == 'false') {
+		$_POST['proxied'] = false;
 	} else {
+		$_POST['proxied'] = true;
+	}
+	if ($_POST['type'] != 'A' && $_POST['type'] != 'AAAA' && $_POST['type'] != 'CNAME') {
 		$_POST['proxied'] = false;
 	}
-	$_POST['ttl'] = intval($_POST['ttl']);
-	if (isset($_POST['priority'])) {
-		$_POST['priority'] = intval($_POST['priority']);
-	} else {
-		$_POST['priority'] = 10;
+	$options = [
+		'type' => $_POST['type'],
+		'name' => $_POST['name'],
+		'content' => $_POST['content'],
+		'proxied' => $_POST['proxied'],
+		'ttl' => intval($_POST['ttl']),
+	];
+	if ($_POST['type'] == 'MX') {
+		$options['priority'] = intval($_POST['priority']);
 	}
 	try {
-		if ($dns->updateRecordDetails($_GET['zoneid'], $_GET['recordid'], ['type' => $dns_details->type, 'name' => $_POST['name'], 'content' => $_POST['content'], 'ttl' => $_POST['ttl'], 'priority' => $_POST['priority'], 'proxied' => $_POST['proxied']])) {
+		if ($dns->updateRecordDetails($_GET['zoneid'], $_GET['recordid'], $options)) {
 			exit('<p class="alert alert-success" role="alert">' . _('Success') . '</p>');
 		} else {
 			echo '<p class="alert alert-danger" role="alert">' . _('Failed') . '</p>';
