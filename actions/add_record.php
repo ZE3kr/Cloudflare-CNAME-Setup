@@ -14,16 +14,17 @@ if (isset($_POST['submit'])) {
 	if ($_POST['type'] != 'A' && $_POST['type'] != 'AAAA' && $_POST['type'] != 'CNAME') {
 		$_POST['proxied'] = false;
 	}
+	$options = [
+		'type' => $_POST['type'],
+		'name' => $_POST['name'],
+		'content' => $_POST['content'],
+		'proxied' => $_POST['proxied'],
+		'ttl' => $_POST['ttl'],
+	];
+	if($_POST['type'] == 'MX'){
+		$options['priority'] = intval($_POST['priority']);
+	}
 	try {
-		$options = [
-			'type' => $_POST['type'],
-			'name' => $_POST['name'],
-			'content' => $_POST['content'],
-			'proxied' => $_POST['proxied'],
-			'ttl' => $_POST['ttl'],
-			'priority' => intval($_POST['priority']),
-
-		];
 		$dns = $adapter->post('zones/' . $_GET['zoneid'] . '/dns_records', [], $options);
 		$dns = json_decode($dns->getBody());
 		if (isset($dns->result->id)) {
