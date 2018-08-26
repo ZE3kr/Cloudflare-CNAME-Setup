@@ -30,7 +30,7 @@ foreach ($sslverify as $sslv) {
 /*
  * We need `_tlo-wildcard` subdomain to support anycast IP information.
  */
-	if (substr($sslv['hostname'], 0, 14) == '_tlo-wildcard.') {
+	if (substr($sslv['hostname'], 0, 14) != '_tlo-wildcard.') {
 		if ($sslv['validation_method'] == 'http' && isset($sslv['verification_info']['http_url']) && $sslv['verification_info']['http_url'] != '') {?>
 			<h4><?php printf(_('HTTP File Verify for %s'), $sslv['hostname']);?></h4>
 			<p>URL: <code><?php echo $sslv['verification_info']['http_url']; ?></code></p>
@@ -71,7 +71,6 @@ if ($sslv['certificate_status'] != 'active') {
 			}
 		} elseif ($sslv['validation_method'] == 'http') {
 			if (isset($sslv['hostname'])) {echo '<h4>' . $sslv['hostname'] . '</h4>';}
-			;
 			echo _('<p style="color:green;">No error for SSL.</p><p>Just point the record(s) to Cloudflare and the SSL certificate will be issued and renewed automatically.</p>');
 		} else {
 			echo '<h4>Unknown Verification</h4><pre>';
