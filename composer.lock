@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "cloudflare/sdk",
-            "version": "1.1.0",
+            "version": "1.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cloudflare/cloudflare-php.git",
-                "reference": "35ce8eadf1e2c570b01dc940253baa194120de48"
+                "reference": "a3a346ccb2f5cb49759db3d71ba0006a10cf20ef"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cloudflare/cloudflare-php/zipball/35ce8eadf1e2c570b01dc940253baa194120de48",
-                "reference": "35ce8eadf1e2c570b01dc940253baa194120de48",
+                "url": "https://api.github.com/repos/cloudflare/cloudflare-php/zipball/a3a346ccb2f5cb49759db3d71ba0006a10cf20ef",
+                "reference": "a3a346ccb2f5cb49759db3d71ba0006a10cf20ef",
                 "shasum": ""
             },
             "require": {
@@ -47,7 +47,7 @@
                 }
             ],
             "description": "PHP binding for v4 of the Cloudflare Client API.",
-            "time": "2018-03-19T06:47:42+00:00"
+            "time": "2018-08-28T14:01:57+00:00"
         },
         {
             "name": "guzzlehttp/guzzle",
