@@ -224,20 +224,28 @@ try {
 	$resp_aaaa = $resolver->query('_tlo-wildcard.' . $zone_name, 'AAAA');
 	$resp = $resolver->query($zone_name, 'NS');
 } catch (Net_DNS2_Exception $e) {
-	echo $e->getMessage();
+	// echo $e->getMessage();
 }
-?>
+if ((isset($resp_a->answer[0]->address) && isset($resp_a->answer[1]->address)) ||
+	(isset($resp_aaaa->answer[0]->address) && isset($resp_aaaa->answer[1]->address))) {
+	?>
+
 <h3 class="mt-5 mb-3" id="ip"><?php echo _('IP Setup'); ?></h3>
+<?php if (isset($resp_a->answer[0]->address) && isset($resp_a->answer[1]->address)) {?>
 <h4>Anycast IPv4</h4>
 <ul>
 	<li><code><?php echo $resp_a->answer[0]->address; ?></code></li>
 	<li><code><?php echo $resp_a->answer[1]->address; ?></code></li>
 </ul>
+<?php }if (isset($resp_aaaa->answer[0]->address) && isset($resp_aaaa->answer[1]->address)) {?>
 <h4>Anycast IPv6</h4>
 <ul>
 	<li><code><?php echo $resp_aaaa->answer[0]->address; ?></code></li>
 	<li><code><?php echo $resp_aaaa->answer[1]->address; ?></code></li>
 </ul>
+<?php }}?>
+
+<?php if (isset($resp->answer[0]->nsdname) && isset($resp->answer[1]->nsdname)) {?>
 <h3 class="mt-5 mb-3" id="ns"><?php echo _('NS Setup'); ?></h3>
 <table class="table table-striped">
 	<thead>
@@ -261,6 +269,8 @@ try {
 		</tr>
 	</tbody>
 </table>
+<?php }?>
+
 <hr>
 <h3 class="mt-5 mb-3"><a href="https://dash.cloudflare.com/" target="_blank"><?php echo _('More Settings'); ?></a></h3>
 <p><?php echo _('This site only provides configurations that the official does not have. For more settings, such as Page Rules, Crypto, Firewall, Cache, etc., please use the same account to login Cloudflare.com to setup. '); ?><a href="https://dash.cloudflare.com/" target="_blank"><?php echo _('More Settings'); ?></a></p>
