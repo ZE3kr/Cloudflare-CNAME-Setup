@@ -14,18 +14,23 @@ if (isset($_POST['submit'])) {
 	if ($_POST['type'] != 'A' && $_POST['type'] != 'AAAA' && $_POST['type'] != 'CNAME') {
 		$_POST['proxied'] = false;
 	}
+
+	include "record_data.php";
+
 	$options = [
 		'type' => $_POST['type'],
 		'name' => $_POST['name'],
 		'content' => $_POST['content'],
 		'proxied' => $_POST['proxied'],
 		'ttl' => intval($_POST['ttl']),
+		'data' => $dns_data,
 	];
+
 	if ($_POST['type'] == 'MX') {
 		$options['priority'] = intval($_POST['priority']);
 	}
 	try {
-		$dns = $adapter->post('zones/' . $_GET['zoneid'] . '/dns_records', [], $options);
+		$dns = $adapter->post('zones/' . $_GET['zoneid'] . '/dns_records', $options);
 		$dns = json_decode($dns->getBody());
 		if (isset($dns->result->id)) {
 			exit('<p class="alert alert-success" role="alert">' . _('Success') . ', <a href="?action=add_record&amp;zoneid=' . $_GET['zoneid'] . '&domain=' . $_GET['domain'] . '">' . _('Add New Record') . '</a>, ' . _('Or') . '<a href="?action=zone&amp;domain=' . $_GET['domain'] . '&amp;zoneid=' . $_GET['zoneid'] . '">' . _('Go to console') . '</a></p>');
@@ -57,12 +62,31 @@ if (isset($_POST['submit'])) {
 				<option value="TXT">TXT</option>
 				<option value="NS">NS</option>
 				<option value="PTR">PTR</option>
+				<option value="CAA">CAA</option>
 			</select>
 		</div>
-		<div class="form-group">
+
+		<div class="form-group" id="dns-content">
 			<label for="doc-ta-1"><?php echo _('Record Content'); ?></label>
 			<textarea name="content" rows="5" id="doc-ta-1" class="form-control"></textarea>
 		</div>
+
+		<div id="dns-data-caa">
+			<div class="form-group">
+				<label for="data_tag"><?php echo _('Tag'); ?></label>
+				<select name="data_tag" id="data_tag" class="form-control">
+					<option value="issue" selected="selected"><?php echo _('Only allow specific hostnames') ?></option>
+					<option value="issuewild"><?php echo _('Only allow wildcards') ?></option>
+					<option value="iodef"><?php echo _('Send violation reports to URL (http:, https:, or mailto:)') ?></option>
+				</select>
+			</div>
+			<div class="form-group">
+				<label for="data_value"><?php echo _('Value'); ?></label>
+				<input type="text" name="data_value" id="data_value" class="form-control">
+			</div>
+			<input type="hidden" name="data_flags" value="0">
+		</div>
+
 		<div class="form-group">
 			<label for="ttl">TTL</label>
 			<select name="ttl" id="ttl" class="form-control">
@@ -86,4 +110,21 @@ foreach ($ttl_translate as $_ttl => $_ttl_name) {
 		</div>
 		<p><button type="submit" name="submit" class="btn btn-primary"><?php echo _('Submit'); ?></button></p>
 	</fieldset>
+	<script>
+		function hideData(){
+			document.getElementById("dns-data-caa").style.display = "none";
+		}
+		hideData();
+
+		document.getElementById("type").onchange = function () {
+			if(this.value === "CAA"){
+				hideData();
+				document.getElementById("dns-data-caa").style.display = "block";
+				document.getElementById("dns-content").style.display = "none";
+			} else {
+				hideData();
+				document.getElementById("dns-content").style.display = "block";
+			}
+		}
+	</script>
 </form>
