@@ -301,19 +301,9 @@ class PageRulesActions implements Configurations
 
     private function addConfigurationOption(string $setting, array $configuration)
     {
-        /**
-         * Transforms an, optionally nested, array in to a collection of
-         * stdClass objects.
-         *
-         * @var array $array
-         */
-        $getArrayAsObject = function (array $array) {
-            return json_decode(json_encode($array));
-        };
-
         $configuration['id'] = $setting;
 
-        array_push($this->configs, $getArrayAsObject($configuration));
+        array_push($this->configs, $configuration);
     }
 
     private function getBoolAsOnOrOff(bool $value): string

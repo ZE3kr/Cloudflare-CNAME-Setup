@@ -41,7 +41,7 @@ class WAF implements API
             $query['direction'] = $direction;
         }
 
-        $user = $this->adapter->get('zones/' . $zoneID . '/firewall/waf/packages', $query, []);
+        $user = $this->adapter->get('zones/' . $zoneID . '/firewall/waf/packages', $query);
         $body = json_decode($user->getBody());
 
         return (object)['result' => $body->result, 'result_info' => $body->result_info];
@@ -52,7 +52,7 @@ class WAF implements API
         string $zoneID,
         string $packageID
     ): \stdClass {
-        $user = $this->adapter->get('zones/' . $zoneID . '/firewall/waf/packages/' . $packageID, [], []);
+        $user = $this->adapter->get('zones/' . $zoneID . '/firewall/waf/packages/' . $packageID);
         $body = json_decode($user->getBody());
 
         return $body->result;
@@ -80,7 +80,7 @@ class WAF implements API
         if (!empty($direction)) {
             $query['direction'] = $direction;
         }
-        $user = $this->adapter->get('zones/' . $zoneID . '/firewall/waf/packages/' . $packageID . '/rules', $query, []);
+        $user = $this->adapter->get('zones/' . $zoneID . '/firewall/waf/packages/' . $packageID . '/rules', $query);
         $body = json_decode($user->getBody());
 
         return (object)['result' => $body->result, 'result_info' => $body->result_info];
@@ -91,11 +91,7 @@ class WAF implements API
         string $packageID,
         string $ruleID
     ): \stdClass {
-        $user = $this->adapter->get(
-            'zones/' . $zoneID . '/firewall/waf/packages/' . $packageID . '/rules/' . $ruleID,
-            [],
-            []
-        );
+        $user = $this->adapter->get('zones/' . $zoneID . '/firewall/waf/packages/' . $packageID . '/rules/' . $ruleID);
         $body = json_decode($user->getBody());
 
         return $body->result;
@@ -113,7 +109,6 @@ class WAF implements API
 
         $user = $this->adapter->patch(
             'zones/' . $zoneID . '/firewall/waf/packages/' . $packageID . '/rules/' . $ruleID,
-            [],
             $query
         );
         $body = json_decode($user->getBody());
@@ -146,8 +141,7 @@ class WAF implements API
 
         $user = $this->adapter->get(
             'zones/' . $zoneID . '/firewall/waf/packages/' . $packageID . '/groups',
-            $query,
-            []
+            $query
         );
         $body = json_decode($user->getBody());
 
@@ -159,11 +153,7 @@ class WAF implements API
         string $packageID,
         string $groupID
     ): \stdClass {
-        $user = $this->adapter->get(
-            'zones/' . $zoneID . '/firewall/waf/packages/' . $packageID . '/groups/' . $groupID,
-            [],
-            []
-        );
+        $user = $this->adapter->get('zones/' . $zoneID . '/firewall/waf/packages/' . $packageID . '/groups/' . $groupID);
         $body = json_decode($user->getBody());
 
         return $body->result;
@@ -181,7 +171,6 @@ class WAF implements API
 
         $user = $this->adapter->patch(
             'zones/' . $zoneID . '/firewall/waf/packages/' . $packageID . '/groups/' . $groupID,
-            [],
             $query
         );
         $body = json_decode($user->getBody());

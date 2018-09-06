@@ -25,8 +25,7 @@ class WAFTest extends TestCase
                     'match' => 'all',
                     'order' => 'status',
                     'direction' => 'desc'
-                ]),
-                $this->equalTo([])
+                ])
             );
 
         $waf = new \Cloudflare\API\Endpoints\WAF($mock);
@@ -49,8 +48,7 @@ class WAFTest extends TestCase
         $mock->expects($this->once())
             ->method('get')
             ->with(
-                $this->equalTo('zones/023e105f4ecef8ad9ca31a8372d0c353/firewall/waf/packages/a25a9a7e9c00afc1fb2e0245519d725b'),
-                $this->equalTo([])
+                $this->equalTo('zones/023e105f4ecef8ad9ca31a8372d0c353/firewall/waf/packages/a25a9a7e9c00afc1fb2e0245519d725b')
             );
 
         $waf = new \Cloudflare\API\Endpoints\WAF($mock);
@@ -76,8 +74,7 @@ class WAFTest extends TestCase
                     'match' => 'all',
                     'order' => 'status',
                     'direction' => 'desc'
-                ]),
-                $this->equalTo([])
+                ])
             );
 
         $waf = new \Cloudflare\API\Endpoints\WAF($mock);
@@ -100,8 +97,7 @@ class WAFTest extends TestCase
         $mock->expects($this->once())
             ->method('get')
             ->with(
-                $this->equalTo('zones/023e105f4ecef8ad9ca31a8372d0c353/firewall/waf/packages/a25a9a7e9c00afc1fb2e0245519d725b/rules/f939de3be84e66e757adcdcb87908023'),
-                $this->equalTo([])
+                $this->equalTo('zones/023e105f4ecef8ad9ca31a8372d0c353/firewall/waf/packages/a25a9a7e9c00afc1fb2e0245519d725b/rules/f939de3be84e66e757adcdcb87908023')
             );
 
         $waf = new \Cloudflare\API\Endpoints\WAF($mock);
@@ -125,7 +121,6 @@ class WAFTest extends TestCase
             ->method('patch')
             ->with(
                 $this->equalTo('zones/023e105f4ecef8ad9ca31a8372d0c353/firewall/waf/packages/a25a9a7e9c00afc1fb2e0245519d725b/rules/f939de3be84e66e757adcdcb87908023'),
-                $this->equalTo([]),
                 $this->equalTo($details)
             );
 
@@ -156,8 +151,7 @@ class WAFTest extends TestCase
                     'match' => 'all',
                     'order' => 'status',
                     'direction' => 'desc'
-                ]),
-                $this->equalTo([])
+                ])
             );
 
         $waf = new \Cloudflare\API\Endpoints\WAF($mock);
@@ -180,8 +174,7 @@ class WAFTest extends TestCase
         $mock->expects($this->once())
             ->method('get')
             ->with(
-                $this->equalTo('zones/023e105f4ecef8ad9ca31a8372d0c353/firewall/waf/packages/a25a9a7e9c00afc1fb2e0245519d725b/groups/de677e5818985db1285d0e80225f06e5'),
-                $this->equalTo([])
+                $this->equalTo('zones/023e105f4ecef8ad9ca31a8372d0c353/firewall/waf/packages/a25a9a7e9c00afc1fb2e0245519d725b/groups/de677e5818985db1285d0e80225f06e5')
             );
 
         $waf = new \Cloudflare\API\Endpoints\WAF($mock);
@@ -205,7 +198,6 @@ class WAFTest extends TestCase
             ->method('patch')
             ->with(
                 $this->equalTo('zones/023e105f4ecef8ad9ca31a8372d0c353/firewall/waf/packages/a25a9a7e9c00afc1fb2e0245519d725b/groups/de677e5818985db1285d0e80225f06e5'),
-                $this->equalTo([]),
                 $this->equalTo($details)
             );
 

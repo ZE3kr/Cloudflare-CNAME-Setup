@@ -17,8 +17,7 @@ class AccessRulesTest extends TestCase
                     'page' => 1,
                     'per_page' => 50,
                     'match' => 'all'
-                ]),
-                $this->equalTo([])
+                ])
             );
 
         $zones = new \Cloudflare\API\Endpoints\AccessRules($mock);
@@ -45,10 +44,9 @@ class AccessRulesTest extends TestCase
             ->method('post')
             ->with(
                 $this->equalTo('zones/023e105f4ecef8ad9ca31a8372d0c353/firewall/access_rules/rules'),
-                $this->equalTo([]),
                 $this->equalTo([
                     'mode' => 'challenge',
-                    'configuration' => (object) $config->getArray(),
+                    'configuration' => $config->getArray(),
                     'notes' => 'This rule is on because of an event that occured on date X',
                 ])
             );
@@ -73,7 +71,6 @@ class AccessRulesTest extends TestCase
             ->method('patch')
             ->with(
                 $this->equalTo('zones/023e105f4ecef8ad9ca31a8372d0c353/firewall/access_rules/rules/92f17202ed8bd63d69a66b86a49a8f6b'),
-                $this->equalTo([]),
                 $this->equalTo([
                     'mode' => 'challenge',
                     'notes' => 'This rule is on because of an event that occured on date X',
@@ -100,7 +97,6 @@ class AccessRulesTest extends TestCase
             ->method('delete')
             ->with(
                 $this->equalTo('zones/023e105f4ecef8ad9ca31a8372d0c353/firewall/access_rules/rules/92f17202ed8bd63d69a66b86a49a8f6b'),
-                $this->equalTo([]),
                 $this->equalTo([
                     'cascade' => 'none'
                 ])

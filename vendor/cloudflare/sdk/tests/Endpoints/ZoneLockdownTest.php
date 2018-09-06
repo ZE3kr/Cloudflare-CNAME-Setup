@@ -19,11 +19,10 @@ class ZoneLockdownTest extends TestCase
             ->method('get')
             ->with(
                 $this->equalTo('zones/023e105f4ecef8ad9ca31a8372d0c353/firewall/lockdowns'),
-              $this->equalTo([
-                'page' => 1,
-                'per_page' => 20,
-              ]),
-              $this->equalTo([])
+                $this->equalTo([
+                    'page' => 1,
+                    'per_page' => 20,
+                ])
             );
 
         $zones = new \Cloudflare\API\Endpoints\ZoneLockdown($mock);
@@ -50,7 +49,6 @@ class ZoneLockdownTest extends TestCase
             ->method('post')
             ->with(
                 $this->equalTo('zones/023e105f4ecef8ad9ca31a8372d0c353/firewall/lockdowns'),
-                $this->equalTo([]),
                 $this->equalTo([
                     'urls' => ['api.mysite.com/some/endpoint*'],
                     'id' => '372e67954025e0ba6aaa6d586b9e0b59',
@@ -79,8 +77,7 @@ class ZoneLockdownTest extends TestCase
         $mock->expects($this->once())
             ->method('get')
             ->with(
-                $this->equalTo('zones/023e105f4ecef8ad9ca31a8372d0c353/firewall/lockdowns/372e67954025e0ba6aaa6d586b9e0b59'),
-                $this->equalTo([])
+                $this->equalTo('zones/023e105f4ecef8ad9ca31a8372d0c353/firewall/lockdowns/372e67954025e0ba6aaa6d586b9e0b59')
             );
 
         $lockdown = new \Cloudflare\API\Endpoints\ZoneLockdown($mock);
@@ -103,7 +100,6 @@ class ZoneLockdownTest extends TestCase
             ->method('put')
             ->with(
                 $this->equalTo('zones/023e105f4ecef8ad9ca31a8372d0c353/firewall/lockdowns/372e67954025e0ba6aaa6d586b9e0b59'),
-                $this->equalTo([]),
                 $this->equalTo([
                     'urls' => ['api.mysite.com/some/endpoint*'],
                     'id' => '372e67954025e0ba6aaa6d586b9e0b59',
@@ -135,9 +131,7 @@ class ZoneLockdownTest extends TestCase
         $mock->expects($this->once())
             ->method('delete')
             ->with(
-                $this->equalTo('zones/023e105f4ecef8ad9ca31a8372d0c353/firewall/lockdowns/372e67954025e0ba6aaa6d586b9e0b59'),
-                $this->equalTo([]),
-                $this->equalTo([])
+                $this->equalTo('zones/023e105f4ecef8ad9ca31a8372d0c353/firewall/lockdowns/372e67954025e0ba6aaa6d586b9e0b59')
             );
 
         $zoneLockdown = new \Cloudflare\API\Endpoints\ZoneLockdown($mock);

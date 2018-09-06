@@ -14,7 +14,7 @@ class UARules implements Configurations
 
     public function addUA(string $value)
     {
-        $this->configs[] = (object)['target' => 'ua', 'value' => $value];
+        $this->configs[] = ['target' => 'ua', 'value' => $value];
     }
 
     public function getArray(): array

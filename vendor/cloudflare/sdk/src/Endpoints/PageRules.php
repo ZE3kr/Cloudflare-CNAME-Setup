@@ -52,7 +52,7 @@ class PageRules implements API
         }
 
 
-        $query = $this->adapter->post('zones/' . $zoneID . '/pagerules', [], $options);
+        $query = $this->adapter->post('zones/' . $zoneID . '/pagerules', $options);
 
         $body = json_decode($query->getBody());
 
@@ -93,7 +93,7 @@ class PageRules implements API
             'match' => $match
         ];
 
-        $user = $this->adapter->get('zones/' . $zoneID . '/pagerules', $query, []);
+        $user = $this->adapter->get('zones/' . $zoneID . '/pagerules', $query);
         $body = json_decode($user->getBody());
 
         return $body->result;
@@ -101,7 +101,7 @@ class PageRules implements API
 
     public function getPageRuleDetails(string $zoneID, string $ruleID): \stdClass
     {
-        $user = $this->adapter->get('zones/' . $zoneID . '/pagerules/' . $ruleID, [], []);
+        $user = $this->adapter->get('zones/' . $zoneID . '/pagerules/' . $ruleID);
         $body = json_decode($user->getBody());
         return $body->result;
     }
@@ -132,7 +132,7 @@ class PageRules implements API
         }
 
 
-        $query = $this->adapter->patch('zones/' . $zoneID . '/pagerules', [], $options);
+        $query = $this->adapter->patch('zones/' . $zoneID . '/pagerules', $options);
 
         $body = json_decode($query->getBody());
 
@@ -145,7 +145,7 @@ class PageRules implements API
 
     public function deletePageRule(string $zoneID, string $ruleID): bool
     {
-        $user = $this->adapter->delete('zones/' . $zoneID . '/pagerules/' . $ruleID, [], []);
+        $user = $this->adapter->delete('zones/' . $zoneID . '/pagerules/' . $ruleID);
 
         $body = json_decode($user->getBody());
 

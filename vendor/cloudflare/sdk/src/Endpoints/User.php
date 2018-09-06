@@ -20,7 +20,7 @@ class User implements API
 
     public function getUserDetails(): \stdClass
     {
-        $user = $this->adapter->get('user', [], []);
+        $user = $this->adapter->get('user');
         $body = json_decode($user->getBody());
         return $body->result;
     }
@@ -37,7 +37,7 @@ class User implements API
 
     public function updateUserDetails(array $details): \stdClass
     {
-        $response = $this->adapter->patch('user', [], $details);
+        $response = $this->adapter->patch('user', $details);
         return json_decode($response->getBody());
     }
 }

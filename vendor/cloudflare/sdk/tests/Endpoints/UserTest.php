@@ -56,7 +56,7 @@ class UserTest extends TestCase
 
         $mock->expects($this->once())
             ->method('patch')
-            ->with($this->equalTo('user'), $this->equalTo([]), $this->equalTo(['email' => 'user2@example.com']));
+            ->with($this->equalTo('user'), $this->equalTo(['email' => 'user2@example.com']));
 
         $user = new \Cloudflare\API\Endpoints\User($mock);
         $user->updateUserDetails(['email' => 'user2@example.com']);

@@ -33,13 +33,13 @@ class CustomHostnames implements API
     {
         $options = [
             'hostname' => $hostname,
-            'ssl' => (object)[
+            'ssl' => [
                 'method' => $sslMethod,
                 'type' => $sslType
             ]
         ];
 
-        $zone = $this->adapter->post('zones/'.$zoneID.'/custom_hostnames', [], $options);
+        $zone = $this->adapter->post('zones/'.$zoneID.'/custom_hostnames', $options);
         $body = json_decode($zone->getBody());
         return $body->result;
     }
@@ -87,7 +87,7 @@ class CustomHostnames implements API
             $query['direction'] = $direction;
         }
 
-        $zone = $this->adapter->get('zones/'.$zoneID.'/custom_hostnames', $query, []);
+        $zone = $this->adapter->get('zones/'.$zoneID.'/custom_hostnames', $query);
         $body = json_decode($zone->getBody());
 
         return (object)['result' => $body->result, 'result_info' => $body->result_info];
@@ -100,7 +100,7 @@ class CustomHostnames implements API
      */
     public function getHostname(string $zoneID, string $hostnameID)
     {
-        $zone = $this->adapter->get('zones/'.$zoneID.'/custom_hostnames/'.$hostnameID, [], []);
+        $zone = $this->adapter->get('zones/'.$zoneID.'/custom_hostnames/'.$hostnameID);
         $body = json_decode($zone->getBody());
 
         return $body->result;
@@ -128,10 +128,10 @@ class CustomHostnames implements API
         }
 
         $options = [
-            'ssl' => (object)$query
+            'ssl' => $query
         ];
 
-        $zone = $this->adapter->patch('zones/'.$zoneID.'/custom_hostnames/'.$hostnameID, [], $options);
+        $zone = $this->adapter->patch('zones/'.$zoneID.'/custom_hostnames/'.$hostnameID, $options);
         $body = json_decode($zone->getBody());
         return $body->result;
     }
@@ -143,7 +143,7 @@ class CustomHostnames implements API
      */
     public function deleteHostname(string $zoneID, string $hostnameID): \stdClass
     {
-        $zone = $this->adapter->delete('zones/'.$zoneID.'/custom_hostnames/'.$hostnameID, [], []);
+        $zone = $this->adapter->delete('zones/'.$zoneID.'/custom_hostnames/'.$hostnameID);
         $body = json_decode($zone->getBody());
         return $body;
     }

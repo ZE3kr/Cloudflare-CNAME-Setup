@@ -22,8 +22,7 @@ class UARulesTest extends TestCase
               $this->equalTo([
                 'page' => 1,
                 'per_page' => 20
-              ]),
-              $this->equalTo([])
+              ])
             );
 
         $zones = new \Cloudflare\API\Endpoints\UARules($mock);
@@ -50,7 +49,6 @@ class UARulesTest extends TestCase
             ->method('post')
             ->with(
                 $this->equalTo('zones/023e105f4ecef8ad9ca31a8372d0c353/firewall/ua_rules'),
-                $this->equalTo([]),
                 $this->equalTo([
                     'mode' => 'js_challenge',
                     'id' => '372e67954025e0ba6aaa6d586b9e0b59',
@@ -79,8 +77,7 @@ class UARulesTest extends TestCase
         $mock->expects($this->once())
             ->method('get')
             ->with(
-                $this->equalTo('zones/023e105f4ecef8ad9ca31a8372d0c353/firewall/ua_rules/372e67954025e0ba6aaa6d586b9e0b59'),
-                $this->equalTo([])
+                $this->equalTo('zones/023e105f4ecef8ad9ca31a8372d0c353/firewall/ua_rules/372e67954025e0ba6aaa6d586b9e0b59')
             );
 
         $lockdown = new \Cloudflare\API\Endpoints\UARules($mock);
@@ -103,7 +100,6 @@ class UARulesTest extends TestCase
             ->method('put')
             ->with(
                 $this->equalTo('zones/023e105f4ecef8ad9ca31a8372d0c353/firewall/ua_rules/372e67954025e0ba6aaa6d586b9e0b59'),
-                $this->equalTo([]),
                 $this->equalTo([
                     'mode' => 'js_challenge',
                     'id' => '372e67954025e0ba6aaa6d586b9e0b59',
@@ -132,9 +128,7 @@ class UARulesTest extends TestCase
         $mock->expects($this->once())
             ->method('delete')
             ->with(
-                $this->equalTo('zones/023e105f4ecef8ad9ca31a8372d0c353/firewall/ua_rules/372e67954025e0ba6aaa6d586b9e0b59'),
-                $this->equalTo([]),
-                $this->equalTo([])
+                $this->equalTo('zones/023e105f4ecef8ad9ca31a8372d0c353/firewall/ua_rules/372e67954025e0ba6aaa6d586b9e0b59')
             );
 
         $rules = new \Cloudflare\API\Endpoints\UARules($mock);

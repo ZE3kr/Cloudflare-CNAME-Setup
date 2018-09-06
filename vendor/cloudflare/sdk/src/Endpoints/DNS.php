@@ -52,10 +52,10 @@ class DNS implements API
         }
 
         if (!empty($priority)) {
-            $options['priority'] = $priority;
+            $options['priority'] = (int)$priority;
         }
 
-        $user = $this->adapter->post('zones/' . $zoneID . '/dns_records', [], $options);
+        $user = $this->adapter->post('zones/' . $zoneID . '/dns_records', $options);
 
         $body = json_decode($user->getBody());
 
@@ -103,7 +103,7 @@ class DNS implements API
             $query['direction'] = $direction;
         }
 
-        $user = $this->adapter->get('zones/' . $zoneID . '/dns_records', $query, []);
+        $user = $this->adapter->get('zones/' . $zoneID . '/dns_records', $query);
         $body = json_decode($user->getBody());
 
         return (object)['result' => $body->result, 'result_info' => $body->result_info];
@@ -111,20 +111,20 @@ class DNS implements API
 
     public function getRecordDetails(string $zoneID, string $recordID): \stdClass
     {
-        $user = $this->adapter->get('zones/' . $zoneID . '/dns_records/' . $recordID, [], []);
+        $user = $this->adapter->get('zones/' . $zoneID . '/dns_records/' . $recordID);
         $body = json_decode($user->getBody());
         return $body->result;
     }
 
     public function updateRecordDetails(string $zoneID, string $recordID, array $details): \stdClass
     {
-        $response = $this->adapter->put('zones/' . $zoneID . '/dns_records/' . $recordID, [], $details);
+        $response = $this->adapter->put('zones/' . $zoneID . '/dns_records/' . $recordID, $details);
         return json_decode($response->getBody());
     }
 
     public function deleteRecord(string $zoneID, string $recordID): bool
     {
-        $user = $this->adapter->delete('zones/' . $zoneID . '/dns_records/' . $recordID, [], []);
+        $user = $this->adapter->delete('zones/' . $zoneID . '/dns_records/' . $recordID);
 
         $body = json_decode($user->getBody());
 

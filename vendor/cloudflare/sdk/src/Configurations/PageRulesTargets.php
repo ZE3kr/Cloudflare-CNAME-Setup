@@ -15,9 +15,9 @@ class PageRulesTargets implements Configurations
     public function __construct(string $queryUrl)
     {
         $this->targets = [
-            (object)[
+            [
                 'target' => 'url',
-                'constraint' => (object)[
+                'constraint' => [
                     'operator' => 'matches',
                     'value' => $queryUrl
                 ]

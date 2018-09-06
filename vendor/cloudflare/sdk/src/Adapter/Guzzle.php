@@ -37,79 +37,56 @@ class Guzzle implements Adapter
     /**
      * @inheritDoc
      */
-    public function get(string $uri, array $query = [], array $headers = []): ResponseInterface
+    public function get(string $uri, array $data = [], array $headers = []): ResponseInterface
     {
-        $response = $this->client->get($uri, ['query' => $query, 'headers' => $headers]);
-
-        $this->checkError($response);
-        return $response;
+        return $this->request('get', $uri, $data, $headers);
     }
 
     /**
      * @inheritDoc
      */
-    public function post(string $uri, array $headers = [], array $body = []): ResponseInterface
+    public function post(string $uri, array $data = [], array $headers = []): ResponseInterface
     {
-        $response = $this->client->post(
-            $uri,
-            [
-                'headers' => $headers,
-                'json' => $body
-            ]
-        );
-
-        $this->checkError($response);
-        return $response;
+        return $this->request('post', $uri, $data, $headers);
     }
 
     /**
      * @inheritDoc
      */
-    public function put(string $uri, array $headers = [], array $body = []): ResponseInterface
+    public function put(string $uri, array $data = [], array $headers = []): ResponseInterface
     {
-        $response = $this->client->put(
-            $uri,
-            [
-                'headers' => $headers,
-                'json' => $body
-            ]
-        );
-
-        $this->checkError($response);
-        return $response;
+        return $this->request('put', $uri, $data, $headers);
     }
 
     /**
      * @inheritDoc
      */
-    public function patch(string $uri, array $headers = [], array $body = []): ResponseInterface
+    public function patch(string $uri, array $data = [], array $headers = []): ResponseInterface
     {
-        $response = $this->client->patch(
-            $uri,
-            [
-                'headers' => $headers,
-                'json' => $body
-            ]
-        );
-
-        $this->checkError($response);
-        return $response;
+        return $this->request('patch', $uri, $data, $headers);
     }
 
     /**
      * @inheritDoc
      */
-    public function delete(string $uri, array $headers = [], array $body = []): ResponseInterface
+    public function delete(string $uri, array $data = [], array $headers = []): ResponseInterface
     {
-        $response = $this->client->delete(
-            $uri,
-            [
-                'headers' => $headers,
-                'json' => $body
-            ]
-        );
+        return $this->request('delete', $uri, $data, $headers);
+    }
+
+    public function request(string $method, string $uri, array $data = [], array $headers = [])
+    {
+        if (!in_array($method, ['get', 'post', 'put', 'patch', 'delete'])) {
+            throw new \InvalidArgumentException('Request method must be get, post, put, patch, or delete');
+        }
+
+        $response = $this->client->$method($uri, [
+            'headers' => $headers,
+            ($method === 'get' ? 'query' : 'json') => $data,
+        ]);
 
         $this->checkError($response);
+
         return $response;
     }
 

@@ -26,7 +26,7 @@ class Railgun implements API
             'name' => $name,
         ];
 
-        $user = $this->adapter->post('railguns', [], $query);
+        $user = $this->adapter->post('railguns', $query);
         $body = json_decode($user->getBody());
 
         return $body;
@@ -46,7 +46,7 @@ class Railgun implements API
             $query['direction'] = $direction;
         }
 
-        $user = $this->adapter->get('railguns', $query, []);
+        $user = $this->adapter->get('railguns', $query);
         $body = json_decode($user->getBody());
 
         return (object)['result' => $body->result, 'result_info' => $body->result_info];
@@ -55,7 +55,7 @@ class Railgun implements API
     public function get(
         string $railgunID
     ): \stdClass {
-        $user = $this->adapter->get('railguns/' . $railgunID, [], []);
+        $user = $this->adapter->get('railguns/' . $railgunID);
         $body = json_decode($user->getBody());
 
         return $body->result;
@@ -64,7 +64,7 @@ class Railgun implements API
     public function getZones(
         string $railgunID
     ): \stdClass {
-        $user = $this->adapter->get('railguns/' . $railgunID . '/zones', [], []);
+        $user = $this->adapter->get('railguns/' . $railgunID . '/zones');
         $body = json_decode($user->getBody());
 
         return (object)['result' => $body->result, 'result_info' => $body->result_info];
@@ -78,7 +78,7 @@ class Railgun implements API
             'enabled' => $status
         ];
 
-        $user = $this->adapter->patch('railguns/' . $railgunID, [], $query);
+        $user = $this->adapter->patch('railguns/' . $railgunID, $query);
         $body = json_decode($user->getBody());
 
         return $body->result;
@@ -87,7 +87,7 @@ class Railgun implements API
     public function delete(
         string $railgunID
     ): bool {
-        $user = $this->adapter->delete('railguns/' . $railgunID, [], []);
+        $user = $this->adapter->delete('railguns/' . $railgunID);
         $body = json_decode($user->getBody());
 
         if (isset($body->result->id)) {

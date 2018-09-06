@@ -18,8 +18,7 @@ class IPsTest extends TestCase
         $mock->expects($this->once())
             ->method('get')
             ->with(
-                $this->equalTo('ips'),
-                $this->equalTo([])
+                $this->equalTo('ips')
             );
 
         $ips = new \Cloudflare\API\Endpoints\IPs($mock);

@@ -21,10 +21,9 @@ class CustomHostnamesTest extends TestCase
             ->method('post')
             ->with(
                 $this->equalTo('zones/023e105f4ecef8ad9ca31a8372d0c353/custom_hostnames'),
-                $this->equalTo([]),
                 $this->equalTo([
                     'hostname' => 'app.example.com',
-                    'ssl' => (object)[
+                    'ssl' => [
                         'method' => 'http',
                         'type' => 'dv'
                     ]
@@ -54,8 +53,7 @@ class CustomHostnamesTest extends TestCase
                     'order' => 'ssl',
                     'direction' => 'desc',
                     'ssl' => 0
-                ]),
-                $this->equalTo([])
+                ])
             );
 
         $zones = new \Cloudflare\API\Endpoints\CustomHostnames($mock);
@@ -78,9 +76,7 @@ class CustomHostnamesTest extends TestCase
         $mock->expects($this->once())
             ->method('get')
             ->with(
-                $this->equalTo('zones/023e105f4ecef8ad9ca31a8372d0c353/custom_hostnames/0d89c70d-ad9f-4843-b99f-6cc0252067e9'),
-                $this->equalTo([]),
-                $this->equalTo([])
+                $this->equalTo('zones/023e105f4ecef8ad9ca31a8372d0c353/custom_hostnames/0d89c70d-ad9f-4843-b99f-6cc0252067e9')
             );
 
         $zones = new \Cloudflare\API\Endpoints\CustomHostnames($mock);
@@ -101,9 +97,8 @@ class CustomHostnamesTest extends TestCase
             ->method('patch')
             ->with(
                 $this->equalTo('zones/023e105f4ecef8ad9ca31a8372d0c353/custom_hostnames/0d89c70d-ad9f-4843-b99f-6cc0252067e9'),
-                $this->equalTo([]),
                 $this->equalTo([
-                    'ssl' => (object)[
+                    'ssl' => [
                         'method' => 'http',
                         'type' =>  'dv'
                     ]
@@ -127,9 +122,7 @@ class CustomHostnamesTest extends TestCase
         $mock->expects($this->once())
             ->method('delete')
             ->with(
-                $this->equalTo('zones/023e105f4ecef8ad9ca31a8372d0c353/custom_hostnames/0d89c70d-ad9f-4843-b99f-6cc0252067e9'),
-                $this->equalTo([]),
-                $this->equalTo([])
+                $this->equalTo('zones/023e105f4ecef8ad9ca31a8372d0c353/custom_hostnames/0d89c70d-ad9f-4843-b99f-6cc0252067e9')
             );
 
         $zones = new \Cloudflare\API\Endpoints\CustomHostnames($mock);

@@ -77,7 +77,7 @@ class AccessRules implements API
             $query['notes'] = $notes;
         }
 
-        $data = $this->adapter->get('zones/' . $zoneID . '/firewall/access_rules/rules', $query, []);
+        $data = $this->adapter->get('zones/' . $zoneID . '/firewall/access_rules/rules', $query);
         $body = json_decode($data->getBody());
 
         return (object)['result' => $body->result, 'result_info' => $body->result_info];
@@ -91,14 +91,14 @@ class AccessRules implements API
     ): bool {
         $options = [
             'mode' => $mode,
-            'configuration' => (object) $configuration->getArray()
+            'configuration' => $configuration->getArray()
         ];
 
         if ($notes !== null) {
             $options['notes'] = $notes;
         }
 
-        $query = $this->adapter->post('zones/' . $zoneID . '/firewall/access_rules/rules', [], $options);
+        $query = $this->adapter->post('zones/' . $zoneID . '/firewall/access_rules/rules', $options);
 
         $body = json_decode($query->getBody());
 
@@ -123,7 +123,7 @@ class AccessRules implements API
             $options['notes'] = $notes;
         }
 
-        $query = $this->adapter->patch('zones/' . $zoneID . '/firewall/access_rules/rules/' . $ruleID, [], $options);
+        $query = $this->adapter->patch('zones/' . $zoneID . '/firewall/access_rules/rules/' . $ruleID, $options);
 
         $body = json_decode($query->getBody());
 
@@ -140,7 +140,7 @@ class AccessRules implements API
             'cascade' => $cascade
         ];
 
-        $data = $this->adapter->delete('zones/' . $zoneID . '/firewall/access_rules/rules/' . $ruleID, [], $options);
+        $data = $this->adapter->delete('zones/' . $zoneID . '/firewall/access_rules/rules/' . $ruleID, $options);
 
         $body = json_decode($data->getBody());
 

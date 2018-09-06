@@ -19,7 +19,6 @@ class ZonesTest extends TestCase
             ->method('post')
             ->with(
                 $this->equalTo('zones'),
-                $this->equalTo([]),
                 $this->equalTo(['name' => 'example.com', 'jump_start' => false])
             );
 
@@ -38,11 +37,10 @@ class ZonesTest extends TestCase
             ->method('post')
             ->with(
                 $this->equalTo('zones'),
-                $this->equalTo([]),
                 $this->equalTo([
                     'name' => 'example.com',
                     'jump_start' => true,
-                    'organization' => (object)['id' => '01a7362d577a6c3019a474fd6f485823']
+                    'organization' => ['id' => '01a7362d577a6c3019a474fd6f485823']
                 ])
             );
 
@@ -60,9 +58,7 @@ class ZonesTest extends TestCase
         $mock->expects($this->once())
             ->method('put')
             ->with(
-                $this->equalTo('zones/c2547eb745079dac9320b638f5e225cf483cc5cfdda41/activation_check'),
-                $this->equalTo([]),
-                $this->equalTo([])
+                $this->equalTo('zones/c2547eb745079dac9320b638f5e225cf483cc5cfdda41/activation_check')
             );
 
         $zones = new \Cloudflare\API\Endpoints\Zones($mock);
@@ -82,16 +78,15 @@ class ZonesTest extends TestCase
             ->method('get')
             ->with(
                 $this->equalTo('zones'),
-              $this->equalTo([
-                'page' => 1,
-                'per_page' => 20,
-                'match' => 'all',
-                'name' => 'example.com',
-                'status' => 'active',
-                'order' => 'status',
-                'direction' => 'desc'
-              ]),
-                $this->equalTo([])
+                $this->equalTo([
+                    'page' => 1,
+                    'per_page' => 20,
+                    'match' => 'all',
+                    'name' => 'example.com',
+                    'status' => 'active',
+                    'order' => 'status',
+                    'direction' => 'desc',
+                ])
             );
 
         $zones = new \Cloudflare\API\Endpoints\Zones($mock);
@@ -115,13 +110,12 @@ class ZonesTest extends TestCase
             ->method('get')
             ->with(
                 $this->equalTo('zones'),
-              $this->equalTo([
-                'page' => 1,
-                'per_page' => 20,
-                'match' => 'all',
-                'name' => 'example.com',
-                ]),
-              $this->equalTo([])
+                $this->equalTo([
+                    'page' => 1,
+                    'per_page' => 20,
+                    'match' => 'all',
+                    'name' => 'example.com',
+                ])
             );
 
         $zones = new \Cloudflare\API\Endpoints\Zones($mock);
@@ -141,8 +135,7 @@ class ZonesTest extends TestCase
             ->method('get')
             ->with(
                 $this->equalTo('zones/c2547eb745079dac9320b638f5e225cf483cc5cfdda41/analytics/dashboard'),
-                $this->equalTo(['since' => '-10080', 'until' => '0', 'continuous' => var_export(true, true)]),
-                $this->equalTo([])
+                $this->equalTo(['since' => '-10080', 'until' => '0', 'continuous' => var_export(true, true)])
             );
 
         $zones = new \Cloudflare\API\Endpoints\Zones($mock);
@@ -151,7 +144,7 @@ class ZonesTest extends TestCase
         $this->assertObjectHasAttribute('since', $analytics->totals);
         $this->assertObjectHasAttribute('since', $analytics->timeseries[0]);
     }
-    
+
     public function testChangeDevelopmentMode()
     {
         $response = $this->getPsr7JsonResponseForFixture('Endpoints/changeDevelopmentMode.json');
@@ -163,7 +156,6 @@ class ZonesTest extends TestCase
             ->method('patch')
             ->with(
                 $this->equalTo('zones/c2547eb745079dac9320b638f5e225cf483cc5cfdda41/settings/development_mode'),
-                $this->equalTo([]),
                 $this->equalTo(['value' => 'on'])
             );
 
@@ -184,12 +176,37 @@ class ZonesTest extends TestCase
             ->method('delete')
             ->with(
                 $this->equalTo('zones/c2547eb745079dac9320b638f5e225cf483cc5cfdda41/purge_cache'),
-                $this->equalTo([]),
                 $this->equalTo(['purge_everything' => true])
             );
 
         $zones = new \Cloudflare\API\Endpoints\Zones($mock);
         $result = $zones->cachePurgeEverything('c2547eb745079dac9320b638f5e225cf483cc5cfdda41');
+
+        $this->assertTrue($result);
+    }
+
+    public function testCachePurgeHost()
+    {
+        $response = $this->getPsr7JsonResponseForFixture('Endpoints/cachePurgeHost.json');
+
+        $mock = $this->getMockBuilder(\Cloudflare\API\Adapter\Adapter::class)->getMock();
+        $mock->method('delete')->willReturn($response);
+
+        $mock->expects($this->once())
+            ->method('delete')
+            ->with(
+                $this->equalTo('zones/c2547eb745079dac9320b638f5e225cf483cc5cfdda41/purge_cache'),
+                $this->equalTo(
+                    [
+                        'files' => [],
+                        'tags' => [],
+                        'hosts' => ['dash.cloudflare.com']
+                    ]
+                )
+            );
+
+        $zones = new \Cloudflare\API\Endpoints\Zones($mock);
+        $result = $zones->cachePurge('c2547eb745079dac9320b638f5e225cf483cc5cfdda41', [], [], ['dash.cloudflare.com']);
 
         $this->assertTrue($result);
     }

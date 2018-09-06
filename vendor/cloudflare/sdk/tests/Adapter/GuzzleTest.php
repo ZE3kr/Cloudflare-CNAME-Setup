@@ -41,7 +41,7 @@ class GuzzleTest extends TestCase
 
     public function testPost()
     {
-        $response = $this->client->post('https://httpbin.org/post', [], ['X-Post-Test' => 'Testing a POST request.']);
+        $response = $this->client->post('https://httpbin.org/post', ['X-Post-Test' => 'Testing a POST request.']);
 
         $headers = $response->getHeaders();
         $this->assertEquals('application/json', $headers['Content-Type'][0]);
@@ -52,7 +52,7 @@ class GuzzleTest extends TestCase
 
     public function testPut()
     {
-        $response = $this->client->put('https://httpbin.org/put', [], ['X-Put-Test' => 'Testing a PUT request.']);
+        $response = $this->client->put('https://httpbin.org/put', ['X-Put-Test' => 'Testing a PUT request.']);
 
         $headers = $response->getHeaders();
         $this->assertEquals('application/json', $headers['Content-Type'][0]);
@@ -65,7 +65,6 @@ class GuzzleTest extends TestCase
     {
         $response = $this->client->patch(
             'https://httpbin.org/patch',
-            [],
             ['X-Patch-Test' => 'Testing a PATCH request.']
         );
 
@@ -80,7 +79,6 @@ class GuzzleTest extends TestCase
     {
         $response = $this->client->delete(
             'https://httpbin.org/delete',
-            [],
             ['X-Delete-Test' => 'Testing a DELETE request.']
         );
 

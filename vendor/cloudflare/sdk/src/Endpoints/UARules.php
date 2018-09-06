@@ -30,7 +30,7 @@ class UARules implements API
             'per_page' => $perPage
         ];
 
-        $user = $this->adapter->get('zones/' . $zoneID . '/firewall/ua_rules', $query, []);
+        $user = $this->adapter->get('zones/' . $zoneID . '/firewall/ua_rules', $query);
         $body = json_decode($user->getBody());
 
         return (object)['result' => $body->result, 'result_info' => $body->result_info];
@@ -56,7 +56,7 @@ class UARules implements API
             $options['description'] = $description;
         }
 
-        $user = $this->adapter->post('zones/' . $zoneID . '/firewall/ua_rules', [], $options);
+        $user = $this->adapter->post('zones/' . $zoneID . '/firewall/ua_rules', $options);
 
         $body = json_decode($user->getBody());
 
@@ -69,7 +69,7 @@ class UARules implements API
 
     public function getRuleDetails(string $zoneID, string $blockID): \stdClass
     {
-        $user = $this->adapter->get('zones/' . $zoneID . '/firewall/ua_rules/' . $blockID, [], []);
+        $user = $this->adapter->get('zones/' . $zoneID . '/firewall/ua_rules/' . $blockID);
         $body = json_decode($user->getBody());
         return $body->result;
     }
@@ -91,7 +91,7 @@ class UARules implements API
             $options['description'] = $description;
         }
 
-        $user = $this->adapter->put('zones/' . $zoneID . '/firewall/ua_rules/' . $ruleID, [], $options);
+        $user = $this->adapter->put('zones/' . $zoneID . '/firewall/ua_rules/' . $ruleID, $options);
 
         $body = json_decode($user->getBody());
 
@@ -104,7 +104,7 @@ class UARules implements API
 
     public function deleteRule(string $zoneID, string $ruleID): bool
     {
-        $user = $this->adapter->delete('zones/' . $zoneID . '/firewall/ua_rules/' . $ruleID, [], []);
+        $user = $this->adapter->delete('zones/' . $zoneID . '/firewall/ua_rules/' . $ruleID);
 
         $body = json_decode($user->getBody());
 

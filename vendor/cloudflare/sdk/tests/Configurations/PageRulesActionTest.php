@@ -14,8 +14,8 @@ class PageRulesActionTest extends TestCase
         $configuration = $actions->getArray();
 
         $this->assertCount(1, $configuration);
-        $this->assertEquals($identifier, $configuration[0]->id);
-        $this->assertEquals($statusCode, $configuration[0]->value->status_code);
-        $this->assertEquals($forwardingURL, $configuration[0]->value->url);
+        $this->assertEquals($identifier, $configuration[0]['id']);
+        $this->assertEquals($statusCode, $configuration[0]['value']['status_code']);
+        $this->assertEquals($forwardingURL, $configuration[0]['value']['url']);
     }
 }

@@ -29,7 +29,7 @@ class ZoneLockdown implements API
             'per_page' => $perPage
         ];
 
-        $user = $this->adapter->get('zones/' . $zoneID . '/firewall/lockdowns', $query, []);
+        $user = $this->adapter->get('zones/' . $zoneID . '/firewall/lockdowns', $query);
         $body = json_decode($user->getBody());
 
         return (object)['result' => $body->result, 'result_info' => $body->result_info];
@@ -55,7 +55,7 @@ class ZoneLockdown implements API
             $options['description'] = $description;
         }
 
-        $user = $this->adapter->post('zones/' . $zoneID . '/firewall/lockdowns', [], $options);
+        $user = $this->adapter->post('zones/' . $zoneID . '/firewall/lockdowns', $options);
 
         $body = json_decode($user->getBody());
 
@@ -68,7 +68,7 @@ class ZoneLockdown implements API
 
     public function getLockdownDetails(string $zoneID, string $lockdownID): \stdClass
     {
-        $user = $this->adapter->get('zones/' . $zoneID . '/firewall/lockdowns/' . $lockdownID, [], []);
+        $user = $this->adapter->get('zones/' . $zoneID . '/firewall/lockdowns/' . $lockdownID);
         $body = json_decode($user->getBody());
         return $body->result;
     }
@@ -90,7 +90,7 @@ class ZoneLockdown implements API
             $options['description'] = $description;
         }
 
-        $user = $this->adapter->put('zones/' . $zoneID . '/firewall/lockdowns/' . $lockdownID, [], $options);
+        $user = $this->adapter->put('zones/' . $zoneID . '/firewall/lockdowns/' . $lockdownID, $options);
 
         $body = json_decode($user->getBody());
 
@@ -103,7 +103,7 @@ class ZoneLockdown implements API
 
     public function deleteLockdown(string $zoneID, string $lockdownID): bool
     {
-        $user = $this->adapter->delete('zones/' . $zoneID . '/firewall/lockdowns/' . $lockdownID, [], []);
+        $user = $this->adapter->delete('zones/' . $zoneID . '/firewall/lockdowns/' . $lockdownID);
 
         $body = json_decode($user->getBody());
 

@@ -23,7 +23,6 @@ class RailgunTest extends TestCase
             ->method('post')
             ->with(
                 $this->equalTo('railguns'),
-                $this->equalTo([]),
                 $this->equalTo(['name' => $details['name']])
             );
 
@@ -52,8 +51,7 @@ class RailgunTest extends TestCase
                     'page' => 1,
                     'per_page' => 20,
                     'direction' => 'desc'
-                ]),
-                $this->equalTo([])
+                ])
             );
 
         $railgun = new \Cloudflare\API\Endpoints\Railgun($mock);
@@ -73,8 +71,7 @@ class RailgunTest extends TestCase
         $mock->expects($this->once())
             ->method('get')
             ->with(
-                $this->equalTo('railguns/e928d310693a83094309acf9ead50448'),
-                $this->equalTo([])
+                $this->equalTo('railguns/e928d310693a83094309acf9ead50448')
             );
 
         $railgun = new \Cloudflare\API\Endpoints\Railgun($mock);
@@ -93,9 +90,7 @@ class RailgunTest extends TestCase
         $mock->expects($this->once())
             ->method('get')
             ->with(
-                $this->equalTo('railguns/e928d310693a83094309acf9ead50448/zones'),
-                $this->equalTo([]),
-                $this->equalTo([])
+                $this->equalTo('railguns/e928d310693a83094309acf9ead50448/zones')
             );
 
         $railgun = new \Cloudflare\API\Endpoints\Railgun($mock);
@@ -120,7 +115,6 @@ class RailgunTest extends TestCase
             ->method('patch')
             ->with(
                 $this->equalTo('railguns/e928d310693a83094309acf9ead50448'),
-                $this->equalTo([]),
                 $this->equalTo($details)
             );
 
@@ -140,9 +134,7 @@ class RailgunTest extends TestCase
         $mock->expects($this->once())
             ->method('delete')
             ->with(
-                $this->equalTo('railguns/e928d310693a83094309acf9ead50448'),
-                $this->equalTo([]),
-                $this->equalTo([])
+                $this->equalTo('railguns/e928d310693a83094309acf9ead50448')
             );
 
         $waf = new \Cloudflare\API\Endpoints\Railgun($mock);

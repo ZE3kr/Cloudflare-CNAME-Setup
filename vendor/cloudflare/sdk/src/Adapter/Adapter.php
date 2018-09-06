@@ -31,46 +31,46 @@ interface Adapter
      * RFCs, it is never useful).
      *
      * @param string $uri
-     * @param array $query
+     * @param array $data
      * @param array $headers
      *
      * @return mixed
      */
-    public function get(string $uri, array $query, array $headers): ResponseInterface;
+    public function get(string $uri, array $data = [], array $headers = []): ResponseInterface;
 
     /**
      * @param string $uri
+     * @param array $data
      * @param array $headers
-     * @param array $body
      *
      * @return mixed
      */
-    public function post(string $uri, array $headers, array $body): ResponseInterface;
+    public function post(string $uri, array $data = [], array $headers = []): ResponseInterface;
 
     /**
      * @param string $uri
+     * @param array $data
      * @param array $headers
-     * @param array $body
      *
      * @return mixed
      */
-    public function put(string $uri, array $headers, array $body): ResponseInterface;
+    public function put(string $uri, array $data = [], array $headers = []): ResponseInterface;
 
     /**
      * @param string $uri
+     * @param array $data
      * @param array $headers
-     * @param array $body
      *
      * @return mixed
      */
-    public function patch(string $uri, array $headers, array $body): ResponseInterface;
+    public function patch(string $uri, array $data = [], array $headers = []): ResponseInterface;
 
     /**
      * @param string $uri
+     * @param array $data
      * @param array $headers
-     * @param array $body
      *
      * @return mixed
      */
-    public function delete(string $uri, array $headers, array $body): ResponseInterface;
+    public function delete(string $uri, array $data = [], array $headers = []): ResponseInterface;
 }

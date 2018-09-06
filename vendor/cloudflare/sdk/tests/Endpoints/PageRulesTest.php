@@ -23,7 +23,6 @@ class PageRulesTest extends TestCase
             ->method('post')
             ->with(
                 $this->equalTo('zones/023e105f4ecef8ad9ca31a8372d0c353/pagerules'),
-                $this->equalTo([]),
                 $this->equalTo([
                     'targets' => $target->getArray(),
                     'actions' => $action->getArray(),
@@ -54,8 +53,7 @@ class PageRulesTest extends TestCase
                 'order' => 'status',
                 'direction' => 'desc',
                 'match' => 'all'
-              ]),
-              $this->equalTo([])
+              ])
             );
 
         $pageRules = new \Cloudflare\API\Endpoints\PageRules($mock);
@@ -72,8 +70,7 @@ class PageRulesTest extends TestCase
         $mock->expects($this->once())
             ->method('get')
             ->with(
-                $this->equalTo('zones/023e105f4ecef8ad9ca31a8372d0c353/pagerules/9a7806061c88ada191ed06f989cc3dac'),
-                $this->equalTo([])
+                $this->equalTo('zones/023e105f4ecef8ad9ca31a8372d0c353/pagerules/9a7806061c88ada191ed06f989cc3dac')
             );
 
         $pageRules = new \Cloudflare\API\Endpoints\PageRules($mock);
@@ -95,7 +92,6 @@ class PageRulesTest extends TestCase
             ->method('patch')
             ->with(
                 $this->equalTo('zones/023e105f4ecef8ad9ca31a8372d0c353/pagerules'),
-                $this->equalTo([]),
                 $this->equalTo([
                     'targets' => $target->getArray(),
                     'actions' => $action->getArray(),
@@ -120,9 +116,7 @@ class PageRulesTest extends TestCase
         $mock->expects($this->once())
             ->method('delete')
             ->with(
-                $this->equalTo('zones/023e105f4ecef8ad9ca31a8372d0c353/pagerules/9a7806061c88ada191ed06f989cc3dac'),
-                $this->equalTo([]),
-                $this->equalTo([])
+                $this->equalTo('zones/023e105f4ecef8ad9ca31a8372d0c353/pagerules/9a7806061c88ada191ed06f989cc3dac')
             );
 
         $pageRules = new \Cloudflare\API\Endpoints\PageRules($mock);

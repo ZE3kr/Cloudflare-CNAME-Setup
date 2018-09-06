@@ -19,7 +19,6 @@ class DNSTest extends TestCase
             ->method('post')
             ->with(
                 $this->equalTo('zones/023e105f4ecef8ad9ca31a8372d0c353/dns_records'),
-                $this->equalTo([]),
                 $this->equalTo([
                     'type' => 'A',
                     'name' => 'example.com',
@@ -44,16 +43,16 @@ class DNSTest extends TestCase
             ->method('get')
             ->with(
                 $this->equalTo('zones/023e105f4ecef8ad9ca31a8372d0c353/dns_records'),
-              $this->equalTo([
-                'page' => 1,
-                'per_page' => 20,
-                'match' => 'all',
-                'type' => 'A',
-                'name' => 'example.com',
-                'content' => '127.0.0.1',
-                'order' => 'type',
-                'direction' => 'desc']),
-              $this->equalTo([])
+                $this->equalTo([
+                    'page' => 1,
+                    'per_page' => 20,
+                    'match' => 'all',
+                    'type' => 'A',
+                    'name' => 'example.com',
+                    'content' => '127.0.0.1',
+                    'order' => 'type',
+                    'direction' => 'desc',
+                ])
             );
 
         $zones = new \Cloudflare\API\Endpoints\DNS($mock);
@@ -76,8 +75,7 @@ class DNSTest extends TestCase
         $mock->expects($this->once())
             ->method('get')
             ->with(
-                $this->equalTo('zones/023e105f4ecef8ad9ca31a8372d0c353/dns_records/372e67954025e0ba6aaa6d586b9e0b59'),
-                $this->equalTo([])
+                $this->equalTo('zones/023e105f4ecef8ad9ca31a8372d0c353/dns_records/372e67954025e0ba6aaa6d586b9e0b59')
             );
 
         $dns = new \Cloudflare\API\Endpoints\DNS($mock);
@@ -105,7 +103,6 @@ class DNSTest extends TestCase
             ->method('put')
             ->with(
                 $this->equalTo('zones/023e105f4ecef8ad9ca31a8372d0c353/dns_records/372e67954025e0ba6aaa6d586b9e0b59'),
-                $this->equalTo([]),
                 $this->equalTo($details)
             );
 

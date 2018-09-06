@@ -16,19 +16,19 @@ class ConfigurationsZoneLockdownTest extends TestCase
         $array = $configuration->getArray();
         $this->assertCount(1, $array);
 
-        $this->assertObjectHasAttribute('target', $array[0]);
-        $this->assertEquals('ip', $array[0]->target);
-        $this->assertObjectHasAttribute('value', $array[0]);
-        $this->assertEquals('1.2.3.4', $array[0]->value);
+        $this->assertArrayHasKey('target', $array[0]);
+        $this->assertEquals('ip', $array[0]['target']);
+        $this->assertArrayHasKey('value', $array[0]);
+        $this->assertEquals('1.2.3.4', $array[0]['value']);
 
         $configuration->addIPRange('1.2.3.4/24');
 
         $array = $configuration->getArray();
         $this->assertCount(2, $array);
 
-        $this->assertObjectHasAttribute('target', $array[1]);
-        $this->assertEquals('ip_range', $array[1]->target);
-        $this->assertObjectHasAttribute('value', $array[1]);
-        $this->assertEquals('1.2.3.4/24', $array[1]->value);
+        $this->assertArrayHasKey('target', $array[1]);
+        $this->assertEquals('ip_range', $array[1]['target']);
+        $this->assertArrayHasKey('value', $array[1]);
+        $this->assertEquals('1.2.3.4/24', $array[1]['value']);
     }
 }
