@@ -48,9 +48,10 @@ if (!isset($_COOKIE['user_key']) || !isset($_COOKIE['cloudflare_email']) || !iss
 }
 if (!isset($_COOKIE['tlo_cached_main'])) {
 	h2push('css/bootstrap.min.css', 'style');
-	h2push('css/tlo_1.1.0.css', 'style');
+	h2push('css/tlo.css?ver=' . urlencode($version), 'style');
 	h2push('js/jquery-3.3.1.slim.min.js', 'script');
 	h2push('js/bootstrap.bundle.min.js', 'script');
+	h2push('js/main.js?ver=' . urlencode($version), 'script');
 	setcookie('tlo_cached_main', 1);
 }
 

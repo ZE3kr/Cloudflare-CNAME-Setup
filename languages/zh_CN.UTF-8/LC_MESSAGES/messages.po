@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2018-10-05 21:19+0800\n"
-"PO-Revision-Date: 2018-10-05 21:19+0800\n"
+"POT-Creation-Date: 2018-10-05 21:24+0800\n"
+"PO-Revision-Date: 2018-10-05 21:24+0800\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: zh_CN\n"
@@ -40,7 +40,7 @@ msgstr "域名"
 msgid "Please enter your domain"
 msgstr "请输入你的域名"
 
-#: actions/add.php:90 actions/add_record.php:112 actions/edit_record.php:106
+#: actions/add.php:90 actions/add_record.php:112 actions/edit_record.php:105
 msgid "Submit"
 msgstr "提交"
 
@@ -80,7 +80,7 @@ msgstr "记录类型"
 msgid "Record Content"
 msgstr "记录内容"
 
-#: actions/add_record.php:75
+#: actions/add_record.php:75 actions/edit_record.php:79
 msgid "Priority"
 msgstr "权重"
 
@@ -104,11 +104,11 @@ msgstr "发送违规报告到 URL (http:, https:, 或 mailto:)"
 msgid "Value"
 msgstr "值"
 
-#: actions/add_record.php:108 actions/edit_record.php:93
+#: actions/add_record.php:108 actions/edit_record.php:99
 msgid "On"
 msgstr "开启"
 
-#: actions/add_record.php:109 actions/edit_record.php:94
+#: actions/add_record.php:109 actions/edit_record.php:100
 msgid "Off"
 msgstr "关闭"
 
@@ -173,10 +173,6 @@ msgstr "总计 (最近一年)"
 #: actions/edit_record.php:46
 msgid "Edit DNS Record"
 msgstr "编辑 DNS 记录"
-
-#: actions/edit_record.php:101
-msgid "Priority (Only for MX record)"
-msgstr "权重 (仅限 MX 记录)"
 
 #: actions/list_zones.php:12 languages/translates.php:30
 msgid "Add Domain"
@@ -420,23 +416,23 @@ msgid ""
 "next hour."
 msgstr "由于你多次登录失败，已经被屏蔽，请在下一个小时再试。"
 
-#: index.php:89 index.php:127
+#: index.php:90 index.php:128
 msgid "Console"
 msgstr "面板"
 
-#: index.php:92
+#: index.php:93
 msgid "Cloudflare CNAME/IP Advanced Setup"
 msgstr "Cloudflare CNAME/IP 高级接入"
 
-#: index.php:131 languages/translates.php:24
+#: index.php:132 languages/translates.php:24
 msgid "Logout"
 msgstr "退出登录"
 
-#: index.php:184
+#: index.php:185
 msgid "Cloudflare Support"
 msgstr "Cloudflare 支持"
 
-#: index.php:185
+#: index.php:186
 msgid "View on GitHub"
 msgstr "在 GitHub 上查看"
 
