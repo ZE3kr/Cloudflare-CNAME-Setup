@@ -79,7 +79,7 @@ if (isset($msg)) {echo $msg;}
 					<label for="priority"><?php echo _('Priority'); ?></label>
 					<input type="number" name="priority" id="priority" step="1" min="1" value="<?php echo $dns_details->priority; ?>" class="form-control">
 				</div>
-			<?php }?>ƒ
+			<?php }?>
 		<?php }?>
 
 		<div class="form-group">
