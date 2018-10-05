@@ -3,7 +3,7 @@
  *  List zones. (Home page)
  */
 
-if (!isset($tlo_id)) {exit;}
+if (!isset($adapter)) {exit;}
 
 if (!isset($_GET['page'])) {
 	$_GET['page'] = 1;

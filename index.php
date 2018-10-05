@@ -2,17 +2,18 @@
 /**
  * The main file
  *
- * @file        $Source: /README.md  $
- * @package     core
- * @author      ZE3kr <ze3kr@icloud.com>
+ * @file    $Source: /README.md  $
+ * @package core
+ * @author  ZE3kr <ze3kr@icloud.com>
  *
  */
+
 $starttime = microtime(true);
+$page_title = '';
+$version = '1.2.0-alpha-5';
 
-require_once "settings.php";
+require_once 'settings.php';
 require_once 'cloudflare.class.php';
-
-$tlo_id = false;
 
 if (!isset($_COOKIE['user_key']) || !isset($_COOKIE['cloudflare_email']) || !isset($_COOKIE['user_api_key'])) {
 	$_GET['action'] = 'login';
@@ -34,7 +35,7 @@ if (!isset($_COOKIE['user_key']) || !isset($_COOKIE['cloudflare_email']) || !iss
 			setcookie('user_key', $res['response']['user_key'], $cookie_time);
 			setcookie('user_api_key', $res['response']['user_api_key'], $cookie_time);
 
-			header('location: ./' . $_SERVER['QUERY_STRING']);
+			header('location: ./');
 		} else {
 			$times = $times + 1;
 			apcu_store('login_' . date("Y-m-d H") . $cloudflare_email, $times, 7200);
@@ -44,7 +45,6 @@ if (!isset($_COOKIE['user_key']) || !isset($_COOKIE['cloudflare_email']) || !iss
 } else {
 	$key = new \Cloudflare\API\Auth\APIKey($_COOKIE['cloudflare_email'], $_COOKIE['user_api_key']);
 	$adapter = new Cloudflare\API\Adapter\Guzzle($key);
-	$tlo_id = md5($_COOKIE['cloudflare_email'] . $_COOKIE['user_api_key']);
 }
 if (!isset($_COOKIE['tlo_cached_main'])) {
 	h2push('css/bootstrap.min.css', 'style');
@@ -94,26 +94,25 @@ echo _('Cloudflare CNAME/IP Advanced Setup') . ' &#8211; ' . $page_title;
 	<meta name="renderer" content="webkit">
 	<meta http-equiv="Cache-Control" content="no-siteapp"/>
 	<link rel="stylesheet" href="css/bootstrap.min.css">
-	<link rel="stylesheet" href="css/tlo_1.1.0.css">
+	<link rel="stylesheet" href="css/tlo.css?ver=<?php echo urlencode($version) ?>">
 
-    <link rel="apple-touch-icon" sizes="57x57" href="images/favicon/apple-icon-57x57.png">
-    <link rel="apple-touch-icon" sizes="60x60" href="images/favicon/apple-icon-60x60.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="images/favicon/apple-icon-72x72.png">
-    <link rel="apple-touch-icon" sizes="76x76" href="images/favicon/apple-icon-76x76.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="images/favicon/apple-icon-114x114.png">
-    <link rel="apple-touch-icon" sizes="120x120" href="images/favicon/apple-icon-120x120.png">
-    <link rel="apple-touch-icon" sizes="144x144" href="images/favicon/apple-icon-144x144.png">
-    <link rel="apple-touch-icon" sizes="152x152" href="images/favicon/apple-icon-152x152.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="images/favicon/apple-icon-180x180.png">
-    <link rel="icon" type="image/png" sizes="192x192"  href="images/favicon/android-icon-192x192.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="96x96" href="images/favicon/favicon-96x96.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon/favicon-16x16.png">
-    <link rel="manifest" href="images/favicon/manifest.json">
-    <meta name="msapplication-TileColor" content="#ffffff">
-    <meta name="msapplication-TileImage" content="images/favicon/ms-icon-144x144.png">
-    <meta name="theme-color" content="#ffffff">
-
+	<link rel="apple-touch-icon" sizes="57x57" href="images/favicon/apple-icon-57x57.png">
+	<link rel="apple-touch-icon" sizes="60x60" href="images/favicon/apple-icon-60x60.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="images/favicon/apple-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="76x76" href="images/favicon/apple-icon-76x76.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="images/favicon/apple-icon-114x114.png">
+	<link rel="apple-touch-icon" sizes="120x120" href="images/favicon/apple-icon-120x120.png">
+	<link rel="apple-touch-icon" sizes="144x144" href="images/favicon/apple-icon-144x144.png">
+	<link rel="apple-touch-icon" sizes="152x152" href="images/favicon/apple-icon-152x152.png">
+	<link rel="apple-touch-icon" sizes="180x180" href="images/favicon/apple-icon-180x180.png">
+	<link rel="icon" type="image/png" sizes="192x192"  href="images/favicon/android-icon-192x192.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="images/favicon/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="96x96" href="images/favicon/favicon-96x96.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="images/favicon/favicon-16x16.png">
+	<link rel="manifest" href="images/favicon/manifest.json">
+	<meta name="msapplication-TileColor" content="#ffffff">
+	<meta name="msapplication-TileImage" content="images/favicon/ms-icon-144x144.png">
+	<meta name="theme-color" content="#ffffff">
 </head>
 <body class="bg-light">
 	<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
@@ -193,10 +192,6 @@ if ((isset($is_beta) && $is_beta) || (isset($is_debug) && $is_debug)) {
 
 	<script src="js/jquery-3.3.1.slim.min.js"></script>
 	<script src="js/bootstrap.bundle.min.js"></script>
-	<script>
-	$(function () {
-		$('[data-toggle="tooltip"]').tooltip()
-	})
-	</script>
+	<script src="js/main.js?ver=<?php echo urlencode($version) ?>"></script>
 </body>
 </html>

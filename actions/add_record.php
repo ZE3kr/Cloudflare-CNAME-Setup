@@ -3,7 +3,7 @@
  * Add record for specific domain.
  */
 
-if (!isset($tlo_id)) {exit;}
+if (!isset($adapter)) {exit;}
 
 if (isset($_POST['submit'])) {
 	if ($_POST['proxied'] == 'false') {
@@ -111,20 +111,6 @@ foreach ($ttl_translate as $_ttl => $_ttl_name) {
 		<p><button type="submit" name="submit" class="btn btn-primary"><?php echo _('Submit'); ?></button></p>
 	</fieldset>
 	<script>
-		function hideData(){
-			document.getElementById("dns-data-caa").style.display = "none";
-		}
-		hideData();
 
-		document.getElementById("type").onchange = function () {
-			if(this.value === "CAA"){
-				hideData();
-				document.getElementById("dns-data-caa").style.display = "block";
-				document.getElementById("dns-content").style.display = "none";
-			} else {
-				hideData();
-				document.getElementById("dns-content").style.display = "block";
-			}
-		}
 	</script>
 </form>

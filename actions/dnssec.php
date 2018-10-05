@@ -3,7 +3,7 @@
  * Enable or disable DNSSEC.
  */
 
-if (!isset($tlo_id)) {exit;}
+if (!isset($adapter)) {exit;}
 
 try {
 	$dnssec = $adapter->patch('zones/' . $_GET['zoneid'] . '/dnssec', [], ['status' => $_GET['do']]);

@@ -3,7 +3,7 @@
  * Edit a record.
  */
 
-if (!isset($tlo_id)) {exit;}
+if (!isset($adapter)) {exit;}
 ?>
 <strong><?php echo '<h1 class="h5"><a href="?action=zone&amp;domain=' . $_GET['domain'] . '&amp;zoneid=' . $_GET['zoneid'] . '">&lt;- ' . _('Back') . '</a></h1>'; ?></strong><hr>
 <?php
@@ -21,6 +21,9 @@ if (isset($_POST['submit'])) {
 		$_POST['priority'] = intval($_POST['priority']);
 	} else {
 		$_POST['priority'] = 10;
+	}
+	if (!isset($_POST['content'])) {
+		$_POST['content'] = "";
 	}
 
 	include "record_data.php";
@@ -43,7 +46,7 @@ if (isset($msg)) {echo $msg;}
 		<legend><?php echo _('Edit DNS Record'); ?></legend>
 		<div class="form-group">
 			<label for="name"><?php echo _('Record Name (e.g. “@”, “www”, etc.)'); ?></label>
-			<input type="text" name="name" id="name" value="<?php echo $dns_details->name; ?>" class="form-control">
+			<input type="text" name="name" id="name" value="<?php echo htmlspecialchars($dns_details->name); ?>" class="form-control">
 		</div>
 		<div class="form-group">
 			<label for="type"><?php echo _('Record Type'); ?></label>
@@ -55,21 +58,21 @@ if (isset($msg)) {echo $msg;}
 		<?php if ($dns_details->type == 'CAA') {?>
 			<div class="form-group">
 				<label for="data_tag"><?php echo _('Tag'); ?></label>
-				<select name="data_tag" id="data_tag" class="form-control">
-					<option value="issue" selected="selected"><?php echo _('Only allow specific hostnames') ?></option>
+				<select name="data_tag" id="data_tag" class="form-control" data-selected="<?php echo $dns_details->data->tag ?>">
+					<option value="issue"><?php echo _('Only allow specific hostnames') ?></option>
 					<option value="issuewild"><?php echo _('Only allow wildcards') ?></option>
 					<option value="iodef"><?php echo _('Send violation reports to URL (http:, https:, or mailto:)') ?></option>
 				</select>
 			</div>
 			<div class="form-group">
 				<label for="data_value"><?php echo _('Value'); ?></label>
-				<input type="text" name="data_value" id="data_value" value="<?php echo $dns_details->data->value; ?>" class="form-control">
+				<input type="text" name="data_value" id="data_value" value="<?php echo htmlspecialchars($dns_details->data->value); ?>" class="form-control">
 			</div>
 			<input type="hidden" name="data_flags" value="0">
 		<?php } else {?>
 		<div class="form-group">
 			<label for="doc-ta-1"><?php echo _('Record Content'); ?></label>
-			<textarea name="content" rows="5" id="doc-ta-1" class="form-control"><?php echo $dns_details->content; ?></textarea>
+			<textarea name="content" rows="5" id="doc-ta-1" class="form-control"><?php echo htmlspecialchars($dns_details->content); ?></textarea>
 		</div>
 		<?php }?>
 
