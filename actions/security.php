@@ -3,7 +3,7 @@
  * Security page. (SSL and DNSSEC information)
  */
 
-if (!isset($tlo_id)) {exit;}
+if (!isset($adapter)) {exit;}
 
 $zone_name = $_GET['domain'];
 if (!isset($_GET['page'])) {

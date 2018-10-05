@@ -2,7 +2,7 @@
 /*
  * Zone setup page
  */
-if (!isset($tlo_id)) {exit;}
+if (!isset($adapter)) {exit;}
 
 $zone_name = $_GET['domain'];
 if (!isset($_GET['page'])) {
@@ -127,25 +127,25 @@ foreach ($dnsresult as $record) {
 			<td scope="col">
 				<div class="d-block d-md-none float-right">' . $proxiable . '</div>
 				<div class="d-block d-md-none">' . $record->type . ' ' . _('record') . '</div>
-				<code>' . $record->name . '</code>
-				<div class="d-block d-md-none">' . _('points to') . ' ' . '<code>' . $record->content . '</code></div>
+				<code>' . htmlspecialchars($record->name) . '</code>
+				<div class="d-block d-md-none">' . _('points to') . ' ' . '<code>' . htmlspecialchars($record->content) . '</code></div>
 				<div class="btn-group dropleft float-right d-block d-md-none" style="margin-top:-1em;">
 					<button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 					' . _('Manage') . '
 					</button>
 					<div class="dropdown-menu">
 						<a class="dropdown-item" href="?action=edit_record&domain=' . $zone_name . '&recordid=' . $record->id . '&zoneid=' . $zoneID . '">' . _('Edit') . '</a>
-						<a class="dropdown-item" href="?action=delete_record&domain=' . $zone_name . '&delete=' . $record->id . '&zoneid=' . $zoneID . '" onclick="return confirm(\'' . _('Are you sure to delete') . ' ' . $record->name . '?\')">' . _('Delete') . '</a>
+						<a class="dropdown-item" href="?action=delete_record&domain=' . $zone_name . '&delete=' . $record->id . '&zoneid=' . $zoneID . '" onclick="return confirm(\'' . _('Are you sure to delete') . ' ' . htmlspecialchars($record->name) . '?\')">' . _('Delete') . '</a>
 					</div>
 				</div>
 				<div class="d-block d-md-none">' . _('TTL') . ' ' . $ttl . '</div>
 			</td>
-			<td class="d-none d-md-table-cell">' . $priority . '<code>' . $record->content . '</code></td>
+			<td class="d-none d-md-table-cell">' . $priority . '<code>' . htmlspecialchars($record->content) . '</code></td>
 			<td class="d-none d-md-table-cell">' . $ttl . '</td>
 			<td class="d-none d-md-table-cell" style="width: 200px;">' . $proxiable . ' |
 				<div class="btn-group" role="group">
 					<a class="btn btn-dark btn-sm" href="?action=edit_record&domain=' . $zone_name . '&recordid=' . $record->id . '&zoneid=' . $zoneID . '">' . _('Edit') . '</a>
-					<a class="btn btn-danger btn-sm" href="?action=delete_record&domain=' . $zone_name . '&delete=' . $record->id . '&zoneid=' . $zoneID . '" onclick="return confirm(\'' . _('Are you sure to delete') . ' ' . $record->name . '?\')">' . _('Delete') . '</a>
+					<a class="btn btn-danger btn-sm" href="?action=delete_record&domain=' . $zone_name . '&delete=' . $record->id . '&zoneid=' . $zoneID . '" onclick="return confirm(\'' . _('Are you sure to delete') . ' ' . htmlspecialchars($record->name) . '?\')">' . _('Delete') . '</a>
 				</div>
 			</td>
 		</tr>';

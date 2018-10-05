@@ -3,7 +3,7 @@
  * Using Partner API to add domain for CNAME or NS setup.
  */
 
-if (!isset($tlo_id)) {exit;}
+if (!isset($adapter)) {exit;}
 
 if (isset($_POST['submit'])) {
 	$zone_name = $_POST['domain'];

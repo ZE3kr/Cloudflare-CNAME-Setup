@@ -1,275 +1,284 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2018-08-07 08:56+0800\n"
-"PO-Revision-Date: 2018-08-07 08:56+0800\n"
+"POT-Creation-Date: 2018-10-05 21:05+0800\n"
+"PO-Revision-Date: 2018-10-05 21:05+0800\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.0.9\n"
-"X-Poedit-Basepath: ../../../..\n"
+"X-Generator: Poedit 2.1.1\n"
+"X-Poedit-Basepath: ../../..\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: web/actions/add.php:18 web/actions/add.php:73 web/actions/add_record.php:15
-#: web/actions/delete_record.php:11 web/actions/dnssec.php:16
-#: web/actions/edit_record.php:26 web/actions/logout.php:12
-#: web/actions/security.php:37 web/actions/security.php:63
-#: web/actions/security.php:79 web/actions/zone.php:52
+#: actions/add.php:18 actions/add.php:73 actions/add_record.php:36
+#: actions/delete_record.php:11 actions/dnssec.php:16
+#: actions/edit_record.php:33 actions/logout.php:12 actions/security.php:41
+#: actions/security.php:67 actions/security.php:82 actions/zone.php:52
 msgid "Success"
 msgstr "成功"
 
-#: web/actions/add.php:18 web/actions/add.php:73 web/actions/add_record.php:15
-#: web/actions/add_record.php:17 web/actions/delete_record.php:11
-#: web/actions/delete_record.php:13 web/actions/dnssec.php:16
-#: web/actions/dnssec.php:18 web/actions/logout.php:12 web/actions/zone.php:54
-#: web/actions/zone.php:63
+#: actions/add.php:18 actions/add.php:73 actions/add_record.php:36
+#: actions/add_record.php:38 actions/delete_record.php:11
+#: actions/delete_record.php:13 actions/dnssec.php:16 actions/dnssec.php:18
+#: actions/logout.php:12 actions/zone.php:54 actions/zone.php:63
 msgid "Go to console"
 msgstr "前往管理中心"
 
-#: web/actions/add.php:45
+#: actions/add.php:45
 msgid "Cannot add a existing domain."
 msgstr "无法添加已经存在的域名."
 
-#: web/actions/add.php:88 web/actions/list_zones.php:18
+#: actions/add.php:88 actions/list_zones.php:18
 msgid "Domain"
 msgstr "域名"
 
-#: web/actions/add.php:89
+#: actions/add.php:89
 msgid "Please enter your domain"
 msgstr "请输入你的域名"
 
-#: web/actions/add.php:90 web/actions/add_record.php:71
-#: web/actions/edit_record.php:80
+#: actions/add.php:90 actions/add_record.php:111 actions/edit_record.php:106
 msgid "Submit"
 msgstr "提交"
 
-#: web/actions/add_record.php:15 web/actions/add_record.php:17
-#: web/actions/zone.php:84
+#: actions/add_record.php:36 actions/add_record.php:38 actions/zone.php:84
 msgid "Add New Record"
 msgstr "添加新记录"
 
-#: web/actions/add_record.php:15 web/actions/add_record.php:17
+#: actions/add_record.php:36 actions/add_record.php:38
 msgid "Or"
 msgstr "或者"
 
-#: web/actions/add_record.php:17 web/actions/delete_record.php:13
-#: web/actions/dnssec.php:18 web/actions/edit_record.php:28
-#: web/actions/edit_record.php:31 web/actions/security.php:39
-#: web/actions/security.php:65 web/actions/security.php:81
-#: web/actions/zone.php:54 web/actions/zone.php:63
+#: actions/add_record.php:38 actions/add_record.php:41
+#: actions/delete_record.php:13 actions/dnssec.php:18
+#: actions/edit_record.php:35 actions/edit_record.php:38
+#: actions/security.php:43 actions/security.php:69 actions/security.php:84
+#: actions/zone.php:54 actions/zone.php:63
 msgid "Failed"
 msgstr "失败"
 
-#: web/actions/add_record.php:24 web/actions/edit_record.php:8
+#: actions/add_record.php:46 actions/edit_record.php:8
 msgid "Back"
 msgstr "返回"
 
-#: web/actions/add_record.php:27
+#: actions/add_record.php:49
 msgid "Add DNS Record"
 msgstr "添加 DNS 记录"
 
-#: web/actions/add_record.php:29 web/actions/edit_record.php:41
+#: actions/add_record.php:51 actions/edit_record.php:48
 msgid "Record Name (e.g. “@”, “www”, etc.)"
 msgstr "记录名 (例 “@”, “www”, etc.)"
 
-#: web/actions/add_record.php:33 web/actions/edit_record.php:45
-#: web/actions/zone.php:88
+#: actions/add_record.php:55 actions/edit_record.php:52 actions/zone.php:88
 msgid "Record Type"
 msgstr "记录类型"
 
-#: web/actions/add_record.php:47 web/actions/edit_record.php:51
+#: actions/add_record.php:70 actions/edit_record.php:74
 msgid "Record Content"
 msgstr "记录内容"
 
-#: web/actions/add_record.php:63 web/actions/edit_record.php:68
+#: actions/add_record.php:76 actions/edit_record.php:60
+msgid "Tag"
+msgstr "标签 (Tag)"
+
+#: actions/add_record.php:78 actions/edit_record.php:62
+msgid "Only allow specific hostnames"
+msgstr "仅允许特定主机名"
+
+#: actions/add_record.php:79 actions/edit_record.php:63
+msgid "Only allow wildcards"
+msgstr "仅允许通配符"
+
+#: actions/add_record.php:80 actions/edit_record.php:64
+msgid "Send violation reports to URL (http:, https:, or mailto:)"
+msgstr "发送违规报告到 URL (http:, https:, 或 mailto:)"
+
+#: actions/add_record.php:84 actions/edit_record.php:68
+msgid "Value"
+msgstr "值"
+
+#: actions/add_record.php:103 actions/edit_record.php:93
 msgid "On"
 msgstr "开启"
 
-#: web/actions/add_record.php:64 web/actions/edit_record.php:69
+#: actions/add_record.php:104 actions/edit_record.php:94
 msgid "Off"
 msgstr "关闭"
 
-#: web/actions/add_record.php:68 web/actions/edit_record.php:75
+#: actions/add_record.php:108 actions/edit_record.php:101
 msgid "Priority (Only for MX record)"
 msgstr "权重 (仅限 MX 记录)"
 
-#: web/actions/analytics.php:14 web/actions/list_zones.php:34
+#: actions/analytics.php:14 actions/list_zones.php:34
 msgid "Advanced Analytics"
 msgstr "高级统计"
 
-#: web/actions/analytics.php:15
+#: actions/analytics.php:15
 msgid "Loading failed. Please refresh the page to retry."
 msgstr "加载失败，请刷新页面重试。"
 
-#: web/actions/analytics.php:58 web/actions/analytics.php:204
+#: actions/analytics.php:58 actions/analytics.php:204
 msgid "Cached"
 msgstr "已缓存"
 
-#: web/actions/analytics.php:70 web/actions/analytics.php:216
+#: actions/analytics.php:70 actions/analytics.php:216
 msgid "All"
 msgstr "全部"
 
-#: web/actions/analytics.php:88 web/actions/analytics.php:110
-#: web/actions/analytics.php:161 web/actions/analytics.php:183
-#: web/actions/analytics.php:281
+#: actions/analytics.php:88 actions/analytics.php:110 actions/analytics.php:161
+#: actions/analytics.php:183 actions/analytics.php:281
 msgid "Requests"
 msgstr "请求"
 
-#: web/actions/analytics.php:103 web/actions/analytics.php:176
-#: web/actions/analytics.php:249 web/actions/analytics.php:278
+#: actions/analytics.php:103 actions/analytics.php:176
+#: actions/analytics.php:249 actions/analytics.php:278
 msgid "Date"
 msgstr "日期"
 
-#: web/actions/analytics.php:131 web/actions/analytics.php:279
+#: actions/analytics.php:131 actions/analytics.php:279
 msgid "Unique Visitors"
 msgstr "独立访客数"
 
-#: web/actions/analytics.php:143 web/actions/analytics.php:280
+#: actions/analytics.php:143 actions/analytics.php:280
 msgid "Page Views"
 msgstr "页面浏览量"
 
-#: web/actions/analytics.php:234 web/actions/analytics.php:256
+#: actions/analytics.php:234 actions/analytics.php:256
 msgid "Bandwidth (Unit: "
 msgstr "流量 (单位: "
 
-#: web/actions/analytics.php:282
+#: actions/analytics.php:282
 msgid "Requests Hit Ratio"
 msgstr "缓存命中率"
 
-#: web/actions/analytics.php:283
+#: actions/analytics.php:283
 msgid "Bandwidth"
 msgstr "流量"
 
-#: web/actions/analytics.php:284
+#: actions/analytics.php:284
 msgid "Saved Bandwidth"
 msgstr "节省流量"
 
-#: web/actions/analytics.php:285
+#: actions/analytics.php:285
 msgid "Threats"
 msgstr "攻击拦截"
 
-#: web/actions/analytics.php:291
+#: actions/analytics.php:291
 msgid "Total (Last year)"
 msgstr "总计 (最近一年)"
 
-#: web/actions/edit_record.php:39
+#: actions/edit_record.php:46
 msgid "Edit DNS Record"
 msgstr "编辑 DNS 记录"
 
-#: web/actions/list_zones.php:12 web/languages/translates.php:30
+#: actions/list_zones.php:12 languages/translates.php:30
 msgid "Add Domain"
 msgstr "添加域名"
 
-#: web/actions/list_zones.php:13
+#: actions/list_zones.php:13
 msgid "Home"
 msgstr "主页"
 
-#: web/actions/list_zones.php:19
+#: actions/list_zones.php:19
 msgid "Status"
 msgstr "状态"
 
-#: web/actions/list_zones.php:20 web/actions/zone.php:92
+#: actions/list_zones.php:20 actions/zone.php:92
 msgid "Operation"
 msgstr "操作"
 
-#: web/actions/list_zones.php:35 web/actions/zone.php:134
+#: actions/list_zones.php:35 actions/zone.php:134
 msgid "Manage"
 msgstr "管理"
 
-#: web/actions/list_zones.php:36 web/actions/list_zones.php:80
+#: actions/list_zones.php:36 actions/list_zones.php:80
 msgid "Manage DNS"
 msgstr "管理 DNS"
 
-#: web/actions/list_zones.php:37 web/languages/translates.php:25
+#: actions/list_zones.php:37 languages/translates.php:25
 msgid "Security"
 msgstr "安全"
 
-#: web/actions/list_zones.php:80
+#: actions/list_zones.php:80
 msgid ""
 "This domain only supports NS setup. And you should manage DNS records on "
 "Cloudflare.com."
 msgstr "这个域名只支持 NS 接入. 你应该在 Cloudflare.com 上管理 DNS 记录."
 
-#: web/actions/list_zones.php:106 web/actions/zone.php:167
-#: web/actions/zone.php:214
+#: actions/list_zones.php:106 actions/zone.php:167 actions/zone.php:214
 msgid "Next"
 msgstr "下一页"
 
-#: web/actions/list_zones.php:110 web/actions/zone.php:171
-#: web/actions/zone.php:218
+#: actions/list_zones.php:110 actions/zone.php:171 actions/zone.php:218
 msgid "Previous"
 msgstr "上一页"
 
-#: web/actions/list_zones.php:112 web/actions/zone.php:173
-#: web/actions/zone.php:220
+#: actions/list_zones.php:112 actions/zone.php:173 actions/zone.php:220
 msgid "Page"
 msgstr "页码"
 
-#: web/actions/login.php:10
+#: actions/login.php:10
 msgid "Cloudflare CNAME/IP/NS Setup"
 msgstr "Cloudflare CNAME/IP/NS 接入"
 
-#: web/actions/login.php:12
+#: actions/login.php:12
 msgid "Please sign in"
 msgstr "请先登录"
 
-#: web/actions/login.php:13 web/actions/login.php:14
+#: actions/login.php:13 actions/login.php:14
 msgid "Your email address on cloudflare.com"
 msgstr "你在 cloudflare.com 上的邮箱"
 
-#: web/actions/login.php:15 web/actions/login.php:16
+#: actions/login.php:15 actions/login.php:16
 msgid "Your password on cloudflare.com"
 msgstr "你在 cloudflare.com 上的密码"
 
-#: web/actions/login.php:19
+#: actions/login.php:19
 msgid "Remember me"
 msgstr "下次自动登录"
 
-#: web/actions/login.php:22
+#: actions/login.php:22
 msgid "Sign in"
 msgstr "登录"
 
-#: web/actions/login.php:23
+#: actions/login.php:23
 msgid "Use your existing account or create a new account here."
 msgstr "在这里登录你已有的账号或者注册新账号."
 
-#: web/actions/login.php:24
+#: actions/login.php:24
 msgid "We will not store any of your Cloudflare data"
 msgstr "我们不会存储你的任何 Cloudflare 数据"
 
-#: web/actions/security.php:21
+#: actions/security.php:21
 msgid "SSL Verify"
 msgstr "SSL 验证"
 
-#: web/actions/security.php:31
+#: actions/security.php:35
 #, php-format
 msgid "HTTP File Verify for %s"
 msgstr "%s 下的 HTTP 文件验证"
 
-#: web/actions/security.php:35 web/actions/security.php:61
-#: web/actions/security.php:77
+#: actions/security.php:39 actions/security.php:65 actions/security.php:80
 msgid "SSL Status"
 msgstr "SSL 状态"
 
-#: web/actions/security.php:37 web/actions/security.php:39
-#: web/actions/security.php:63 web/actions/security.php:65
-#: web/actions/security.php:79 web/actions/security.php:81
+#: actions/security.php:41 actions/security.php:43 actions/security.php:67
+#: actions/security.php:69 actions/security.php:82 actions/security.php:84
 msgid "Verify"
 msgstr "验证"
 
-#: web/actions/security.php:43
+#: actions/security.php:47
 msgid "CNAME Verify"
 msgstr "CNAME 验证"
 
-#: web/actions/security.php:47
+#: actions/security.php:51
 msgid "SSL Verification Record Name"
 msgstr "SSL 验证记录名"
 
-#: web/actions/security.php:71
+#: actions/security.php:74
 msgid ""
 "<p style=\"color:green;\">No error for SSL.</p><p>Just point the record(s) "
 "to Cloudflare and the SSL certificate will be issued and renewed "
@@ -278,11 +287,11 @@ msgstr ""
 "<p style=\"color:green;\">SSL 正常。</p><p>你只需要将默认/海外记录指向 "
 "Cloudflare, SSL 证书便会自动签发和续期。</p>"
 
-#: web/actions/security.php:87
+#: actions/security.php:91
 msgid "DNSSEC <small>(Only for NS setup)</small>"
 msgstr "DNSSEC <small>(仅限 NS 接入)</small>"
 
-#: web/actions/security.php:89 web/actions/security.php:106
+#: actions/security.php:93 actions/security.php:110
 msgid ""
 "This feature is designed for users who use Cloudflare DNS setup. If you are "
 "using third-party DNS services, do not turn it on nor add DS record, "
@@ -291,100 +300,96 @@ msgstr ""
 "此功能仅限配置了 Cloudflare DNS 的用户使用, 如果你使用的是第三方 DNS 服务，请"
 "不要开启此功能，也不要配置 DS 记录, 否则可能会导致域名无法访问。"
 
-#: web/actions/security.php:99
+#: actions/security.php:103
 msgid "Activated"
 msgstr "已激活"
 
-#: web/actions/security.php:100 web/actions/security.php:103
+#: actions/security.php:104 actions/security.php:107
 msgid "Deactivate"
 msgstr "关闭"
 
-#: web/actions/security.php:102 web/languages/translates.php:17
+#: actions/security.php:106 languages/translates.php:17
 msgid "Pending"
 msgstr "等待中"
 
-#: web/actions/security.php:105
+#: actions/security.php:109
 msgid "Not Activated"
 msgstr "未激活"
 
-#: web/actions/security.php:106
+#: actions/security.php:110
 msgid "Activate"
 msgstr "开启"
 
-#: web/actions/zone.php:61
+#: actions/zone.php:61
 msgid "Success!"
 msgstr "成功！"
 
-#: web/actions/zone.php:73
+#: actions/zone.php:73
 msgid "Contents"
 msgstr "目录"
 
-#: web/actions/zone.php:76 web/actions/zone.php:84
+#: actions/zone.php:76 actions/zone.php:84
 msgid "DNS Management"
 msgstr "DNS 管理"
 
-#: web/actions/zone.php:77 web/actions/zone.php:178
+#: actions/zone.php:77 actions/zone.php:178
 msgid "CNAME Setup"
 msgstr "CNAME 接入"
 
-#: web/actions/zone.php:78 web/actions/zone.php:230
+#: actions/zone.php:78 actions/zone.php:233
 msgid "IP Setup"
 msgstr "IP 接入"
 
-#: web/actions/zone.php:79 web/actions/zone.php:241
+#: actions/zone.php:79 actions/zone.php:249
 msgid "NS Setup"
 msgstr "NS 接入"
 
-#: web/actions/zone.php:81 web/actions/zone.php:265 web/actions/zone.php:266
+#: actions/zone.php:81 actions/zone.php:275 actions/zone.php:276
 msgid "More Settings"
 msgstr "更多设置"
 
-#: web/actions/zone.php:89 web/actions/zone.php:182 web/actions/zone.php:245
+#: actions/zone.php:89 actions/zone.php:182 actions/zone.php:253
 msgid "Host Name"
 msgstr "主机名"
 
-#: web/actions/zone.php:90
+#: actions/zone.php:90
 msgid "Content"
 msgstr "内容"
 
-#: web/actions/zone.php:91 web/actions/zone.php:141
+#: actions/zone.php:91 actions/zone.php:141
 msgid "TTL"
 msgstr "TTL"
 
-#: web/actions/zone.php:107
-msgid "Not support CDN"
-msgstr "不支持 CDN"
-
-#: web/actions/zone.php:129
+#: actions/zone.php:129
 msgid "record"
 msgstr "记录"
 
-#: web/actions/zone.php:131 web/actions/zone.php:194 web/actions/zone.php:252
-#: web/actions/zone.php:258
+#: actions/zone.php:131 actions/zone.php:194 actions/zone.php:260
+#: actions/zone.php:266
 msgid "points to"
 msgstr "指向"
 
-#: web/actions/zone.php:137 web/actions/zone.php:147
+#: actions/zone.php:137 actions/zone.php:147
 msgid "Edit"
 msgstr "编辑"
 
-#: web/actions/zone.php:138 web/actions/zone.php:148
+#: actions/zone.php:138 actions/zone.php:148
 msgid "Are you sure to delete"
 msgstr "你确认要删除"
 
-#: web/actions/zone.php:138 web/actions/zone.php:148
+#: actions/zone.php:138 actions/zone.php:148
 msgid "Delete"
 msgstr "删除"
 
-#: web/actions/zone.php:159 web/actions/zone.php:206
+#: actions/zone.php:159 actions/zone.php:206
 msgid "There is no record in this zone yet. Please add some!"
 msgstr "该域名还没有任何记录, 请添加!"
 
-#: web/actions/zone.php:176
+#: actions/zone.php:176
 msgid "You can use CNAME, IP or NS to set it up."
 msgstr "你可以使用 CNAME, IP 和 NS 任意一种方式接入。"
 
-#: web/actions/zone.php:266
+#: actions/zone.php:276
 msgid ""
 "This site only provides configurations that the official does not have. For "
 "more settings, such as Page Rules, Crypto, Firewall, Cache, etc., please use "
@@ -393,136 +398,139 @@ msgstr ""
 "本站只提供官网之外的配置。更多设置，如 Page Rules、SSL 回源配置、防火墙、缓存"
 "配置等，请使用相同账号登录 Cloudflare.com 查看. "
 
-#: web/cloudflare.class.php:69
+#: cloudflare.class.php:69
 msgid "Error, please confirm your domain."
 msgstr "错误，请检查你的域名."
 
-#: web/cloudflare.class.php:157
+#: cloudflare.class.php:157
 msgid "Updated successful."
 msgstr "更新成功."
 
-#: web/cloudflare.class.php:157 web/cloudflare.class.php:159
+#: cloudflare.class.php:157 cloudflare.class.php:159
 msgid "Back to domain"
 msgstr "返回到域名"
 
-#: web/index.php:26
+#: index.php:27
 msgid ""
 "You have been blocked since you have too many fail logins. You can try it in "
 "next hour."
 msgstr "由于你多次登录失败，已经被屏蔽，请在下一个小时再试。"
 
-#: web/index.php:83 web/index.php:103
+#: index.php:89 index.php:127
 msgid "Console"
 msgstr "面板"
 
-#: web/index.php:86
+#: index.php:92
 msgid "Cloudflare CNAME/IP Advanced Setup"
 msgstr "Cloudflare CNAME/IP 高级接入"
 
-#: web/index.php:107 web/languages/translates.php:24
+#: index.php:131 languages/translates.php:24
 msgid "Logout"
 msgstr "退出登录"
 
-#: web/index.php:160
+#: index.php:184
 msgid "Cloudflare Support"
 msgstr "Cloudflare 支持"
 
-#: web/index.php:161
+#: index.php:185
 msgid "View on GitHub"
 msgstr "在 GitHub 上查看"
 
-#: web/languages/translates.php:3
+#: languages/translates.php:3
 msgid "Automatic"
 msgstr "自动"
 
-#: web/languages/translates.php:4
+#: languages/translates.php:4
 msgid "2 mins"
 msgstr "2 分钟"
 
-#: web/languages/translates.php:5
+#: languages/translates.php:5
 msgid "5 mins"
 msgstr "5 分钟"
 
-#: web/languages/translates.php:6
+#: languages/translates.php:6
 msgid "10 mins"
 msgstr "10 分钟"
 
-#: web/languages/translates.php:7
+#: languages/translates.php:7
 msgid "15 mins"
 msgstr "15 分钟"
 
-#: web/languages/translates.php:8
+#: languages/translates.php:8
 msgid "30 mins"
 msgstr "30 分钟"
 
-#: web/languages/translates.php:9
+#: languages/translates.php:9
 msgid "1 hour"
 msgstr "1 小时"
 
-#: web/languages/translates.php:10
+#: languages/translates.php:10
 msgid "2 hours"
 msgstr "2 小时"
 
-#: web/languages/translates.php:11
+#: languages/translates.php:11
 msgid "5 hours"
 msgstr "5 小时"
 
-#: web/languages/translates.php:12
+#: languages/translates.php:12
 msgid "12 hours"
 msgstr "12 小时"
 
-#: web/languages/translates.php:13
+#: languages/translates.php:13
 msgid "1 day"
 msgstr "1 天"
 
-#: web/languages/translates.php:16
+#: languages/translates.php:16
 msgid "Active"
 msgstr "已激活"
 
-#: web/languages/translates.php:18
+#: languages/translates.php:18
 msgid "Initializing"
 msgstr "初始化中"
 
-#: web/languages/translates.php:19
+#: languages/translates.php:19
 msgid "Moved"
 msgstr "已移动"
 
-#: web/languages/translates.php:21
+#: languages/translates.php:21
 msgid "Deactivated"
 msgstr "未激活"
 
-#: web/languages/translates.php:26
+#: languages/translates.php:26
 msgid "Add Record"
 msgstr "添加记录"
 
-#: web/languages/translates.php:27
+#: languages/translates.php:27
 msgid "Edit Record"
 msgstr "编辑记录"
 
-#: web/languages/translates.php:28
+#: languages/translates.php:28
 msgid "Delete Record"
 msgstr "删除记录"
 
-#: web/languages/translates.php:29
+#: languages/translates.php:29
 msgid "Analytics"
 msgstr "统计"
 
-#: web/languages/translates.php:31
+#: languages/translates.php:31
 msgid "Manage Zone"
 msgstr "管理域名"
 
-#: web/languages/translates.php:32
+#: languages/translates.php:32
 msgid "DNSSEC"
 msgstr "DNSSEC"
 
-#: web/languages/translates.php:33
+#: languages/translates.php:33
 msgid "Login"
 msgstr "登录"
 
-#: web/settings.php:20
+#: settings.php:20
 msgid "No HOST_KEY or HOST_MAIL defined in config.php ."
 msgstr "没有在 config.php 中设置 HOST_KEY 或 HOST_MAIL ."
 
-#: web/settings.php:22
+#: settings.php:22
 msgid "Please set up your own HOST_KEY and HOST_MAIL in config.php ."
 msgstr "请在 config.php 中设置你自己的 HOST_KEY 和 HOST_MAIL."
+
+#~ msgid "Not support CDN"
+#~ msgstr "不支持 CDN"
