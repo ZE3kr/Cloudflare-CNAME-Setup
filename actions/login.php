@@ -3,7 +3,7 @@
  * Login page.
  */
 
-if (!isset($adapter)) {exit;}
+if (!isset($version)) {exit;}
 
 if (isset($msg) && $msg != '') {echo '<div class="alert alert-warning" role="alert">' . $msg . '</div>';}
 ?>
