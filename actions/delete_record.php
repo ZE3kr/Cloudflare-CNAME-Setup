@@ -3,7 +3,7 @@
  * Delete a specific record for a domain.
  */
 
-if (!isset($tlo_id)) {exit;}
+if (!isset($adapter)) {exit;}
 
 $dns = new \Cloudflare\API\Endpoints\DNS($adapter);
 try {

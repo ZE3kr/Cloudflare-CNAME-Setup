@@ -2,7 +2,7 @@
 /*
  * Advanced analytics. Show the analytics data for the previous year.
  */
-if (!isset($tlo_id)) {exit;}
+if (!isset($adapter)) {exit;}
 
 $zone_name = $_GET['domain'];
 $zones = new \Cloudflare\API\Endpoints\Zones($adapter);

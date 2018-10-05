@@ -3,7 +3,7 @@
  * Logout action.
  */
 
-if (!isset($tlo_id)) {exit;}
+if (!isset($adapter)) {exit;}
 
 setcookie('cloudflare_email', null, -1);
 setcookie('user_key', null, -1);
