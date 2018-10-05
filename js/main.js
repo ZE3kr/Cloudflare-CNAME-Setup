@@ -22,6 +22,20 @@ if(caa && content){
 	}
 }
 
+var mxPriority = document.getElementById("dns-mx-priority");
+
+if(mxPriority && content){
+	mxPriority.style.display = "none";
+
+	document.getElementById("type").onchange = function () {
+		if(this.value === "MX"){
+			mxPriority.style.display = "block";
+		} else {
+			mxPriority.style.display = "none";
+		}
+	}
+}
+
 /* Implement "data-selected" feature */
 
 var selects = document.getElementsByTagName("select");

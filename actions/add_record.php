@@ -71,6 +71,11 @@ if (isset($_POST['submit'])) {
 			<textarea name="content" rows="5" id="doc-ta-1" class="form-control"></textarea>
 		</div>
 
+		<div class="form-group" id="dns-mx-priority">
+			<label for="priority"><?php echo _('Priority'); ?></label>
+			<input type="number" name="priority" id="priority" step="1" min="1" value="1" class="form-control">
+		</div>
+
 		<div id="dns-data-caa">
 			<div class="form-group">
 				<label for="data_tag"><?php echo _('Tag'); ?></label>
@@ -103,10 +108,6 @@ foreach ($ttl_translate as $_ttl => $_ttl_name) {
 				<option value="true"><?php echo _('On'); ?></option>
 				<option value="false"><?php echo _('Off'); ?></option>
 			</select>
-		</div>
-		<div class="form-group">
-			<label for="priority"><?php echo _('Priority (Only for MX record)'); ?></label>
-			<input type="number" name="priority" id="priority" step="1" min="1" value="1" class="form-control">
 		</div>
 		<p><button type="submit" name="submit" class="btn btn-primary"><?php echo _('Submit'); ?></button></p>
 	</fieldset>

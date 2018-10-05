@@ -10,7 +10,7 @@
 
 $starttime = microtime(true);
 $page_title = '';
-$version = '1.2.0-alpha-5';
+$version = '1.2.0';
 
 require_once 'settings.php';
 require_once 'cloudflare.class.php';

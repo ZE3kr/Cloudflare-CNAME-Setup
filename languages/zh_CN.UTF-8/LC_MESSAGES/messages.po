@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2018-10-05 21:05+0800\n"
-"PO-Revision-Date: 2018-10-05 21:05+0800\n"
+"POT-Creation-Date: 2018-10-05 21:19+0800\n"
+"PO-Revision-Date: 2018-10-05 21:19+0800\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: zh_CN\n"
@@ -40,7 +40,7 @@ msgstr "域名"
 msgid "Please enter your domain"
 msgstr "请输入你的域名"
 
-#: actions/add.php:90 actions/add_record.php:111 actions/edit_record.php:106
+#: actions/add.php:90 actions/add_record.php:112 actions/edit_record.php:106
 msgid "Submit"
 msgstr "提交"
 
@@ -80,37 +80,37 @@ msgstr "记录类型"
 msgid "Record Content"
 msgstr "记录内容"
 
-#: actions/add_record.php:76 actions/edit_record.php:60
+#: actions/add_record.php:75
+msgid "Priority"
+msgstr "权重"
+
+#: actions/add_record.php:81 actions/edit_record.php:60
 msgid "Tag"
 msgstr "标签 (Tag)"
 
-#: actions/add_record.php:78 actions/edit_record.php:62
+#: actions/add_record.php:83 actions/edit_record.php:62
 msgid "Only allow specific hostnames"
 msgstr "仅允许特定主机名"
 
-#: actions/add_record.php:79 actions/edit_record.php:63
+#: actions/add_record.php:84 actions/edit_record.php:63
 msgid "Only allow wildcards"
 msgstr "仅允许通配符"
 
-#: actions/add_record.php:80 actions/edit_record.php:64
+#: actions/add_record.php:85 actions/edit_record.php:64
 msgid "Send violation reports to URL (http:, https:, or mailto:)"
 msgstr "发送违规报告到 URL (http:, https:, 或 mailto:)"
 
-#: actions/add_record.php:84 actions/edit_record.php:68
+#: actions/add_record.php:89 actions/edit_record.php:68
 msgid "Value"
 msgstr "值"
 
-#: actions/add_record.php:103 actions/edit_record.php:93
+#: actions/add_record.php:108 actions/edit_record.php:93
 msgid "On"
 msgstr "开启"
 
-#: actions/add_record.php:104 actions/edit_record.php:94
+#: actions/add_record.php:109 actions/edit_record.php:94
 msgid "Off"
 msgstr "关闭"
-
-#: actions/add_record.php:108 actions/edit_record.php:101
-msgid "Priority (Only for MX record)"
-msgstr "权重 (仅限 MX 记录)"
 
 #: actions/analytics.php:14 actions/list_zones.php:34
 msgid "Advanced Analytics"
@@ -173,6 +173,10 @@ msgstr "总计 (最近一年)"
 #: actions/edit_record.php:46
 msgid "Edit DNS Record"
 msgstr "编辑 DNS 记录"
+
+#: actions/edit_record.php:101
+msgid "Priority (Only for MX record)"
+msgstr "权重 (仅限 MX 记录)"
 
 #: actions/list_zones.php:12 languages/translates.php:30
 msgid "Add Domain"
@@ -531,6 +535,3 @@ msgstr "没有在 config.php 中设置 HOST_KEY 或 HOST_MAIL ."
 #: settings.php:22
 msgid "Please set up your own HOST_KEY and HOST_MAIL in config.php ."
 msgstr "请在 config.php 中设置你自己的 HOST_KEY 和 HOST_MAIL."
-
-#~ msgid "Not support CDN"
-#~ msgstr "不支持 CDN"
