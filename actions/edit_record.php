@@ -74,6 +74,12 @@ if (isset($msg)) {echo $msg;}
 			<label for="doc-ta-1"><?php echo _('Record Content'); ?></label>
 			<textarea name="content" rows="5" id="doc-ta-1" class="form-control"><?php echo htmlspecialchars($dns_details->content); ?></textarea>
 		</div>
+			<?php if ($dns_details->type == 'MX' || $dns_details->type == 'SRV') {?>
+				<div class="form-group">
+					<label for="priority"><?php echo _('Priority'); ?></label>
+					<input type="number" name="priority" id="priority" step="1" min="1" value="<?php echo $dns_details->priority; ?>" class="form-control">
+				</div>
+			<?php }?>ƒ
 		<?php }?>
 
 		<div class="form-group">
@@ -93,13 +99,6 @@ foreach ($ttl_translate as $_ttl => $_ttl_name) {
 				<option value="true" <?php if ($dns_details->proxied) {echo 'selected="selected"';}?>><?php echo _('On'); ?></option>
 				<option value="false" <?php if (!$dns_details->proxied) {echo 'selected="selected"';}?>><?php echo _('Off'); ?></option>
 			</select>
-		</div>
-		<?php }?>
-
-		<?php if ($dns_details->type == 'MX' || $dns_details->type == 'SRV') {?>
-		<div class="form-group">
-			<label for="priority"><?php echo _('Priority (Only for MX record)'); ?></label>
-			<input type="number" name="priority" id="priority" step="1" min="1" value="<?php echo $dns_details->priority; ?>" class="form-control">
 		</div>
 		<?php }?>
 
