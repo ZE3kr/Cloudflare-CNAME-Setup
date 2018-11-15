@@ -6,7 +6,7 @@
 if (!isset($adapter)) {exit;}
 
 try {
-	$dnssec = $adapter->patch('zones/' . $_GET['zoneid'] . '/dnssec', [], ['status' => $_GET['do']]);
+	$dnssec = $adapter->patch('zones/' . $_GET['zoneid'] . '/dnssec', ['status' => $_GET['do']]);
 	$dnssec = json_decode($dnssec->getBody());
 } catch (Exception $e) {
 	exit('<div class="alert alert-danger" role="alert">' . $e->getMessage() . '</div>');
