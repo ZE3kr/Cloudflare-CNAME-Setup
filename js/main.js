@@ -36,6 +36,22 @@ if(mxPriority && content){
 	}
 }
 
+var srv = document.getElementById("dns-data-srv");
+
+if(srv && content){
+	srv.style.display = "none";
+
+	document.getElementById("type").onchange = function () {
+		if(this.value === "SRV"){
+			srv.style.display = "block";
+			content.style.display = "none";
+		} else {
+			srv.style.display = "none";
+			content.style.display = "block";
+		}
+	}
+}
+
 /* Implement "data-selected" feature */
 
 var selects = document.getElementsByTagName("select");
