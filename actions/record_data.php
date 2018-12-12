@@ -11,7 +11,7 @@ if ($_POST['type'] == 'CAA') {
 
 if ($_POST['type'] == 'SRV') {
 	$dns_data = [
-		'name' => $_POST['name'],
+		'name' => isset($_POST['srv_name'])? $_POST['srv_name'] :$_POST['name'],
 		'port' => intval($_POST['srv_port']),
 		'priority' => intval($_POST['srv_priority']),
 		'proto' => $_POST['srv_proto'],
