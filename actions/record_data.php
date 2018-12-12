@@ -8,3 +8,16 @@ if ($_POST['type'] == 'CAA') {
 		'flags' => intval($_POST['data_flags']),
 	];
 }
+
+if ($_POST['type'] == 'SRV') {
+	$dns_data = [
+		'name' => $_POST['name'],
+		'port' => intval($_POST['srv_port']),
+		'priority' => intval($_POST['srv_priority']),
+		'proto' => $_POST['srv_proto'],
+		'service' => $_POST['srv_service'],
+		'target' => $_POST['srv_target'],
+		'weight' => intval($_POST['srv_weight']),
+	];
+}
+
