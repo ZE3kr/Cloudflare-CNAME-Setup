@@ -1,15 +1,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2018-10-05 21:24+0800\n"
-"PO-Revision-Date: 2018-10-05 21:24+0800\n"
+"POT-Creation-Date: 2018-12-13 19:21+0800\n"
+"PO-Revision-Date: 2018-12-13 19:23+0800\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.1.1\n"
+"X-Generator: Poedit 2.2\n"
 "X-Poedit-Basepath: ../../..\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Poedit-SearchPath-0: .\n"
@@ -40,7 +40,7 @@ msgstr "域名"
 msgid "Please enter your domain"
 msgstr "请输入你的域名"
 
-#: actions/add.php:90 actions/add_record.php:112 actions/edit_record.php:105
+#: actions/add.php:90 actions/add_record.php:144 actions/edit_record.php:138
 msgid "Submit"
 msgstr "提交"
 
@@ -76,39 +76,60 @@ msgstr "记录名 (例 “@”, “www”, etc.)"
 msgid "Record Type"
 msgstr "记录类型"
 
-#: actions/add_record.php:70 actions/edit_record.php:74
+#: actions/add_record.php:71 actions/edit_record.php:107
 msgid "Record Content"
 msgstr "记录内容"
 
-#: actions/add_record.php:75 actions/edit_record.php:79
+#: actions/add_record.php:76 actions/add_record.php:110
+#: actions/edit_record.php:90 actions/edit_record.php:112
 msgid "Priority"
-msgstr "权重"
+msgstr "权重 (Priority)"
 
-#: actions/add_record.php:81 actions/edit_record.php:60
+#: actions/add_record.php:82 actions/edit_record.php:60
 msgid "Tag"
 msgstr "标签 (Tag)"
 
-#: actions/add_record.php:83 actions/edit_record.php:62
+#: actions/add_record.php:84 actions/edit_record.php:62
 msgid "Only allow specific hostnames"
 msgstr "仅允许特定主机名"
 
-#: actions/add_record.php:84 actions/edit_record.php:63
+#: actions/add_record.php:85 actions/edit_record.php:63
 msgid "Only allow wildcards"
 msgstr "仅允许通配符"
 
-#: actions/add_record.php:85 actions/edit_record.php:64
+#: actions/add_record.php:86 actions/edit_record.php:64
 msgid "Send violation reports to URL (http:, https:, or mailto:)"
 msgstr "发送违规报告到 URL (http:, https:, 或 mailto:)"
 
-#: actions/add_record.php:89 actions/edit_record.php:68
+#: actions/add_record.php:90 actions/edit_record.php:68
 msgid "Value"
-msgstr "值"
+msgstr "值 (Value)"
 
-#: actions/add_record.php:108 actions/edit_record.php:99
+#: actions/add_record.php:98 actions/edit_record.php:74
+msgid "Service"
+msgstr "服务 (Service)"
+
+#: actions/add_record.php:102 actions/edit_record.php:78
+msgid "Proto"
+msgstr "协议 (Proto)"
+
+#: actions/add_record.php:114 actions/edit_record.php:94
+msgid "Weight"
+msgstr "权重 (Weight)"
+
+#: actions/add_record.php:118 actions/edit_record.php:98
+msgid "Port"
+msgstr "端口 (Port)"
+
+#: actions/add_record.php:122 actions/edit_record.php:102
+msgid "Target"
+msgstr "目标 (Target)"
+
+#: actions/add_record.php:140 actions/edit_record.php:132
 msgid "On"
 msgstr "开启"
 
-#: actions/add_record.php:109 actions/edit_record.php:100
+#: actions/add_record.php:141 actions/edit_record.php:133
 msgid "Off"
 msgstr "关闭"
 
@@ -173,6 +194,10 @@ msgstr "总计 (最近一年)"
 #: actions/edit_record.php:46
 msgid "Edit DNS Record"
 msgstr "编辑 DNS 记录"
+
+#: actions/edit_record.php:86
+msgid "Name"
+msgstr "主机名"
 
 #: actions/list_zones.php:12 languages/translates.php:30
 msgid "Add Domain"
