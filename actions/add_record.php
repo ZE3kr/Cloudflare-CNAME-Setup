@@ -63,6 +63,7 @@ if (isset($_POST['submit'])) {
 				<option value="NS">NS</option>
 				<option value="PTR">PTR</option>
 				<option value="CAA">CAA</option>
+				<option value="SRV">SRV</option>
 			</select>
 		</div>
 
@@ -90,6 +91,37 @@ if (isset($_POST['submit'])) {
 				<input type="text" name="data_value" id="data_value" class="form-control">
 			</div>
 			<input type="hidden" name="data_flags" value="0">
+		</div>
+
+		<div id="dns-data-srv">
+			<div class="form-group">
+				<label for="srv_service"><?php echo _('Service'); ?></label>
+				<input type="text" name="srv_service" id="srv_service" value="_sip" class="form-control">
+			</div>
+			<div class="form-group">
+				<label for="srv_proto"><?php echo _('Proto'); ?></label>
+				<select name="srv_proto" id="srv_proto" class="form-control">
+					<option value="_tcp" selected="selected">TCP</option>
+					<option value="_udp">UDP</option>
+					<option value="_tls">TLS</option>
+				</select>
+			</div>
+			<div class="form-group">
+				<label for="srv_priority"><?php echo _('Priority'); ?></label>
+				<input type="text" name="srv_priority" id="srv_priority" value="1" class="form-control">
+			</div>
+			<div class="form-group">
+				<label for="srv_weight"><?php echo _('Weight'); ?></label>
+				<input type="text" name="srv_weight" id="srv_weight" value="1" class="form-control">
+			</div>
+			<div class="form-group">
+				<label for="srv_port"><?php echo _('Port'); ?></label>
+				<input type="text" name="srv_port" id="srv_port" value="1" class="form-control">
+			</div>
+			<div class="form-group">
+				<label for="srv_target"><?php echo _('Target'); ?></label>
+				<input type="text" name="srv_target" id="srv_target" class="form-control">
+			</div>
 		</div>
 
 		<div class="form-group">
