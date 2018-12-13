@@ -11,7 +11,7 @@ var caa = document.getElementById("dns-data-caa");
 if(caa && content){
 	caa.style.display = "none";
 
-	document.getElementById("type").onchange = function () {
+	document.getElementById("type").addEventListener('change', function () {
 		if(this.value === "CAA"){
 			caa.style.display = "block";
 			content.style.display = "none";
@@ -19,7 +19,7 @@ if(caa && content){
 			caa.style.display = "none";
 			content.style.display = "block";
 		}
-	}
+	})
 }
 
 var mxPriority = document.getElementById("dns-mx-priority");
@@ -27,13 +27,29 @@ var mxPriority = document.getElementById("dns-mx-priority");
 if(mxPriority && content){
 	mxPriority.style.display = "none";
 
-	document.getElementById("type").onchange = function () {
+	document.getElementById("type").addEventListener('change', function () {
 		if(this.value === "MX"){
 			mxPriority.style.display = "block";
 		} else {
 			mxPriority.style.display = "none";
 		}
-	}
+	})
+}
+
+var srv = document.getElementById("dns-data-srv");
+
+if(srv && content){
+	srv.style.display = "none";
+
+	document.getElementById("type").addEventListener('change', function () {
+		if(this.value === "SRV"){
+			srv.style.display = "block";
+			content.style.display = "none";
+		} else {
+			srv.style.display = "none";
+			content.style.display = "block";
+		}
+	})
 }
 
 /* Implement "data-selected" feature */
