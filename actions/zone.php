@@ -106,7 +106,7 @@ foreach ($dnsresult as $record) {
 		} else {
 			$proxiable = '<img src="images/cloud_off.png" height="30">';
 		}
-		if (isset($_GET['enable']) && $record->id == $_GET['enable']) {
+		if (isset($_GET['enable']) && $record->id === $_GET['enable']) {
 			$proxiable = '<a href="?action=zone&domain=' . $zone_name . '&disable=' . $record->id . '&page=' . $_GET['page'] . '&amp;zoneid=' . $zoneID . '"><img src="images/cloud_on.png" height="19"></a>';
 		} elseif (isset($_GET['disable']) && $record->id == $_GET['disable']) {
 			$proxiable = '<a href="?action=zone&domain=' . $zone_name . '&enable=' . $record->id . '&page=' . $_GET['page'] . '&amp;zoneid=' . $zoneID . '"><img src="images/cloud_off.png" height="30"></a>';
