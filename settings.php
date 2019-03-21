@@ -1,14 +1,4 @@
 <?php
-if (substr($_SERVER['HTTP_HOST'], 0, 5) == 'beta.') {
-	$is_beta = true;
-	$is_debug = false;
-} elseif (explode(':', $_SERVER['HTTP_HOST'])[0] == "localhost") {
-	$is_beta = true;
-	$is_debug = true;
-} else {
-	$is_beta = false;
-	$is_debug = false;
-}
 
 if (@file_exists("../config.php")) {
 	require_once "../config.php";
@@ -18,7 +8,7 @@ if (@file_exists("../config.php")) {
 
 if (!defined('HOST_KEY') || !defined('HOST_MAIL')) {
 	exit(_('No HOST_KEY or HOST_MAIL defined in config.php .'));
-} elseif (HOST_KEY == 'e9e4498f0584b7098692512db0c62b48' || HOST_MAIL == 'ze3kr@example.com') {
+} elseif (HOST_KEY === 'e9e4498f0584b7098692512db0c62b48' || HOST_MAIL === 'ze3kr@example.com') {
 	exit(_('Please set up your own HOST_KEY and HOST_MAIL in config.php .'));
 }
 
