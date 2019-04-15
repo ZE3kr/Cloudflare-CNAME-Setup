@@ -44,8 +44,8 @@
 
 ## 屏幕截图
 
-<img src="https://cdn.landcement.com/uploads/cloudflare/zh1.png" />
-<img src="https://cdn.landcement.com/uploads/cloudflare/zh2.png" width="433" />
+<img src="https://tloxygen.com/wp-content/uploads/uploads/cloudflare/zh1.png" />
+<img src="https://tloxygen.com/wp-content/uploads/uploads/cloudflare/zh2.png" width="433" />
 
 ## Open sourced software used in this project
 
