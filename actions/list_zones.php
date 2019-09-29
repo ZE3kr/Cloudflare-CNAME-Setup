@@ -8,9 +8,15 @@ if (!isset($adapter)) {exit;}
 if (!isset($_GET['page'])) {
 	$_GET['page'] = 1;
 }
+if(!$no_api_key){
 ?>
 <a href="?action=add" class="btn btn-primary float-sm-right mb-3 d-block"><?php echo _('Add Domain'); ?></a>
+<?php } ?>
 <h3 class="d-none d-sm-block"><?php echo _('Home'); ?></h3>
+
+<?php if($no_api_key){
+	echo '<div class="alert alert-warning" role="alert">' . _('No Host API key found. You cannot add new domain to this service.') . '</div>';
+} ?>
 
 <table class="table table-striped">
 	<thead>

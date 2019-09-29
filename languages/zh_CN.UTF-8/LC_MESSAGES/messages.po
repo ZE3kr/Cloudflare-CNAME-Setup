@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2018-12-13 19:21+0800\n"
-"PO-Revision-Date: 2018-12-13 19:23+0800\n"
+"POT-Creation-Date: 2019-09-29 21:11+0800\n"
+"PO-Revision-Date: 2019-09-29 21:14+0800\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: zh_CN\n"
@@ -32,7 +32,7 @@ msgstr "前往管理中心"
 msgid "Cannot add a existing domain."
 msgstr "无法添加已经存在的域名."
 
-#: actions/add.php:88 actions/list_zones.php:18
+#: actions/add.php:88 actions/list_zones.php:24
 msgid "Domain"
 msgstr "域名"
 
@@ -44,7 +44,7 @@ msgstr "请输入你的域名"
 msgid "Submit"
 msgstr "提交"
 
-#: actions/add_record.php:36 actions/add_record.php:38 actions/zone.php:84
+#: actions/add_record.php:36 actions/add_record.php:38 actions/zone.php:85
 msgid "Add New Record"
 msgstr "添加新记录"
 
@@ -72,7 +72,7 @@ msgstr "添加 DNS 记录"
 msgid "Record Name (e.g. “@”, “www”, etc.)"
 msgstr "记录名 (例 “@”, “www”, etc.)"
 
-#: actions/add_record.php:55 actions/edit_record.php:52 actions/zone.php:88
+#: actions/add_record.php:55 actions/edit_record.php:52 actions/zone.php:90
 msgid "Record Type"
 msgstr "记录类型"
 
@@ -133,7 +133,7 @@ msgstr "开启"
 msgid "Off"
 msgstr "关闭"
 
-#: actions/analytics.php:14 actions/list_zones.php:34
+#: actions/analytics.php:14 actions/list_zones.php:40
 msgid "Advanced Analytics"
 msgstr "高级统计"
 
@@ -199,61 +199,66 @@ msgstr "编辑 DNS 记录"
 msgid "Name"
 msgstr "主机名"
 
-#: actions/list_zones.php:12 languages/translates.php:30
+#: actions/list_zones.php:13 languages/translates.php:30
 msgid "Add Domain"
 msgstr "添加域名"
 
-#: actions/list_zones.php:13
+#: actions/list_zones.php:15
 msgid "Home"
 msgstr "主页"
 
-#: actions/list_zones.php:19
+#: actions/list_zones.php:18 actions/login2.php:12
+msgid "No Host API key found. You cannot add new domain to this service."
+msgstr "没有找到 Host API key。你不能添加新域名。"
+
+#: actions/list_zones.php:25
 msgid "Status"
 msgstr "状态"
 
-#: actions/list_zones.php:20 actions/zone.php:92
+#: actions/list_zones.php:26 actions/zone.php:94
 msgid "Operation"
 msgstr "操作"
 
-#: actions/list_zones.php:35 actions/zone.php:134
+#: actions/list_zones.php:41 actions/zone.php:136
 msgid "Manage"
 msgstr "管理"
 
-#: actions/list_zones.php:36 actions/list_zones.php:80
+#: actions/list_zones.php:42 actions/list_zones.php:86
 msgid "Manage DNS"
 msgstr "管理 DNS"
 
-#: actions/list_zones.php:37 languages/translates.php:25
+#: actions/list_zones.php:43 languages/translates.php:25
 msgid "Security"
 msgstr "安全"
 
-#: actions/list_zones.php:80
+#: actions/list_zones.php:86
 msgid ""
 "This domain only supports NS setup. And you should manage DNS records on "
 "Cloudflare.com."
 msgstr "这个域名只支持 NS 接入. 你应该在 Cloudflare.com 上管理 DNS 记录."
 
-#: actions/list_zones.php:106 actions/zone.php:167 actions/zone.php:214
+#: actions/list_zones.php:112 actions/zone.php:169 actions/zone.php:216
 msgid "Next"
 msgstr "下一页"
 
-#: actions/list_zones.php:110 actions/zone.php:171 actions/zone.php:218
+#: actions/list_zones.php:116 actions/zone.php:173 actions/zone.php:220
 msgid "Previous"
 msgstr "上一页"
 
-#: actions/list_zones.php:112 actions/zone.php:173 actions/zone.php:220
+#: actions/list_zones.php:118 actions/zone.php:175 actions/zone.php:222
 msgid "Page"
 msgstr "页码"
 
-#: actions/login.php:10
+#: actions/login.php:10 actions/login2.php:10
 msgid "Cloudflare CNAME/IP/NS Setup"
 msgstr "Cloudflare CNAME/IP/NS 接入"
 
-#: actions/login.php:12
+#: actions/login.php:12 actions/login2.php:15
 msgid "Please sign in"
 msgstr "请先登录"
 
-#: actions/login.php:13 actions/login.php:14
+#: actions/login.php:13 actions/login.php:14 actions/login2.php:16
+#: actions/login2.php:17
 msgid "Your email address on cloudflare.com"
 msgstr "你在 cloudflare.com 上的邮箱"
 
@@ -261,11 +266,11 @@ msgstr "你在 cloudflare.com 上的邮箱"
 msgid "Your password on cloudflare.com"
 msgstr "你在 cloudflare.com 上的密码"
 
-#: actions/login.php:19
+#: actions/login.php:19 actions/login2.php:23
 msgid "Remember me"
 msgstr "下次自动登录"
 
-#: actions/login.php:22
+#: actions/login.php:22 actions/login2.php:26
 msgid "Sign in"
 msgstr "登录"
 
@@ -273,9 +278,21 @@ msgstr "登录"
 msgid "Use your existing account or create a new account here."
 msgstr "在这里登录你已有的账号或者注册新账号."
 
-#: actions/login.php:24
+#: actions/login.php:24 actions/login2.php:28
 msgid "We will not store any of your Cloudflare data"
 msgstr "我们不会存储你的任何 Cloudflare 数据"
+
+#: actions/login2.php:18 actions/login2.php:20
+msgid "Your global API key on cloudflare.com"
+msgstr "你在 cloudflare.com 上的 Global API key"
+
+#: actions/login2.php:20
+msgid "Your global API key. NOT your password."
+msgstr "请输入 Global API Key，而不是你的账户密码."
+
+#: actions/login2.php:27
+msgid "How to get my global API key?"
+msgstr "如何获取我的 Global API Key？"
 
 #: actions/security.php:21
 msgid "SSL Verify"
@@ -357,64 +374,64 @@ msgstr "目录"
 msgid "DNS Management"
 msgstr "DNS 管理"
 
-#: actions/zone.php:77 actions/zone.php:178
+#: actions/zone.php:77 actions/zone.php:180
 msgid "CNAME Setup"
 msgstr "CNAME 接入"
 
-#: actions/zone.php:78 actions/zone.php:233
+#: actions/zone.php:78 actions/zone.php:235
 msgid "IP Setup"
 msgstr "IP 接入"
 
-#: actions/zone.php:79 actions/zone.php:249
+#: actions/zone.php:79 actions/zone.php:251
 msgid "NS Setup"
 msgstr "NS 接入"
 
-#: actions/zone.php:81 actions/zone.php:275 actions/zone.php:276
+#: actions/zone.php:81 actions/zone.php:277 actions/zone.php:278
 msgid "More Settings"
 msgstr "更多设置"
 
-#: actions/zone.php:89 actions/zone.php:182 actions/zone.php:253
+#: actions/zone.php:91 actions/zone.php:184 actions/zone.php:255
 msgid "Host Name"
 msgstr "主机名"
 
-#: actions/zone.php:90
+#: actions/zone.php:92
 msgid "Content"
 msgstr "内容"
 
-#: actions/zone.php:91 actions/zone.php:141
+#: actions/zone.php:93 actions/zone.php:143
 msgid "TTL"
 msgstr "TTL"
 
-#: actions/zone.php:129
+#: actions/zone.php:131
 msgid "record"
 msgstr "记录"
 
-#: actions/zone.php:131 actions/zone.php:194 actions/zone.php:260
-#: actions/zone.php:266
+#: actions/zone.php:133 actions/zone.php:196 actions/zone.php:262
+#: actions/zone.php:268
 msgid "points to"
 msgstr "指向"
 
-#: actions/zone.php:137 actions/zone.php:147
+#: actions/zone.php:139 actions/zone.php:149
 msgid "Edit"
 msgstr "编辑"
 
-#: actions/zone.php:138 actions/zone.php:148
+#: actions/zone.php:140 actions/zone.php:150
 msgid "Are you sure to delete"
 msgstr "你确认要删除"
 
-#: actions/zone.php:138 actions/zone.php:148
+#: actions/zone.php:140 actions/zone.php:150
 msgid "Delete"
 msgstr "删除"
 
-#: actions/zone.php:159 actions/zone.php:206
+#: actions/zone.php:161 actions/zone.php:208
 msgid "There is no record in this zone yet. Please add some!"
 msgstr "该域名还没有任何记录, 请添加!"
 
-#: actions/zone.php:176
+#: actions/zone.php:178
 msgid "You can use CNAME, IP or NS to set it up."
 msgstr "你可以使用 CNAME, IP 和 NS 任意一种方式接入。"
 
-#: actions/zone.php:276
+#: actions/zone.php:278
 msgid ""
 "This site only provides configurations that the official does not have. For "
 "more settings, such as Page Rules, Crypto, Firewall, Cache, etc., please use "
@@ -441,23 +458,28 @@ msgid ""
 "next hour."
 msgstr "由于你多次登录失败，已经被屏蔽，请在下一个小时再试。"
 
-#: index.php:90 index.php:128
+#: index.php:59
+msgid ""
+"An error occurred. You might have provided an error email and API key pair."
+msgstr "发生了一个错误。你可能提供了一组错误的邮箱和 API 对。"
+
+#: index.php:117 index.php:155
 msgid "Console"
 msgstr "面板"
 
-#: index.php:93
+#: index.php:120
 msgid "Cloudflare CNAME/IP Advanced Setup"
 msgstr "Cloudflare CNAME/IP 高级接入"
 
-#: index.php:132 languages/translates.php:24
+#: index.php:159 languages/translates.php:24
 msgid "Logout"
 msgstr "退出登录"
 
-#: index.php:185
+#: index.php:216
 msgid "Cloudflare Support"
 msgstr "Cloudflare 支持"
 
-#: index.php:186
+#: index.php:217
 msgid "View on GitHub"
 msgstr "在 GitHub 上查看"
 
@@ -549,10 +571,8 @@ msgstr "DNSSEC"
 msgid "Login"
 msgstr "登录"
 
-#: settings.php:20
-msgid "No HOST_KEY or HOST_MAIL defined in config.php ."
-msgstr "没有在 config.php 中设置 HOST_KEY 或 HOST_MAIL ."
+#~ msgid "No HOST_KEY or HOST_MAIL defined in config.php ."
+#~ msgstr "没有在 config.php 中设置 HOST_KEY 或 HOST_MAIL ."
 
-#: settings.php:22
-msgid "Please set up your own HOST_KEY and HOST_MAIL in config.php ."
-msgstr "请在 config.php 中设置你自己的 HOST_KEY 和 HOST_MAIL."
+#~ msgid "Please set up your own HOST_KEY and HOST_MAIL in config.php ."
+#~ msgstr "请在 config.php 中设置你自己的 HOST_KEY 和 HOST_MAIL."
