@@ -6,10 +6,11 @@ if (@file_exists("../config.php")) {
 	require_once "config.php";
 }
 
-if (!defined('HOST_KEY') || !defined('HOST_MAIL')) {
-	exit(_('No HOST_KEY or HOST_MAIL defined in config.php .'));
-} elseif (HOST_KEY === 'e9e4498f0584b7098692512db0c62b48' || HOST_MAIL === 'ze3kr@example.com') {
-	exit(_('Please set up your own HOST_KEY and HOST_MAIL in config.php .'));
+if (!defined('HOST_KEY') || !defined('HOST_MAIL') || HOST_KEY === 'e9e4498f0584b7098692512db0c62b48' ||
+    HOST_MAIL === 'ze3kr@example.com') {
+    $no_api_key = true;
+} else {
+    $no_api_key = false;
 }
 
 if (!isset($page_title)) {
@@ -52,7 +53,7 @@ require_once 'languages/translates.php';
 header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
 header("Content-Type: text/html; charset=UTF-8");
 
-if ($is_debug) {
+if (isset($is_debug) && $is_debug) {
 	ini_set('display_errors', 1);
 	ini_set('display_startup_errors', 1);
 	error_reporting(E_ALL);
