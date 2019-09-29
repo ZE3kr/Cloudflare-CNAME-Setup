@@ -81,7 +81,9 @@ if (isset($_GET['enable']) && !$dnsproxyied[$_GET['enable']]) {
 		<a class="dropdown-item" href="https://dash.cloudflare.com/" target="_blank"><?php echo _('More Settings'); ?></a>
 	</div>
 </div>
-<h3 class="mt-5 mb-3" id="dns"><?php echo _('DNS Management'); ?><a class="btn btn-primary float-sm-right d-block mt-3 mt-sm-0" href='?action=add_record&amp;zoneid=<?php echo $zoneID; ?>&amp;domain=<?php echo $zone_name; ?>'><?php echo _('Add New Record'); ?></a></h3>
+<h3 class="mt-5 mb-3" id="dns"><?php echo _('DNS Management'); ?>
+	<a class="btn btn-primary float-sm-right d-block mt-3 mt-sm-0" href='?action=add_record&amp;zoneid=<?php echo $zoneID; ?>&amp;domain=<?php echo $zone_name; ?>'><?php echo _('Add New Record'); ?></a>
+</h3>
 <table class="table table-striped">
 	<thead>
 		<tr>

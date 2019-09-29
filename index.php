@@ -36,16 +36,43 @@ if (!isset($_COOKIE['user_key']) || !isset($_COOKIE['cloudflare_email']) || !iss
 			setcookie('user_api_key', $res['response']['user_api_key'], $cookie_time);
 
 			header('location: ./');
+			exit;
 		} else {
 			$times = $times + 1;
 			apcu_store('login_' . date("Y-m-d H") . $cloudflare_email, $times, 7200);
 			$msg = $res['msg'];
+		}
+	} else if(isset($_POST['cloudflare_api'])) {
+		if (isset($_POST['remember'])) {
+			$cookie_time = time() + 31536000; // Expired in 365 days.
+		} else {
+			$cookie_time = 0;
+		}
+		$key = new \Cloudflare\API\Auth\APIKey($_POST['cloudflare_email'], $_POST['cloudflare_api']);
+		$adapter = new Cloudflare\API\Adapter\Guzzle($key);
+		$user = new \Cloudflare\API\Endpoints\User($adapter);
+
+		$success = true;
+		try {
+			$user_details = $user->getUserDetails();
+		} catch (Exception $e) {
+			echo '<div class="alert alert-warning" role="alert">' . _('An error occurred. You might have provided an error email and API key pair.') . '</div>';
+			echo '<div class="alert alert-warning" role="alert">' . $e->getMessage() . '</div>';
+			$success = false;
+		}
+
+		if($success){
+			setcookie('cloudflare_email', $_POST['cloudflare_email'], $cookie_time);
+			setcookie('user_api_key', $_POST['cloudflare_api'], $cookie_time);
+			header('location: ./');
+			exit;
 		}
 	}
 } else {
 	$key = new \Cloudflare\API\Auth\APIKey($_COOKIE['cloudflare_email'], $_COOKIE['user_api_key']);
 	$adapter = new Cloudflare\API\Adapter\Guzzle($key);
 }
+
 if (!isset($_COOKIE['tlo_cached_main'])) {
 	h2push('css/bootstrap.min.css', 'style');
 	h2push('css/tlo.css?ver=' . urlencode($version), 'style');
@@ -173,7 +200,11 @@ case 'security':
 	require_once 'actions/security.php';
 	break;
 case 'login':
-	require_once 'actions/login.php';
+	if($no_api_key){
+		require_once 'actions/login2.php';
+	} else {
+		require_once 'actions/login.php';
+	}
 	break;
 default:
 	require_once 'actions/list_zones.php';
