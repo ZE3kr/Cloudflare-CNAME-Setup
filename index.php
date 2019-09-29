@@ -20,12 +20,14 @@ if (!isset($_COOKIE['cloudflare_email']) || !isset($_COOKIE['user_api_key'])) {
 	if (isset($_POST['cloudflare_email']) && isset($_POST['cloudflare_pass'])) {
 		$cloudflare_email = $_POST['cloudflare_email'];
 		$cloudflare_pass = $_POST['cloudflare_pass'];
-		$cloudflare = new CloudFlare;
-		$res = $cloudflare->userCreate($cloudflare_email, $cloudflare_pass);
 		$times = apcu_fetch('login_' . date("Y-m-d H") . $cloudflare_email);
 		if ($times > 5) {
 			$msg = '<p>' . _('You have been blocked since you have too many fail logins. You can try it in next hour.') . '</p>';
-		} elseif ($res['result'] == 'success') {
+			exit;
+		}
+		$cloudflare = new CloudFlare;
+		$res = $cloudflare->userCreate($cloudflare_email, $cloudflare_pass);
+		if ($res['result'] == 'success') {
 			if (isset($_POST['remember'])) {
 				$cookie_time = time() + 31536000; // Expired in 365 days.
 			} else {
@@ -52,12 +54,20 @@ if (!isset($_COOKIE['cloudflare_email']) || !isset($_COOKIE['user_api_key'])) {
 		$adapter = new Cloudflare\API\Adapter\Guzzle($key);
 		$user = new \Cloudflare\API\Endpoints\User($adapter);
 
+		$times = apcu_fetch('login_' . date("Y-m-d H") . $_POST['cloudflare_email']);
+		if ($times > 5) {
+			$msg = '<p>' . _('You have been blocked since you have too many fail logins. You can try it in next hour.') . '</p>';
+			exit;
+		}
+
 		$success = true;
 		try {
 			$user_details = $user->getUserDetails();
 		} catch (Exception $e) {
 			echo '<div class="alert alert-warning" role="alert">' . _('An error occurred. You might have provided an error email and API key pair.') . '</div>';
 			echo '<div class="alert alert-warning" role="alert">' . $e->getMessage() . '</div>';
+			$times = $times + 1;
+			apcu_store('login_' . date("Y-m-d H") . $_POST['cloudflare_email'], $times, 7200);
 			$success = false;
 		}
 
