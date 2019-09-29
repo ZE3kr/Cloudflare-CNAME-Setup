@@ -15,7 +15,7 @@ $version = '1.2.3';
 require_once 'settings.php';
 require_once 'cloudflare.class.php';
 
-if (!isset($_COOKIE['user_key']) || !isset($_COOKIE['cloudflare_email']) || !isset($_COOKIE['user_api_key'])) {
+if (!isset($_COOKIE['cloudflare_email']) || !isset($_COOKIE['user_api_key'])) {
 	$_GET['action'] = 'login';
 	if (isset($_POST['cloudflare_email']) && isset($_POST['cloudflare_pass'])) {
 		$cloudflare_email = $_POST['cloudflare_email'];
