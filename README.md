@@ -50,8 +50,8 @@ If you don’t want to use the preinstalled panel above, you can install this pa
 
 ## Screenshot
 
-<img src="https://cdn.landcement.com/uploads/cloudflare/en1.png" />
-<img src="https://cdn.landcement.com/uploads/cloudflare/en2.png" width="433" />
+<img src="https://tloxygen.com/wp-content/uploads/uploads/cloudflare/en1.png" />
+<img src="https://tloxygen.com/wp-content/uploads/uploads/cloudflare/en2.png" width="433" />
 
 ## Open-sourced software used in this project
 
