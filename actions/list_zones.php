@@ -98,9 +98,7 @@ HTML;
 ?>
 	</tbody>
 </table>
-<?php if($no_api_key && isset($tlo_promotion_footer)){
-	echo $tlo_promotion_footer;
-}
+<?php
 if (isset($zones_data->result_info->total_pages)) {
 	$previous_page = '';
 	$next_page = '';
@@ -113,4 +111,7 @@ if (isset($zones_data->result_info->total_pages)) {
 		$previous_page = '<a href="?page=' . $page_link . '">' . _('Previous') . '</a> | ';
 	}
 	echo '<p>' . $previous_page . _('Page') . ' ' . $zones_data->result_info->page . '/' . $zones_data->result_info->total_pages . $next_page . '</p>';
+}
+if($no_api_key && isset($tlo_promotion_footer)){
+	echo $tlo_promotion_footer;
 }
