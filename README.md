@@ -7,7 +7,7 @@ This project allows [Cloudflare Hosting Partner][1] to provide a panel for custo
 [cf.tlo.xyz][4] is the site installed the stable version of this panel. The software is up-to-date, and you can trust.
 
 <blockquote>
-Notice: The Host API key of <a href="https://cf.tlo.xyz">cf.tlo.xyz</a> is to be disabled by Cloudflare.
+Notice: The Host API key of <a href="https://cf.tlo.xyz">cf.tlo.xyz</a> was disabled by Cloudflare.
 
 For now, all users of <a href="https://cf.tlo.xyz">cf.tlo.xyz</a> are required to log in with the Global API Key. To add a new domain to Cloudflare CNAME setup, users can <a href="https://tloxygen.com/2020/04/cloudflare-faq/">use TlOxygen Hosting’s Cloudflare plugin</a>.
 </blockquote>
