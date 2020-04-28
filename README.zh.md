@@ -8,6 +8,12 @@
 注意：[cf.tlo.xyz][3] 的 Host API key 似乎被 Cloudflare 停用了。因此，现在你不能在这个网站上使用密码登录，亦不能添加新的 CNAME 接入的域名。对于已经有 CNAME 接入的用户，依然可以通过 Global API Key（不是密码）的方式登录本站，管理自己域名下的 DNS 记录。
 </blockquote>
 
+<blockquote>
+注意: <a href="https://cf.tlo.xyz">cf.tlo.xyz</a> 的 Host API key 已经被 Cloudflare 停用了。
+
+现在，所有 <a href="https://cf.tlo.xyz">cf.tlo.xyz</a> 用户都需要使用 Global API Key 进行登录。要添加新的 Cloudflare CNAME 接入域名，用户可以<a href="https://tloxygen.com/2020/04/cloudflare-faq/">使用 TlOxygen 虚拟主机上的 Cloudflare 插件</a>.
+</blockquote>
+
 ## 安装
 
 如果你不想使用上述已经安装好了的面板，你可以在自己的服务器上安装。现有多种方式将其安装到服务器，[详情请参见 Wiki 中的安装方法][5]。
