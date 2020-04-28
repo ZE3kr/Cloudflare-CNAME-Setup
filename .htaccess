@@ -1,0 +1,3 @@
+<FilesMatch ".user.ini">
+    Require all denied
+</FilesMatch>
