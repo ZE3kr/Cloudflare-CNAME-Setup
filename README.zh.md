@@ -34,7 +34,7 @@
 
 + 更加灵活，因为你可以使用任何一个 DNS 提供商。
 + 将 Cloudflare 作为一个备份服务器，或者使用多个 CDN。
-+ 可以免费支持四级域名下的 SSL！例如像 `dev.project.example.com` 这样的域名，Cloudflare 也会自动签发 SSL 证书，这是因为 CNAME 接入签发的是 [SSL for SaaS][7]，它会自动的为每一个字域名签发证书。
++ 可以免费支持四级域名下的 SSL！例如像 `dev.project.example.com` 这样的域名，Cloudflare 也会自动签发 SSL 证书，这是因为 CNAME 接入签发的是 [SSL for SaaS][7]，它会自动地为每一个子域名签发证书。
 
 ## 使用 Cloudflare 的好处
 
