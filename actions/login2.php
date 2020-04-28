@@ -34,4 +34,3 @@ if (isset($msg) && $msg != '') {echo '<div class="alert alert-warning" role="ale
 <?php if($no_api_key && isset($tlo_promotion_footer)){
 	echo $tlo_promotion_footer;
 } ?>
-

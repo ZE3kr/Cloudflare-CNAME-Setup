@@ -17,7 +17,7 @@ If you don’t want to use the preinstalled panel above, you can install this pa
 ## Features of this panel
 
 + Manage all your DNS records in one place. Using the [Cloudflare API v4][7], this project supports various types of DNS records.
-+ Advanced Analytics. You can see the analytics report for a whole **previous year**, rather than a month.
++ <del>Advanced Analytics. You can see the analytics report for a whole **previous year**, rather than a month.</del>
 + Supports NS setup. This panel provides NS setup information so you can switch to Cloudflare DNS at any time. You can also find your DNSSEC feature is also supported.
 + Supports IP setup. This service provides the anycast IPv4 and IPv6 of the CDN. You can safely use this service on the root domain.
 + Supports mobile devices.
