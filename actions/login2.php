@@ -30,7 +30,8 @@ if (isset($msg) && $msg != '') {echo '<div class="alert alert-warning" role="ale
 	<button class="btn btn-lg btn-primary btn-block" type="submit"><?php echo _('Sign in'); ?></button>
 	<p class="mt-3 text-muted"><a href="https://support.cloudflare.com/hc/en-us/articles/200167836-Managing-API-Tokens-and-Keys#12345682"><?php echo _('How to get my global API key?'); ?></a></p>
 	<p class="text-muted"><?php echo _('We will not store any of your Cloudflare data'); ?></p>
-	<?php if($no_api_key && isset($tlo_promotion_footer)){
-		echo $tlo_promotion_footer;
-	} ?>
 </form>
+<?php if($no_api_key && isset($tlo_promotion_footer)){
+	echo $tlo_promotion_footer;
+} ?>
+
