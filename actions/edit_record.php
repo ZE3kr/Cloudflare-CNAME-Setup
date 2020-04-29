@@ -26,10 +26,19 @@ if (isset($_POST['submit'])) {
 		$_POST['content'] = "";
 	}
 
+	$options = [
+		'type' => $dns_details->type,
+		'name' => $_POST['name'],
+		'content' => $_POST['content'],
+		'ttl' => intval($_POST['ttl']),
+		'priority' => $_POST['priority'],
+		'proxied' => $_POST['proxied']
+	];
+
 	include "record_data.php";
 
 	try {
-		if ($dns->updateRecordDetails($_GET['zoneid'], $_GET['recordid'], ['type' => $dns_details->type, 'name' => $_POST['name'], 'content' => $_POST['content'], 'ttl' => intval($_POST['ttl']), 'priority' => $_POST['priority'], 'proxied' => $_POST['proxied'], 'data' => $dns_data])) {
+		if ($dns->updateRecordDetails($_GET['zoneid'], $_GET['recordid'], $options)) {
 			exit('<p class="alert alert-success" role="alert">' . _('Success') . '</p>');
 		} else {
 			echo '<p class="alert alert-danger" role="alert">' . _('Failed') . '</p>';
