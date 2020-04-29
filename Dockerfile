@@ -1,4 +1,4 @@
-FROM alpine:3.8
+FROM alpine:3
 MAINTAINER FAN VINGA<fanalcest@gmail.com> ZE3kr<ze3kr@icloud.com>
 
 ENV HOST_KEY=YOUR_CLOUDFLARE_API_KEY \
@@ -16,12 +16,15 @@ RUN apk --no-cache --virtual runtimes add nginx           \
     rm /etc/nginx/conf.d/default.conf                                    && \
     mkdir -p /run/nginx && ln -s /var/run/nginx.pid /run/nginx/nginx.pid && \
     cp /app/docker/nginx.conf   /etc/nginx/conf.d/cloudflare.conf        && \
-    cp /app/docker/php-fpm.conf /etc/php7/php-fpm.conf 
+    cp /app/docker/php-fpm.conf /etc/php7/php-fpm.conf
+RUN curl -s https://getcomposer.org/installer | php
+RUN alias composer='php composer.phar'
 
 WORKDIR /app
 EXPOSE 80
 
-CMD cp /app/config.example.php /app/config.php && nginx                                     && \
+CMD cd /app && composer install --no-dev -o
+    cp /app/config.example.php /app/config.php && nginx                                     && \
     sed -i "s|e9e4498f0584b7098692512db0c62b48|${HOST_KEY}|g" /app/config.php               && \
     sed -i "s|ze3kr@example.com|${HOST_MAIL}|g"               /app/config.php               && \
     sed -i "s|// \$page_title = \"TlOxygen\"|\$page_title = \"${TITLE}\"|g" /app/config.php && \

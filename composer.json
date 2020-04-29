@@ -18,6 +18,8 @@
         "ext-curl": "*",
         "ext-gettext": "*",
         "ext-json": "*",
-        "pear/net_dns2": "*"
+        "pear/net_dns2": "*",
+        "components/jquery": "*",
+        "components/bootstrap": "*"
     }
 }

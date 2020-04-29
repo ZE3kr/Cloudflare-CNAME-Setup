@@ -125,7 +125,7 @@ echo _('Cloudflare CNAME/IP Advanced Setup') . ' &#8211; ' . $page_title;
 ?></title>
 	<meta name="renderer" content="webkit">
 	<meta http-equiv="Cache-Control" content="no-siteapp"/>
-	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="vendor/components/bootstrap/css/bootstrap.min.css">
 	<link rel="stylesheet" href="css/tlo.css?ver=<?php echo urlencode($version) ?>">
 
 	<link rel="apple-touch-icon" sizes="57x57" href="images/favicon/apple-icon-57x57.png">
@@ -226,8 +226,8 @@ if ((isset($is_beta) && $is_beta) || (isset($is_debug) && $is_debug)) {
 ?>
 	</footer>
 
-	<script src="js/jquery-3.3.1.slim.min.js"></script>
-	<script src="js/bootstrap.bundle.min.js"></script>
+	<script src="vendor/components/jquery/jquery.slim.min.js"></script>
+	<script src="vendor/components/bootstrap/js/bootstrap.bundle.min.js"></script>
 	<script src="js/main.js?ver=<?php echo urlencode($version) ?>"></script>
 </body>
 </html>
