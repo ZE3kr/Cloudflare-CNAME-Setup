@@ -18,7 +18,6 @@
         "ext-curl": "*",
         "ext-gettext": "*",
         "ext-json": "*",
-        "phpmailer/phpmailer": "*",
         "pear/net_dns2": "*"
     }
 }
