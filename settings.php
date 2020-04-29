@@ -93,7 +93,7 @@ if(file_exists(dirname(__FILE__) . '/vendor/autoload.php')){
 	</nav>
 	<main class="bg-white">
 		<div class="alert alert-danger" role="alert">
-			<?php echo _('Cannot find the file').': <code>'.dirname(__FILE__). '/vendor/autoload.php</code>';?>
+			<?php echo _('Cannot find the file:').' <code>'.dirname(__FILE__). '/vendor/autoload.php</code>';?>
 		</div>
 		<?php
 		echo '</p><p>'._('It probably means that <code>composer</code> dependencies are not installed properly.').'</p>';
