@@ -58,8 +58,9 @@ if (isset($is_debug) && $is_debug) {
 	ini_set('display_startup_errors', 1);
 	error_reporting(E_ALL);
 }
-require_once dirname(__FILE__) . '/vendor/autoload.php';
-require_once dirname(__FILE__) . '/includes/netdns2-1.4/DNS2.php';
-require_once dirname(__FILE__) . '/includes/PHPMailer-6.0/src/Exception.php';
-require_once dirname(__FILE__) . '/includes/PHPMailer-6.0/src/PHPMailer.php';
-require_once dirname(__FILE__) . '/includes/PHPMailer-6.0/src/SMTP.php';
+
+if(file_exists(dirname(__FILE__) . '/vendor/autoload.php')){
+	require_once dirname(__FILE__) . '/vendor/autoload.php';
+} else {
+	echo '';
+}

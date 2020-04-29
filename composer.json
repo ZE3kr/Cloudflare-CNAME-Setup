@@ -1,5 +1,5 @@
 {
-    "name": "ZE3kr/Cloudflare-CNAME-Setup",
+    "name": "ze3kr/cloudflare-cname-setup",
     "type": "project",
     "homepage": "https://github.com/ZE3kr/Cloudflare-CNAME-Setup",
     "description": "Cloudflare Partner Panel",
@@ -17,6 +17,8 @@
         "cloudflare/sdk": "^1.1",
         "ext-curl": "*",
         "ext-gettext": "*",
-        "ext-json": "*"
+        "ext-json": "*",
+        "phpmailer/phpmailer": "*",
+        "pear/net_dns2": "*"
     }
 }
