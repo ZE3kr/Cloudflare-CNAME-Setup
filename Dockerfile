@@ -23,7 +23,7 @@ RUN alias composer='php composer.phar'
 WORKDIR /app
 EXPOSE 80
 
-CMD cd /app && composer install --no-dev -o
+CMD cd /app && composer install --no-dev -o                                                 && \
     cp /app/config.example.php /app/config.php && nginx                                     && \
     sed -i "s|e9e4498f0584b7098692512db0c62b48|${HOST_KEY}|g" /app/config.php               && \
     sed -i "s|ze3kr@example.com|${HOST_MAIL}|g"               /app/config.php               && \
