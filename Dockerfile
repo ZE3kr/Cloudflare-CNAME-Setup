@@ -13,7 +13,11 @@ RUN apk --no-cache --virtual runtimes add curl            \
                                           php7-json       \
                                           php7-gettext    \
                                           php7-curl       \
-                                          php7-apcu    && \
+                                          php7-apcu       \
+                                          php7-phar       \
+                                          php7-iconv      \
+                                          php7-mbstring   \
+                                          php7-openssl && \
     rm /etc/nginx/conf.d/default.conf                                    && \
     mkdir -p /run/nginx && ln -s /var/run/nginx.pid /run/nginx/nginx.pid && \
     cp /app/docker/nginx.conf   /etc/nginx/conf.d/cloudflare.conf        && \
