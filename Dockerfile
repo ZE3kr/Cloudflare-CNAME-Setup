@@ -6,7 +6,8 @@ ENV HOST_KEY=YOUR_CLOUDFLARE_API_KEY \
     TITLE=TlOxygen                   
 
 COPY . /app
-RUN apk --no-cache --virtual runtimes add nginx           \
+RUN apk --no-cache --virtual runtimes add curl            \
+                                          nginx           \
                                           php7            \
                                           php7-fpm        \
                                           php7-json       \
