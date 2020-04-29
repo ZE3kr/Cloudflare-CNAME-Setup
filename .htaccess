@@ -1,3 +1,15 @@
-<FilesMatch ".user.ini">
+<FilesMatch "^\.">
     Require all denied
 </FilesMatch>
+<FilesMatch "^\.well-known$">
+    Require all granted
+</FilesMatch>
+<Files Dockerfile>
+    Require all denied
+</Files>
+<Files composer.json>
+    Require all denied
+</Files>
+<Files composer.lock>
+    Require all denied
+</Files>

@@ -1,9 +1,9 @@
 FROM alpine:3
 MAINTAINER FAN VINGA<fanalcest@gmail.com> ZE3kr<ze3kr@icloud.com>
 
-ENV HOST_KEY=YOUR_CLOUDFLARE_API_KEY \
-    HOST_MAIL=YOUR_CLOUDFLARE_MAIL   \
-    TITLE=TlOxygen                   
+ENV HOST_KEY=e9e4498f0584b7098692512db0c62b48 \
+    HOST_MAIL=ze3kr@example.com               \
+    TITLE=TlOxygen
 
 COPY . /app
 RUN apk --no-cache --virtual runtimes add curl            \
