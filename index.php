@@ -10,7 +10,7 @@
 
 $starttime = microtime(true);
 $page_title = '';
-$version = '1.2.3';
+$version = $version ?? '';
 
 require_once 'settings.php';
 require_once 'cloudflare.class.php';
@@ -102,13 +102,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'zone' && !isset($_COOKIE['tlo_
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<?php
-if (isset($_GET['action']) && $_GET['action'] == 'analytics') {
-	echo '<meta name="viewport" content="width=800">';
-} else {
-	echo '<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">';
-}
-?>
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<meta name="description" content="TlOxygen Cloudflare Partners">
 	<meta name="keywords" content="TlOxygen, Cloudflare">
 	<title><?php
