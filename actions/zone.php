@@ -4,8 +4,7 @@
  */
 if (!isset($adapter)) {exit;}
 
-$zone_name = $_GET['domain'];
-if (!isset($_GET['page'])) {
+if (!isset($_GET['page']) || !is_numeric($_GET['page'])) {
 	$_GET['page'] = 1;
 }
 $dns = new Cloudflare\API\Endpoints\DNS($adapter);
@@ -20,8 +19,10 @@ try {
 }
 
 $dnsresult = $dnsresult_data->result;
+$zone_name = htmlspecialchars($_GET['domain']);
 
 foreach ($dnsresult as $record) {
+	$zone_name = $record->zone_name;
 	$dnsids[$record->id] = true;
 	$dnsproxyied[$record->id] = $record->proxied;
 	$dnstype[$record->id] = $record->type;
@@ -29,20 +30,6 @@ foreach ($dnsresult as $record) {
 	$dnsname[$record->id] = $record->name;
 	$dnscheck[$record->name] = true;
 }
-
-/*
- * We need `_tlo-wildcard` subdomain to support anycast IP information.
- */
-if (!isset($dnscheck['_tlo-wildcard.' . $zone_name]) && $_GET['page'] == 1) {
-	try {
-		$dns->addRecord($zoneID, 'CNAME', '_tlo-wildcard', 'cloudflare.tlo.xyz');
-	} catch (Exception $e) {
-		if (isset($is_debug) && $is_debug) {
-			echo '<div class="alert alert-danger" role="alert">' . $e->getMessage() . '</div>';
-		}
-	}
-}
-
 ?>
 <strong><?php echo '<h1 class="h5"><a href="?action=zone&amp;domain=' . $zone_name . '&amp;zoneid=' . $zoneID . '">' . strtoupper($zone_name) . '</a></h1>'; ?></strong>
 <hr><?php
@@ -98,60 +85,59 @@ if (isset($_GET['enable']) && !$dnsproxyied[$_GET['enable']]) {
 		<?php
 $no_record_yet = true;
 foreach ($dnsresult as $record) {
-	if ($record->name != '_tlo-wildcard.' . $zone_name) {
-		if ($record->proxiable) {
-			if ($record->proxied) {
-				$proxiable = '<a href="?action=zone&domain=' . $zone_name . '&disable=' . $record->id . '&page=' . $_GET['page'] . '&amp;zoneid=' . $zoneID . '"><img src="images/cloud_on.png" height="19"></a>';
-			} else {
-				$proxiable = '<a href="?action=zone&domain=' . $zone_name . '&enable=' . $record->id . '&page=' . $_GET['page'] . '&amp;zoneid=' . $zoneID . '"><img src="images/cloud_off.png" height="30"></a>';
-			}
-		} else {
-			$proxiable = '<img src="images/cloud_off.png" height="30">';
-		}
-		if (isset($_GET['enable']) && $record->id === $_GET['enable']) {
+	if ($record->proxiable) {
+		if ($record->proxied) {
 			$proxiable = '<a href="?action=zone&domain=' . $zone_name . '&disable=' . $record->id . '&page=' . $_GET['page'] . '&amp;zoneid=' . $zoneID . '"><img src="images/cloud_on.png" height="19"></a>';
-		} elseif (isset($_GET['disable']) && $record->id === $_GET['disable']) {
+		} else {
 			$proxiable = '<a href="?action=zone&domain=' . $zone_name . '&enable=' . $record->id . '&page=' . $_GET['page'] . '&amp;zoneid=' . $zoneID . '"><img src="images/cloud_off.png" height="30"></a>';
 		}
-		if ($record->type == 'MX') {
-			$priority = '<code>' . $record->priority . '</code> ';
-		} else {
-			$priority = '';
-		}
-		if (isset($ttl_translate[$record->ttl])) {
-			$ttl = $ttl_translate[$record->ttl];
-		} else {
-			$ttl = $record->ttl . ' s';
-		}
-		$no_record_yet = false;
-		echo '<tr>
-			<td class="d-none d-md-table-cell"><code>' . $record->type . '</code></td>
-			<td scope="col">
-				<div class="d-block d-md-none float-right">' . $proxiable . '</div>
-				<div class="d-block d-md-none">' . $record->type . ' ' . _('record') . '</div>
-				<code>' . htmlspecialchars($record->name) . '</code>
-				<div class="d-block d-md-none">' . _('points to') . ' ' . '<code>' . htmlspecialchars($record->content) . '</code></div>
-				<div class="btn-group dropleft float-right d-block d-md-none" style="margin-top:-1em;">
-					<button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-					' . _('Manage') . '
-					</button>
-					<div class="dropdown-menu">
-						<a class="dropdown-item" href="?action=edit_record&domain=' . $zone_name . '&recordid=' . $record->id . '&zoneid=' . $zoneID . '">' . _('Edit') . '</a>
-						<a class="dropdown-item" href="?action=delete_record&domain=' . $zone_name . '&delete=' . $record->id . '&zoneid=' . $zoneID . '" onclick="return confirm(\'' . _('Are you sure to delete') . ' ' . htmlspecialchars($record->name) . '?\')">' . _('Delete') . '</a>
-					</div>
-				</div>
-				<div class="d-block d-md-none">' . _('TTL') . ' ' . $ttl . '</div>
-			</td>
-			<td class="d-none d-md-table-cell">' . $priority . '<code>' . htmlspecialchars($record->content) . '</code></td>
-			<td class="d-none d-md-table-cell">' . $ttl . '</td>
-			<td class="d-none d-md-table-cell" style="width: 200px;">' . $proxiable . ' |
-				<div class="btn-group" role="group">
-					<a class="btn btn-dark btn-sm" href="?action=edit_record&domain=' . $zone_name . '&recordid=' . $record->id . '&zoneid=' . $zoneID . '">' . _('Edit') . '</a>
-					<a class="btn btn-danger btn-sm" href="?action=delete_record&domain=' . $zone_name . '&delete=' . $record->id . '&zoneid=' . $zoneID . '" onclick="return confirm(\'' . _('Are you sure to delete') . ' ' . htmlspecialchars($record->name) . '?\')">' . _('Delete') . '</a>
-				</div>
-			</td>
-		</tr>';
+	} else {
+		$proxiable = '<img src="images/cloud_off.png" height="30">';
 	}
+	if (isset($_GET['enable']) && $record->id === $_GET['enable']) {
+		$proxiable = '<a href="?action=zone&domain=' . $zone_name . '&disable=' . $record->id . '&page=' . $_GET['page'] . '&amp;zoneid=' . $zoneID . '"><img src="images/cloud_on.png" height="19"></a>';
+	} elseif (isset($_GET['disable']) && $record->id === $_GET['disable']) {
+		$proxiable = '<a href="?action=zone&domain=' . $zone_name . '&enable=' . $record->id . '&page=' . $_GET['page'] . '&amp;zoneid=' . $zoneID . '"><img src="images/cloud_off.png" height="30"></a>';
+	}
+	if ($record->type == 'MX') {
+		$priority = '<code>' . $record->priority . '</code> ';
+	} else {
+		$priority = '';
+	}
+	if (isset($ttl_translate[$record->ttl])) {
+		$ttl = $ttl_translate[$record->ttl];
+	} else {
+		$ttl = $record->ttl . ' s';
+	}
+	$no_record_yet = false;
+	echo '<tr>
+		<td class="d-none d-md-table-cell"><code>' . $record->type . '</code></td>
+		<td scope="col">
+			<div class="d-block d-md-none float-right">' . $proxiable . '</div>
+			<div class="d-block d-md-none">' . $record->type . ' ' . _('record') . '</div>
+			<code>' . htmlspecialchars($record->name) . '</code>
+			<div class="d-block d-md-none">' . _('points to') . ' ' . '<code>' . htmlspecialchars($record->content) . '</code></div>
+			<div class="btn-group dropleft float-right d-block d-md-none" style="margin-top:-1em;">
+				<button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				' . _('Manage') . '
+				</button>
+				<div class="dropdown-menu">
+					<a class="dropdown-item" href="?action=edit_record&domain=' . $zone_name . '&recordid=' . $record->id . '&zoneid=' . $zoneID . '">' . _('Edit') . '</a>
+					<a class="dropdown-item" href="?action=delete_record&domain=' . $zone_name . '&delete=' . $record->id . '&zoneid=' . $zoneID . '" onclick="return confirm(\'' . _('Are you sure to delete') . ' ' . htmlspecialchars($record->name) . '?\')">' . _('Delete') . '</a>
+				</div>
+			</div>
+			<div class="d-block d-md-none">' . _('TTL') . ' ' . $ttl . '</div>
+		</td>
+		<td class="d-none d-md-table-cell">' . $priority . '<code>' . htmlspecialchars($record->content) . '</code></td>
+		<td class="d-none d-md-table-cell">' . $ttl . '</td>
+		<td class="d-none d-md-table-cell" style="width: 200px;">' . $proxiable . ' |
+			<div class="btn-group" role="group">
+				<a class="btn btn-dark btn-sm" href="?action=edit_record&domain=' . $zone_name . '&recordid=' . $record->id . '&zoneid=' . $zoneID . '">' . _('Edit') . '</a>
+				<a class="btn btn-danger btn-sm" href="?action=delete_record&domain=' . $zone_name . '&delete=' . $record->id . '&zoneid=' . $zoneID . '" onclick="return confirm(\'' . _('Are you sure to delete') . ' ' . htmlspecialchars($record->name) . '?\')">' . _('Delete') . '</a>
+			</div>
+		</td>
+	</tr>';
+
 }
 ?>
 	</tbody>
@@ -187,10 +173,11 @@ if (isset($dnsresult_data->result_info->total_pages)) {
 	</thead>
 	<tbody>
 		<?php
-$resolver = new Net_DNS2_Resolver(array('nameservers' => array('162.159.2.9', '162.159.9.55')));
 $avoid_cname_duplicated = [];
+$last_domain = '';
 foreach ($dnsresult as $record) {
-	if ($record->name != '_tlo-wildcard.' . $zone_name && !isset($avoid_cname_duplicated[$record->name])) {
+	if (!isset($avoid_cname_duplicated[$record->name])) {
+		$last_subdomain = $record->name;
 		echo '<tr>
 				<td scope="col"><code>' . $record->name . '</code>
 					<div class="d-block d-md-none">' . _('points to') . ' <code>' . $record->name . '.cdn.cloudflare.net</code></div>
@@ -221,33 +208,49 @@ if (isset($dnsresult_data->result_info->total_pages)) {
 	}
 	echo '<p>' . $previous_page . _('Page') . ' ' . $dnsresult_data->result_info->page . '/' . $dnsresult_data->result_info->total_pages . $next_page . '</p>';
 }
-try {
-	$resp_a = $resolver->query('_tlo-wildcard.' . $zone_name, 'A');
-	$resp_aaaa = $resolver->query('_tlo-wildcard.' . $zone_name, 'AAAA');
-	$resp = $resolver->query($zone_name, 'NS');
-} catch (Net_DNS2_Exception $e) {
-	// echo $e->getMessage();
+
+$resp_cache = apcu_fetch('tlo_cf_'.$zone_name);
+if ($last_subdomain != '' && !$resp_cache) {
+	try {
+		$resolver = new Net_DNS2_Resolver(array('nameservers' => array('173.245.59.31', '2400:cb00:2049:1::adf5:3b1f')));
+		$resp = $resolver->query($zone_name, 'NS');
+		$resp_a = $resolver->query($last_subdomain . '.cdn.cloudflare.net', 'A');
+		$resp_aaaa = $resolver->query($last_subdomain . '.cdn.cloudflare.net', 'AAAA');
+	} catch (Net_DNS2_Exception $e) {
+		// echo $e->getMessage();
+	}
+} else {
+	$resp = $resp_cache['ns'];
+	$resp_a = $resp_cache['a'];
+	$resp_aaaa = $resp_cache['aaaa'];
 }
-if ((isset($resp_a->answer[0]->address) && isset($resp_a->answer[1]->address)) ||
+
+if ($last_subdomain != '' && (isset($resp_a->answer[0]->address) && isset($resp_a->answer[1]->address)) ||
 	(isset($resp_aaaa->answer[0]->address) && isset($resp_aaaa->answer[1]->address))) {
 	?>
+	<h3 class="mt-5 mb-3" id="ip"><?php echo _('IP Setup'); ?></h3>
+	<?php if (isset($resp_a->answer[0]->address) && isset($resp_a->answer[1]->address)) { ?>
+		<h4>Anycast IPv4</h4>
+		<ul>
+			<li><code><?php echo $resp_a->answer[0]->address; ?></code></li>
+			<li><code><?php echo $resp_a->answer[1]->address; ?></code></li>
+		</ul>
+	<?php } if (isset($resp_aaaa->answer[0]->address) && isset($resp_aaaa->answer[1]->address)) { ?>
+		<h4>Anycast IPv6</h4>
+		<ul>
+			<li><code><?php echo $resp_aaaa->answer[0]->address; ?></code></li>
+			<li><code><?php echo $resp_aaaa->answer[1]->address; ?></code></li>
+		</ul>
+	<?php }
+}
 
-<h3 class="mt-5 mb-3" id="ip"><?php echo _('IP Setup'); ?></h3>
-<?php if (isset($resp_a->answer[0]->address) && isset($resp_a->answer[1]->address)) {?>
-<h4>Anycast IPv4</h4>
-<ul>
-	<li><code><?php echo $resp_a->answer[0]->address; ?></code></li>
-	<li><code><?php echo $resp_a->answer[1]->address; ?></code></li>
-</ul>
-<?php }if (isset($resp_aaaa->answer[0]->address) && isset($resp_aaaa->answer[1]->address)) {?>
-<h4>Anycast IPv6</h4>
-<ul>
-	<li><code><?php echo $resp_aaaa->answer[0]->address; ?></code></li>
-	<li><code><?php echo $resp_aaaa->answer[1]->address; ?></code></li>
-</ul>
-<?php }}?>
-
-<?php if (isset($resp->answer[0]->nsdname) && isset($resp->answer[1]->nsdname)) {?>
+if ($last_subdomain != '' && isset($resp->answer[0]->nsdname) && isset($resp->answer[1]->nsdname)) {
+	apcu_store('tlo_cf_'.$zone_name, [
+		'a' => $resp_a,
+		'aaaa' => $resp_aaaa,
+		'ns' => $resp,
+	], 172800); // Two days
+	?>
 <h3 class="mt-5 mb-3" id="ns"><?php echo _('NS Setup'); ?></h3>
 <table class="table table-striped">
 	<thead>

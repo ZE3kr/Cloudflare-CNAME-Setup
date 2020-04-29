@@ -23,9 +23,7 @@ if (isset($_POST['submit'])) {
 			print_r($res);
 		}
 	}
-	/*
-		 * We need `_tlo-wildcard` subdomain to support anycast IP information.
-	*/
+
 	$zones = new \Cloudflare\API\Endpoints\Zones($adapter);
 	try {
 		$zoneID = $zones->getZoneID($zone_name);
@@ -37,7 +35,7 @@ if (isset($_POST['submit'])) {
 
 	if (isset($add_domain) && $add_domain) {
 		try {
-			$res = $cloudflare->zoneSet($zone_name, 'example.com', '_tlo-wildcard');
+			$res = $cloudflare->zoneSet($zone_name, 'example.com', 'www');
 		} catch (Exception $e) {
 			exit('<div class="alert alert-danger" role="alert">' . $e->getMessage() . '</div>');
 		}
