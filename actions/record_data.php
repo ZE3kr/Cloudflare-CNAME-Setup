@@ -1,8 +1,10 @@
 <?php
-$dns_data = [];
+if(!isset($options)) {
+	exit();
+}
 
 if ($_POST['type'] == 'CAA') {
-	$dns_data = [
+	$options['data'] = [
 		'tag' => $_POST['data_tag'],
 		'value' => $_POST['data_value'],
 		'flags' => intval($_POST['data_flags']),
@@ -10,7 +12,7 @@ if ($_POST['type'] == 'CAA') {
 }
 
 if ($_POST['type'] == 'SRV') {
-	$dns_data = [
+	$options['data'] = [
 		'name' => isset($_POST['srv_name'])? $_POST['srv_name'] :$_POST['name'],
 		'port' => intval($_POST['srv_port']),
 		'priority' => intval($_POST['srv_priority']),

@@ -15,16 +15,15 @@ if (isset($_POST['submit'])) {
 		$_POST['proxied'] = false;
 	}
 
-	include "record_data.php";
-
 	$options = [
 		'type' => $_POST['type'],
 		'name' => $_POST['name'],
 		'content' => $_POST['content'],
 		'proxied' => $_POST['proxied'],
-		'ttl' => intval($_POST['ttl']),
-		'data' => $dns_data,
+		'ttl' => intval($_POST['ttl'])
 	];
+
+	include "record_data.php";
 
 	if ($_POST['type'] == 'MX') {
 		$options['priority'] = intval($_POST['priority']);
