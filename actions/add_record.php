@@ -15,20 +15,22 @@ if (isset($_POST['submit'])) {
 		$_POST['proxied'] = false;
 	}
 
+	include "record_data.php";
+
 	$options = [
 		'type' => $_POST['type'],
 		'name' => $_POST['name'],
 		'content' => $_POST['content'],
 		'proxied' => $_POST['proxied'],
-		'ttl' => intval($_POST['ttl'])
+		'ttl' => intval($_POST['ttl']),
+		'data' => $dns_data,
 	];
-
-	include "record_data.php";
 
 	if ($_POST['type'] == 'MX') {
 		$options['priority'] = intval($_POST['priority']);
 	}
 	try {
+		if(empty($options['data']))unset($options['data']);
 		$dns = $adapter->post('zones/' . $_GET['zoneid'] . '/dns_records', $options);
 		$dns = json_decode($dns->getBody());
 		if (isset($dns->result->id)) {
