@@ -10,6 +10,7 @@ RUN apk --no-cache --virtual runtimes add curl            \
                                           nginx           \
                                           php7            \
                                           php7-fpm        \
+                                          php7-cli        \
                                           php7-json       \
                                           php7-gettext    \
                                           php7-curl       \
