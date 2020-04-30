@@ -7,9 +7,6 @@
 <Files Dockerfile>
     Require all denied
 </Files>
-<Files composer.json>
+<FilesMatch "^composer">
     Require all denied
-</Files>
-<Files composer.lock>
-    Require all denied
-</Files>
+</FilesMatch>
