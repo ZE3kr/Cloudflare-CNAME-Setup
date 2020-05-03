@@ -1,12 +1,23 @@
 # Cloudflare CNAME 接入
 
+[![Docker Pulls](https://img.shields.io/docker/pulls/ze3kr/cloudflare)](https://hub.docker.com/r/ze3kr/cloudflare)
+[![Docker stars](https://img.shields.io/docker/stars/ze3kr/cloudflare)](https://hub.docker.com/r/ze3kr/cloudflare)
+[![GitHub stars](https://img.shields.io/github/stars/ZE3kr/Cloudflare-CNAME-Setup?label=github+stars)](https://github.com/ZE3kr/Cloudflare-CNAME-Setup)
+[![GitHub contributors](https://img.shields.io/github/contributors-anon/ZE3kr/Cloudflare-CNAME-Setup)](https://github.com/ZE3kr/Cloudflare-CNAME-Setup)
+[![PHP from Packagist](https://img.shields.io/packagist/php-v/ze3kr/cloudflare-cname-setup)](https://packagist.org/packages/ze3kr/cloudflare-cname-setup)
+
+[![GitHub release (latest by date)](https://img.shields.io/github/v/release/ZE3kr/Cloudflare-CNAME-Setup)](https://github.com/ZE3kr/Cloudflare-CNAME-Setup/releases)
+[![Docker Build Status](https://img.shields.io/docker/build/ze3kr/cloudflare)](https://hub.docker.com/r/ze3kr/cloudflare/builds)
+[![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/ZE3kr/Cloudflare-CNAME-Setup)](https://github.com/ZE3kr/Cloudflare-CNAME-Setup/releases)
+[![Docker Image Size (latest by date)](https://img.shields.io/docker/image-size/ze3kr/cloudflare)](https://hub.docker.com/r/ze3kr/cloudflare/tags)
+
 [Cloudflare Hosting Partner][1] 可以使用此项目为用户提供一个可视化的面板，可以让用户免费的使用 [CNAME 接入][2]。
 
 [cf.tlo.xyz][3] 是安装了这个面板的最新稳定版的网站，值得你的信任。
 
-<blockquote>
-注意：[cf.tlo.xyz][3] 的 Host API key 似乎被 Cloudflare 停用了。因此，现在你不能在这个网站上使用密码登录，亦不能添加新的 CNAME 接入的域名。对于已经有 CNAME 接入的用户，依然可以通过 Global API Key（不是密码）的方式登录本站，管理自己域名下的 DNS 记录。
-</blockquote>
+![Uptime Robot status](https://img.shields.io/uptimerobot/status/m780669106-634552f1451bb838a9d14297)
+![Uptime Robot ratio (30 days)](https://img.shields.io/uptimerobot/ratio/m780669106-634552f1451bb838a9d14297)
+![Chromium HSTS preload](https://img.shields.io/hsts/preload/cf.tlo.xyz)
 
 <blockquote>
 注意: <a href="https://cf.tlo.xyz">cf.tlo.xyz</a> 的 Host API key 已经被 Cloudflare 停用了。
