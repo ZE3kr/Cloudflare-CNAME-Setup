@@ -6,7 +6,7 @@
 
 [![GitHub release (latest by date)](https://img.shields.io/github/v/release/ZE3kr/Cloudflare-CNAME-Setup)](https://github.com/ZE3kr/Cloudflare-CNAME-Setup/releases)
 [![Docker Build Status](https://img.shields.io/docker/build/ze3kr/cloudflare)](https://hub.docker.com/r/ze3kr/cloudflare/builds)
-[![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/ZE3kr/Cloudflare-CNAME-Setup)](https://github.com/ZE3kr/Cloudflare-CNAME-Setup/releases)
+[![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/ZE3kr/Cloudflare-CNAME-Setup)](https://github.com/ZE3kr/Cloudflare-CNAME-Setup/releases/latest)
 
 This project allows [Cloudflare Hosting Partner][1] to provide a panel for customers, which allows customers to have [CNAME setup][2] for **free**.
 
