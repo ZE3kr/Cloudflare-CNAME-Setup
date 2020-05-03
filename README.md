@@ -1,15 +1,12 @@
 # Cloudflare CNAME Setup
 
 [![Docker Pulls](https://img.shields.io/docker/pulls/ze3kr/cloudflare)](https://hub.docker.com/r/ze3kr/cloudflare)
-[![Docker stars](https://img.shields.io/docker/stars/ze3kr/cloudflare)](https://hub.docker.com/r/ze3kr/cloudflare)
 [![GitHub stars](https://img.shields.io/github/stars/ZE3kr/Cloudflare-CNAME-Setup?label=github+stars)](https://github.com/ZE3kr/Cloudflare-CNAME-Setup)
-[![GitHub contributors](https://img.shields.io/github/contributors-anon/ZE3kr/Cloudflare-CNAME-Setup)](https://github.com/ZE3kr/Cloudflare-CNAME-Setup)
 [![PHP from Packagist](https://img.shields.io/packagist/php-v/ze3kr/cloudflare-cname-setup)](https://packagist.org/packages/ze3kr/cloudflare-cname-setup)
 
 [![GitHub release (latest by date)](https://img.shields.io/github/v/release/ZE3kr/Cloudflare-CNAME-Setup)](https://github.com/ZE3kr/Cloudflare-CNAME-Setup/releases)
 [![Docker Build Status](https://img.shields.io/docker/build/ze3kr/cloudflare)](https://hub.docker.com/r/ze3kr/cloudflare/builds)
 [![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/ZE3kr/Cloudflare-CNAME-Setup)](https://github.com/ZE3kr/Cloudflare-CNAME-Setup/releases)
-[![Docker Image Size (latest by date)](https://img.shields.io/docker/image-size/ze3kr/cloudflare)](https://hub.docker.com/r/ze3kr/cloudflare/tags)
 
 This project allows [Cloudflare Hosting Partner][1] to provide a panel for customers, which allows customers to have [CNAME setup][2] for **free**.
 
