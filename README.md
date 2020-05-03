@@ -17,9 +17,9 @@ This project allows [Cloudflare Hosting Partner][1] to provide a panel for custo
 
 [cf.tlo.xyz][4] is the site installed the stable version of this panel. The software is up-to-date, and you can trust.
 
-![Uptime Robot status](https://img.shields.io/uptimerobot/status/m780669106-634552f1451bb838a9d14297)
-![Uptime Robot ratio (30 days)](https://img.shields.io/uptimerobot/ratio/m780669106-634552f1451bb838a9d14297)
-![Chromium HSTS preload](https://img.shields.io/hsts/preload/cf.tlo.xyz)
+[![Uptime Robot status](https://img.shields.io/uptimerobot/status/m780669106-634552f1451bb838a9d14297)](https://stats.uptimerobot.com/NL3ERtNVwY)
+[![Uptime Robot ratio (30 days)](https://img.shields.io/uptimerobot/ratio/m780669106-634552f1451bb838a9d14297)](https://stats.uptimerobot.com/NL3ERtNVwY)
+[![Chromium HSTS preload](https://img.shields.io/hsts/preload/cf.tlo.xyz)](https://hstspreload.org/?domain=cf.tlo.xyz)
 
 <blockquote>
 Notice: The Host API key of <a href="https://cf.tlo.xyz">cf.tlo.xyz</a> was disabled by Cloudflare.
