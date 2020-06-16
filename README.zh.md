@@ -77,7 +77,6 @@ This project was based on a [HOSTLOC topic][8].
 + PSR Http Message by Framework Interoperability Group | MIT License
 + Composer | MIT License
 + Net\_DNS2 by Mike Pultz [mike@mikepultz.com][10] | BSD-3-Clause License
-+ PHPMailer by Free Software Foundation, Inc. | GNU Lesser General Public License v2.1
 + Cloudflare SDK by Cloudflare | BSD-3-Clause
 
 [1]:	https://www.cloudflare.com/partners/hosting-provider/
