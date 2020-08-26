@@ -5,66 +5,58 @@ $(function () {
 
 /* Add Record */
 
-var content = document.getElementById("dns-content");
+var content = $('#dns-content').show();
+var types = [
+	{
+		value: 'CAA',
+		content: false,
+		element: $('#dns-data-caa').hide()
+	},
+	{
+		value: 'SRV',
+		content: false,
+		element: $('#dns-data-srv').hide()
+	},
+	{
+		value: 'MX',
+		content: true,
+		element: $('#dns-mx-priority').hide()
+	}
+];
 
-var caa = document.getElementById("dns-data-caa");
-if(caa && content){
-	caa.style.display = "none";
-
-	document.getElementById("type").addEventListener('change', function () {
-		if(this.value === "CAA"){
-			caa.style.display = "block";
-			content.style.display = "none";
+$('#type').change(function () {
+	var type;
+	var showContent = true;
+	for (var i = 0; i < types.length; i++) {
+		type = types[i];
+		if (this.value === type.value) {
+			type.element.show();
+			showContent = type.content;
 		} else {
-			caa.style.display = "none";
-			content.style.display = "block";
+			type.element.hide();
 		}
-	})
-}
+	}
 
-var mxPriority = document.getElementById("dns-mx-priority");
-
-if(mxPriority && content){
-	mxPriority.style.display = "none";
-
-	document.getElementById("type").addEventListener('change', function () {
-		if(this.value === "MX"){
-			mxPriority.style.display = "block";
-		} else {
-			mxPriority.style.display = "none";
-		}
-	})
-}
-
-var srv = document.getElementById("dns-data-srv");
-
-if(srv && content){
-	srv.style.display = "none";
-
-	document.getElementById("type").addEventListener('change', function () {
-		if(this.value === "SRV"){
-			srv.style.display = "block";
-			content.style.display = "none";
-		} else {
-			srv.style.display = "none";
-			content.style.display = "block";
-		}
-	})
-}
+	if (showContent) {
+		content.show();
+	} else {
+		content.hide();
+	}
+});
 
 /* Implement "data-selected" feature */
 
 var selects = document.getElementsByTagName("select");
 
-if(selects){
-	for(var j=0; j<selects.length; j++){
+if (selects) {
+	for (var j = 0; j < selects.length; j++) {
 		var selected = selects[j].getAttribute("data-selected");
-		if(!selected){
+		if (!selected) {
 			continue;
 		}
 		var options = selects[j].getElementsByTagName("option");
-		for (var i = 0; i<options.length; i++){
-			if(options[i].getAttribute("value") === selected){
+		for (var i = 0; i < options.length; i++) {
+			if (options[i].getAttribute("value") === selected) {
 				options[i].setAttribute("selected", "selected");
 				break;
 			}
