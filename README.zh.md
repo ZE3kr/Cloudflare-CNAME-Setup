@@ -19,7 +19,7 @@
 <blockquote>
 注意: <a href="https://cf.tlo.xyz">cf.tlo.xyz</a> 的 Host API key 已经被 Cloudflare 停用了。
 
-现在，所有 <a href="https://cf.tlo.xyz">cf.tlo.xyz</a> 用户都需要使用 Global API Key 进行登录。要添加新的 Cloudflare CNAME 接入域名，用户可以<a href="https://tloxygen.com/2020/04/cloudflare-faq/">使用 TlOxygen 虚拟主机上的 Cloudflare 插件</a>.
+现在，所有 <a href="https://cf.tlo.xyz">cf.tlo.xyz</a> 用户都需要使用 Global API Key 进行登录。
 </blockquote>
 
 ## 安装
