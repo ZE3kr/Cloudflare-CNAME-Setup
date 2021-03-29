@@ -64,8 +64,8 @@ If you don’t want to use the preinstalled panel above, you can install this pa
 
 ## Screenshot
 
-<img src="https://tloxygen.com/wp-content/uploads/uploads/cloudflare/en1.png" />
-<img src="https://tloxygen.com/wp-content/uploads/uploads/cloudflare/en2.png" width="433" />
+<img alt="Screenshoot 1" src="https://user-images.githubusercontent.com/6601455/112777852-c5db7780-9075-11eb-9c72-4e5061b66b6d.png" />
+<img alt="Screenshoot 2" src="https://user-images.githubusercontent.com/6601455/112777867-cd9b1c00-9075-11eb-9b34-f168175aa923.png" width="433" />
 
 ## Open-sourced software used in this project
 
