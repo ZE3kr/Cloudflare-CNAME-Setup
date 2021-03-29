@@ -62,8 +62,8 @@
 
 ## 屏幕截图
 
-<img src="https://tloxygen.com/wp-content/uploads/uploads/cloudflare/zh1.png" />
-<img src="https://tloxygen.com/wp-content/uploads/uploads/cloudflare/zh2.png" width="433" />
+<img alt="屏幕截图 1" src="https://user-images.githubusercontent.com/6601455/112777936-f28f8f00-9075-11eb-9009-b085189cba9b.png" />
+<img width="433" alt="屏幕截图 2" src="https://user-images.githubusercontent.com/6601455/112777961-ff13e780-9075-11eb-8ab5-674a570f5503.png">
 
 ## Open sourced software used in this project
 
