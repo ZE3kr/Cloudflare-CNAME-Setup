@@ -32,9 +32,21 @@ if (isset($_POST['submit'])) {
 		$dns = $adapter->post('zones/' . $_GET['zoneid'] . '/dns_records', $options);
 		$dns = json_decode($dns->getBody());
 		if (isset($dns->result->id)) {
-			exit('<p class="alert alert-success" role="alert">' . _('Success') . ', <a href="?action=add_record&amp;zoneid=' . $_GET['zoneid'] . '&domain=' . $_GET['domain'] . '">' . _('Add New Record') . '</a>, ' . _('Or') . '<a href="?action=zone&amp;domain=' . $_GET['domain'] . '&amp;zoneid=' . $_GET['zoneid'] . '">' . _('Go to console') . '</a></p>');
+			exit(
+			        '<p class="alert alert-success" role="alert">' . _('Success') .
+                    ', <a href="?action=add_record&amp;zoneid=' . htmlspecialchars($_GET['zoneid']) . '&domain=' . htmlspecialchars($_GET['domain']) . '">' .
+                    _('Add New Record') . '</a>, ' . _('Or') .
+                    '<a href="?action=zone&amp;domain=' . htmlspecialchars($_GET['domain']) . '&amp;zoneid=' . htmlspecialchars($_GET['zoneid']) . '">' .
+                    _('Go to console') . '</a></p>'
+            );
 		} else {
-			exit('<p class="alert alert-danger" role="alert">' . _('Failed') . ', <a href="?action=add_record&amp;zoneid=' . $_GET['zoneid'] . '&domain=' . $_GET['domain'] . '">' . _('Add New Record') . '</a>, ' . _('Or') . '<a href="?action=zone&amp;domain=' . $_GET['domain'] . '&amp;zoneid=' . $_GET['zoneid'] . '">' . _('Go to console') . '</a></p>');
+			exit(
+			        '<p class="alert alert-danger" role="alert">' . _('Failed') .
+                    ', <a href="?action=add_record&amp;zoneid=' . htmlspecialchars($_GET['zoneid']) . '&domain=' . htmlspecialchars($_GET['domain']) . '">' .
+                    _('Add New Record') . '</a>, ' . _('Or') .
+                    '<a href="?action=zone&amp;domain=' . htmlspecialchars($_GET['domain']) . '&amp;zoneid=' . htmlspecialchars($_GET['zoneid']) . '">' .
+                    _('Go to console') . '</a></p>'
+            );
 		}
 	} catch (Exception $e) {
 		echo '<p class="alert alert-danger" role="alert">' . _('Failed') . '</p>';
@@ -42,7 +54,7 @@ if (isset($_POST['submit'])) {
 	}
 }
 ?>
-<strong><?php echo '<h1 class="h5"><a href="?action=zone&amp;domain=' . $_GET['domain'] . '&amp;zoneid=' . $_GET['zoneid'] . '">&lt;- ' . _('Back') . '</a></h1>'; ?></strong><hr>
+<strong><?php echo '<h1 class="h5"><a href="?action=zone&amp;domain=' . htmlspecialchars($_GET['domain']) . '&amp;zoneid=' . htmlspecialchars($_GET['zoneid']) . '">&lt;- ' . _('Back') . '</a></h1>'; ?></strong><hr>
 <form method="POST" action="">
 	<fieldset>
 		<legend><?php echo _('Add DNS Record'); ?></legend>
