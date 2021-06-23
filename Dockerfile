@@ -12,6 +12,12 @@ COPY .docker/entrypoint.sh  /usr/bin/entrypoint.sh
 
 WORKDIR /var/www/html/public
 
+RUN docker-php-ext-configure intl \
+    && docker-php-ext-configure gettext \
+    && docker-php-ext-install \
+    intl \
+    gettext
+
 RUN  curl -s https://getcomposer.org/installer | php            && \
     php composer.phar install --no-dev -o
 
