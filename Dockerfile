@@ -10,13 +10,12 @@ COPY . /var/www/html/public
 
 COPY .docker/entrypoint.sh  /usr/bin/entrypoint.sh
 
-WORKDIR /var/www/html/publi
+WORKDIR /var/www/html/public
 
 RUN  curl -s https://getcomposer.org/installer | php            && \
     php composer.phar install --no-dev -o
 
 
-WORKDIR /var/www/html/public
 EXPOSE 80
 
 RUN cp /var/www/html/public/config.example.php /var/www/html/public/config.php 
