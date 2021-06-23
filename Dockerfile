@@ -21,10 +21,11 @@ RUN apk --no-cache --virtual runtimes add curl            \
     php7-mbstring   \
     php7-openssl && \
     mkdir -p /run/nginx && ln -s /var/run/nginx.pid /run/nginx/nginx.pid && \
-    cp /app/.docker/nginx.conf   /etc/nginx/conf.d/cloudflare.conf       && \
-    cp /app/.docker/php-fpm.conf /etc/php7/php-fpm.conf                  && \
     cd app && curl -s https://getcomposer.org/installer | php            && \
     php composer.phar install --no-dev -o
+
+COPY .docker/nginx.conf /etc/nginx/conf.d/cloudflare.conf
+COPY .docker/php-fpm.conf /etc/php7/php-fpm.conf
 
 WORKDIR /app
 EXPOSE 80
