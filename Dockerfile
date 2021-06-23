@@ -10,6 +10,8 @@ COPY . /var/www/html/public
 
 COPY .docker/entrypoint.sh  /usr/bin/entrypoint.sh
 
+WORKDIR /var/www/html/publi
+
 RUN  curl -s https://getcomposer.org/installer | php            && \
     php composer.phar install --no-dev -o
 
