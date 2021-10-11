@@ -10,3 +10,6 @@
 <FilesMatch "^composer">
     Require all denied
 </FilesMatch>
+<FilesMatch "\.(png|js|css)$">
+  Header set Cache-Control "max-age=86400, public"
+</FilesMatch>
