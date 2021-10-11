@@ -44,6 +44,7 @@ if (isset($language_supported[$short_lan])) {
 	$locale = 'en';
 	$iso_language = 'en';
 }
+putenv("LANGUAGE=");
 putenv('LANG=' . $locale);
 setlocale(LC_MESSAGES, $locale);
 bindtextdomain($domain, $dir);
