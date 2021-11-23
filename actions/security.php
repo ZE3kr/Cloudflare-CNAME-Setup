@@ -5,14 +5,14 @@
 
 if (!isset($adapter)) {exit;}
 
-$zone_name = $_GET['domain'];
+$zone_name = htmlspecialchars($_GET['domain']);
 if (!isset($_GET['page'])) {
 	$_GET['page'] = 1;
 }
 $dns = new Cloudflare\API\Endpoints\DNS($adapter);
 $zones = new Cloudflare\API\Endpoints\Zones($adapter);
 
-$zoneID = $_GET['zoneid'];
+$zoneID = htmlspecialchars($_GET['zoneid']);
 
 ?>
 <strong><?php echo '<h1 class="h5"><a href="?action=security&amp;domain=' . $zone_name . '&amp;zoneid=' . $zoneID . '">' . strtoupper($zone_name) . '</a></h1>'; ?></strong>

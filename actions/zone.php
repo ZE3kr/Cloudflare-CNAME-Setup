@@ -10,7 +10,7 @@ if (!isset($_GET['page']) || !is_numeric($_GET['page'])) {
 $dns = new Cloudflare\API\Endpoints\DNS($adapter);
 $zones = new Cloudflare\API\Endpoints\Zones($adapter);
 
-$zoneID = $_GET['zoneid'];
+$zoneID = htmlspecialchars($_GET['zoneid']);
 
 try {
 	$dnsresult_data = $dns->listRecords($zoneID, false, false, false, intval($_GET['page']));

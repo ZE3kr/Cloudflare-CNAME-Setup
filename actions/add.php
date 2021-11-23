@@ -15,7 +15,7 @@ if (isset($_POST['submit'])) {
 			exit('<div class="alert alert-danger" role="alert">' . $e->getMessage() . '</div>');
 		}
 		if ($res['result'] == 'success') {
-			$msg = _('Success') . ', <a target="_blank" href="https://www.cloudflare.com/a/overview/' . $zone_name . '">' . _('Go to console') . '</a>. ';
+			$msg = _('Success') . ', <a target="_blank" href="https://www.cloudflare.com/a/overview/' . htmlspecialchars($zone_name) . '">' . _('Go to console') . '</a>. ';
 			exit('<div class="alert alert-success" role="alert">' . $msg . '</div>');
 		} elseif (isset($res['msg'])) {
 			$msg = $res['msg'];
@@ -68,7 +68,7 @@ if (isset($_POST['submit'])) {
 			exit('<div class="alert alert-danger" role="alert">' . $e->getMessage() . '</div>');
 		}
 
-		$msg = _('Success') . ', <a href="?action=zone&amp;domain=' . $zone_name . '&amp;zoneid=' . $zoneID . '">' . _('Go to console') . '</a>. ';
+		$msg = _('Success') . ', <a href="?action=zone&amp;domain=' . htmlspecialchars($zone_name) . '&amp;zoneid=' . htmlspecialchars($zoneID) . '">' . _('Go to console') . '</a>. ';
 		exit('<div class="alert alert-success" role="alert">' . $msg . '</div>');
 	} elseif (isset($res['msg'])) {
 		$msg = $res['msg'];

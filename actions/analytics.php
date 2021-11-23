@@ -7,7 +7,7 @@ if (!isset($adapter)) {exit;}
 $zone_name = $_GET['domain'];
 $zones = new \Cloudflare\API\Endpoints\Zones($adapter);
 
-$zoneID = $_GET['zoneid'];
+$zoneID = htmlspecialchars($_GET['zoneid']);
 $date_now = new DateTime();
 
 ?>

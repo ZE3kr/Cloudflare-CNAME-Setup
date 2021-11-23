@@ -5,7 +5,7 @@
 
 if (!isset($adapter)) {exit;}
 ?>
-<strong><?php echo '<h1 class="h5"><a href="?action=zone&amp;domain=' . $_GET['domain'] . '&amp;zoneid=' . $_GET['zoneid'] . '">&lt;- ' . _('Back') . '</a></h1>'; ?></strong><hr>
+<strong><?php echo '<h1 class="h5"><a href="?action=zone&amp;domain=' . htmlspecialchars($_GET['domain']) . '&amp;zoneid=' . htmlspecialchars($_GET['zoneid']) . '">&lt;- ' . _('Back') . '</a></h1>'; ?></strong><hr>
 <?php
 $dns = new \Cloudflare\API\Endpoints\DNS($adapter);
 $dns_details = $dns->getRecordDetails($_GET['zoneid'], $_GET['recordid']);

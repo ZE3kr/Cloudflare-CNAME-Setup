@@ -111,7 +111,7 @@ if (isset($_GET['action'])) {
 		if (isset($action_name[$_GET['action']])) {
 			echo $action_name[$_GET['action']] . ' | ';
 			if (isset($_GET['domain'])) {
-				echo $_GET['domain'] . ' | ';
+				echo htmlspecialchars($_GET['domain']) . ' | ';
 			}
 		}
 	} else {
